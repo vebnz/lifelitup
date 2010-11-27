@@ -14,6 +14,16 @@ class Comments {
 		return $rows;	
 	}
 
+	function add($userid, $pageid, $content) {
+		$db = Database::obtain();
+		
+		$data['user_id'] = (int)$userid;
+		$data['page_id'] = (int)$pageid;
+		$data['content'] = $content; // secure
+
+		$primary_id = $db->insert(tbl_comments, $data);
+		return $primary_id;
+	}
 }
 
 ?>
