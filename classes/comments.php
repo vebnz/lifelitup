@@ -15,11 +15,12 @@ class Comments {
 		return $rows;	
 	}
 
-	function add($userid, $pageid, $content) {
+	function add($userid, $pageid, $table, $content) {
 		$db = Database::obtain();
 		
 		$data['user_id'] = (int)$userid;
 		$data['page_id'] = (int)$pageid;
+		$data['tbl'] = $table; // secure
 		$data['content'] = $content; // secure
 
 		$primary_id = $db->insert(tbl_comments, $data);
