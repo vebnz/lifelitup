@@ -2,6 +2,7 @@
 require_once('functions/authenticate.php');
 require_once('functions/pages.php');
 
+// this is just to get pages based on your status (logged in/out)
 $logged_in = 1;
 
 if ($auth->isLoggedIn()) {
