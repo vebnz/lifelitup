@@ -13,13 +13,13 @@
 				</div>
                         </div>
 	{% endfor %}
+	{% if msg %}
+        	<h1> {{ msg|e }} </h1>
+	{% endif %}
 	{% for comment in comments %}
 		{{ comment.username|e }} <br /> {{ comment.content|e }} <br /> <br />
 	{% endfor %}
 	<br /> <br />
-	{% if msg %}
-        	<h2> {{ msg|e }} </h2>
-	{% endif %}
 	<form name="post_comment" action="" method="POST">
     		<input type="hidden" name="page_id" value="{{ page_id|e }}" />
 		<textarea name="content">...</textarea> <br/>
