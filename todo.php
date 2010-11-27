@@ -15,6 +15,7 @@ if (!$auth->isLoggedIn()) {
 }
 
 if ($_GET['userid'] > 0) {
+	// this is for the template file to change between (you) and the userid provided
 	$not_me = 1;
 	$userid = $_GET['userid'];
 }
