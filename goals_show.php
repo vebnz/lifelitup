@@ -6,6 +6,8 @@ require_once('twig/twig.php');
 $db = Database::obtain(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 $db->connect();
 
+$table = tbl_goals;
+
 require_once('header.php');
 require_once('functions/authenticate.php');
 require_once('functions/todo.php');
@@ -17,7 +19,7 @@ if (!$auth->isLoggedIn()) {
 }
 
 $show = $goals->show($_GET['id']);
-$show_comments = $comments->show($_GET['id']);
+$show_comments = $comments->show(tbl_goals, $_GET['id']);
 
 $template = $twig->loadTemplate('goals_show.html');
 echo $template->render(array('page_id' => $_GET['id'], 'goal' => $show, 'comments' => $show_comments, 'username' => $_SESSION['username'], 'msg' => $msg));
