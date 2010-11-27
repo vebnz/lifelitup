@@ -10,7 +10,7 @@ if (isset($_POST['post_comment'])) {
 	}
 
 	if (!$auth->isLoggedIn()) {
-		$msg = "Sorry, you're not logged in, so you can't post a new comment.";
+		$msg = 'Sorry, you\'re not logged in, so you can\'t post a new comment.';
 		return;
 	}
 	
@@ -18,8 +18,30 @@ if (isset($_POST['post_comment'])) {
 	$pageid = (int)$_POST['page_id'];
 	$content = $_POST['content']; // secure
 
+	if (empty($userid)) {
+		$msg = 'I couldn\'t find your userid!';
+		return;
+	}
+
+	if (empty($pageid)) {
+		$msg = 'The page identification number was not found.';
+		return;
+	}
+
+	if (empty($content)) {
+		$msg = 'You can\'t just leave your comment empty, nobody can read it.';
+		return;
+	}
+
+	if (strlen($content) <= 3) {
+		$msg = 'Your comment should ideally be over 4 characters long...';
+		return;
+	}
+
 	$add = $comments->add($userid, $pageid, $content);
-	echo $add;
+	if (!empty($add)) {
+		$msg = 'Thank you for adding your comment ' . $_SESSION['username'];
+	}
 }
 
 ?>
