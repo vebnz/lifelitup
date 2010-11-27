@@ -1,0 +1,22 @@
+{% block header %}
+
+<div id="header">
+        <div id="logo">
+                <h1><a href="#"><span>{{ title|e }}</span></a></h1>
+                <p>ponies!</p>
+        </div>
+        <div id="menu">
+                <ul id="main">
+	        {% for page in pages %}
+        	        <li><a href="{{ page.url }}">{{ page.name }}</a></li>
+        	{% endfor %}
+                </ul>
+                <ul id="feed">
+                        <li><a href="#">Entries RSS</a></li>
+                        <li><a href="#">Comments RSS</a></li>
+                </ul>
+        </div>
+</div>
+
+
+{% endblock %}

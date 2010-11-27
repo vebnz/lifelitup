@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Browsing goals {% endblock %}
+
+{% block content %}
+
+{% if msg %}
+        <h2> {{ msg|e }} </h2>
+{% endif %}
+
+
+Browsing goals
+
+<ul>
+	{% for goal in goals %}
+		<li><img src="{{ goal.icon|e }}" /> {{ goal.name|e }} [ <a href="goals.php?action=addGoal&id={{ goal.id|e }}">Add to list</a> ]</li>
+	{% endfor %}
+</ul>
+
+<br /> <br />
+<a href="todo.php">View TODO list</a>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %} Showing Goal {% endblock %}
+
+{% block content %}
+
+{% if msg %}
+        <h2> {{ msg|e }} </h2>
+{% endif %}
+
+
+Browsing goal: {{ goal.name|upper }}
+
+<ul>
+<img src="{{ goal.icon|e }}" /> 
+<br />
+{{ goal.name|e }} 
+<br />
+{{ goal.info|e }}
+</ul>
+
+<br /> <br />
+<a href="todo.php">View TODO list</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} Showing all users {% endblock %}
+
+{% block content %}
+gonna show some users man
+
+<ul>
+	{% for user in users %}
+		<li> {{ user.username|e }}</li>
+	{% endfor %}
+</ul>
+
+{% endblock %}

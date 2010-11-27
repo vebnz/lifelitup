@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>ricocheting.com - PHP MySQL wrapper</title>
+
+
+<style type="text/css">
+<!-- /* style sheet for easy layout */
+
+body {
+	font-size  :  10pt;
+    color  :  black;
+    font-family  :  verdana, arial, helvetica, san-serif;
+    background-color  :  white;
+	}
+
+td {
+	font-size : 10pt;
+	/*border : 1px #eeeeee solid;*/
+	}
+.debut {
+	border : 1px #990000 solid;
+	background-color : #cc6666;
+	font-weight : bold;
+	font-size  :  10pt;
+	}
+
+.entry {
+	background-color : white;
+	border :  1px #990000 solid;
+	border-collapse : collapse;
+	}
+
+
+.linenum{
+	text-align:right;
+	background:#FDECE1;
+	border:1px solid #cc6666;
+	padding:0px 1px 0px 1px;
+	font-family:Courier New, Courier;
+	font-size:12px;
+	float:left;
+	width:17px;
+	margin:3px 0px 30px 0px;
+	}
+
+.linetext{
+	width:700px;
+	text-align:left;
+	background:white;
+	border:1px solid #cc6666;
+	border-left:0px;
+	padding:0px 1px 0px 8px;
+	font-family:Courier New, Courier;
+	font-size:12px;
+	float:left;
+	margin:3px 0px 30px 0px;
+	}
+
+code	{/* safari/konq hack */
+	font-family:Courier New, Courier;
+}
+
+br.clear	{
+	clear:both;
+}
+
+
+.code {
+	background:#FDECE1;
+	border:1px solid #cc6666;
+	padding:0px 4px 0px 4px;
+	font-family:Courier New, Courier;
+	font-size:10pt;
+	}
+
+// -->
+</style>
+
+
+</head>
+<body>
+
+
+
+<div class="pageMain">
+<!-- START main content -->
+<h1 class="shout">PHP MySQL wrapper v3 - PHP5 Singleton Class to easily call mysql functions</h1>
+
+
+<a name="description"><h4>Description</h4></a>
+<ul>
+	<li>This is not a full script. This is the PHP singleton class (PHP5 specifically) that I use to make all the MySQL database calls in my projects. I run all my MySQL connections through it because it saves me time and space on my code. I don't have to keep typing the database information and other things like that. It also has shortcut functions because I got tired of escaping data, stripping slashes, building UGLY insert and update queries. I'm sharing this class along with some examples for using it.</li>
+</ul>
+
+<a name="why"><h4>What is a Singleton and why use it?</h4></a>
+<ol>
+	<li>A Singleton in PHP allows you to create a single object ($db) and reuse that same existing object anywhere in your code.</li>
+	<li>This allows you to easily reuse the same database connection inside of other functions/classes. Without a singleton, your options would be to either declare the $db object as a global inside every function, or pass the $db object into the function you wanted to use it in. A Singleton object eliminates all this.</li>
+</ol>
+
+
+
+<a name="files"><h4>Download</h4></a>
+<ul>
+	<li><a href="http://www.ricocheting.com/code/php/mysql-database-class-wrapper-v3">Get the newest version</a></li>
+</ul>
+
+
+<a name="terms"><h4>Requirements & Terms of Use</h4></a>
+<ul>
+	<li>This script requires PHP5.0 or higher. If you only have PHP4, you need to use the old <a href="http://www.ricocheting.com/code/php/mysql-database-class-wrapper">PHP MySQL Wrapper v2</a>.</li>
+	<li>All current v3 of this script are released under <a href="http://www.gnu.org/licenses/">GNU General Public License</a>. Basically this means you are free to use the script, modify it, and even redistribute versions of your own under the same license.</li>
+</ul>
+
+
+<h1>Instructions</h1>
+
+
+<a name="settings"><h4>Calling the Class and configuring the settings</h4></a>
+<ul>
+	<li>At the top of your scripts you need to create the initial $db object and pass it all the MySQL server parameters:
+
+<div class="code">
+// bring in the class file<br />
+require("Database.singleton.php");<br />
+// create the initial singleton database object<br />
+$db = Database::obtain("<b>server_name</b>", "<b>mysql_user</b>", "<b>mysql_pass</b>", "<b>mysql_database</b>");
+</div>
+
+	</li>
+
+	<li>What each setting means:<br>
+		<ul>
+		<li><b class="code">$db = Database::obtain</b> is how you are going to declare and access the singleton object. You are probably used to declaring an object like <span class="code">$db = new Database</span> however, we are not creating a traditional object. Also note many people like to use the naming convention ::getInstance() instead of ::obtain() and you are welcome to change your version. However, I personally like ::obtain() so it's used here.</li>
+		<li><b class="code">server_name</b> - Name or IP of MySQL server. Usually "localhost" although sometimes it will be like "db1337.perfora.net"</li>
+		<li><b class="code">mysql_user</b> - User Name to log into MySQL database</li>
+		<li><b class="code">mysql_pass</b> - Password to log into MySQL database. If no password, use double quotes with a blank value. Example ""</li>
+		<li><b class="code">mysql_database</b> - Database to select and run the queries on</li>
+		</ul>
+
+	
+	</li>
+	<li>What I HIGHLY recommend (optional)<br>
+		The easiest way to handle this is to create a <b>config.inc.php</b> file. In it put:
+		<div class="code">//database server<br />
+define('DB_SERVER', "localhost");<br /><br />
+
+//database login name<br />
+define('DB_USER', "username");<br />
+//database login password<br />
+define('DB_PASS', "password");<br /><br />
+
+//database name<br />
+define('DB_DATABASE', "username_mydata");<br /><br />
+
+//smart to define your table names also<br />
+define('TABLE_USERS', "users");<br />
+define('TABLE_NEWS', "news");<br />
+		</div><br>
+
+		Then at the top of your scripts, call in the config.inc.php and the Database.singleton.php files and then create the $db object
+		<div class="code">
+		require("config.inc.php");<br>
+		require("Database.singleton.php");<br>
+		$db = Database::obtain(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);<br>
+		</div><br>
+
+		The reason why this is a good idea is because then if you change hosts etc, you can edit the single config.inc.php file, change the settings, and it is reflected on all your pages. No need to change the info on each of your pages.<br /><br />
+	</li>
+
+	<li>Any place (other than the initial declaration) you want to use the existing object in your script:
+
+<div class="code">
+// grab the existing $db object<br />
+$db=Database::obtain();
+</div>
+	You do not need to pass it any of the database info (user/pass/server) except the very first time when you create the $db object.
+	</li>
+
+</ul>
+
+<a name="settings"><h4>Turning debug on/off</h4></a>
+<ul>
+	<li>Near the top of Database.singleton.php setting there is a <span class="code">public $debug = true;</span> setting. Setting this to <span class="code">false</span> will suppress any error messages triggered by oops(). It's there to help with security, but I recommend leaving it on until you are absolutely sure everything is working correctly.</li>
+	<li>It would also be possible to turn debugging on (or off) for a specific page by calling <span class="code">$db->debug = true;</span> up at the top of the page right after you initially create the $db object.</li>
+</ul>
+
+<h1>Examples of how to call things</h1>
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br />24<br />25<br />26<br />27<br />28<br />29<br />30<br />31<br />32<br />33<br />34<br />35<br />36<br />37<br />38<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;every&nbsp;page&nbsp;needs&nbsp;to&nbsp;start&nbsp;with&nbsp;these&nbsp;basic&nbsp;things<br /><br />//&nbsp;I'm&nbsp;using&nbsp;a&nbsp;separate&nbsp;config&nbsp;file.&nbsp;so&nbsp;pull&nbsp;in&nbsp;those&nbsp;config&nbsp;values<br /></span><span style="color: #007700">require(</span><span style="color: #DD0000">"config.inc.php"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;pull&nbsp;in&nbsp;the&nbsp;file&nbsp;with&nbsp;the&nbsp;database&nbsp;class<br /></span><span style="color: #007700">require(</span><span style="color: #DD0000">"Database.singleton.php"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;create&nbsp;the&nbsp;$db&nbsp;singleton&nbsp;object<br /></span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">Database</span><span style="color: #007700">::</span><span style="color: #0000BB">obtain</span><span style="color: #007700">(</span><span style="color: #0000BB">DB_SERVER</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB_USER</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB_PASS</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">DB_DATABASE</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;connect&nbsp;to&nbsp;the&nbsp;server<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">connect</span><span style="color: #007700">();<br /><br /><br /></span><span style="color: #FF8000">#####<br />//&nbsp;your&nbsp;main&nbsp;code&nbsp;would&nbsp;go&nbsp;here<br />//&nbsp;with&nbsp;the&nbsp;singleton&nbsp;you&nbsp;can&nbsp;use&nbsp;the&nbsp;$db&nbsp;object&nbsp;inside&nbsp;other&nbsp;classes&nbsp;or&nbsp;functions<br /></span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">get_user_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;get&nbsp;the&nbsp;already&nbsp;existing&nbsp;instance&nbsp;of&nbsp;the&nbsp;$db&nbsp;object<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$db&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">Database</span><span style="color: #007700">::</span><span style="color: #0000BB">obtain</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$sql</span><span style="color: #007700">=</span><span style="color: #DD0000">"SELECT&nbsp;`uid`&nbsp;FROM&nbsp;`account`&nbsp;WHERE&nbsp;`user`='"</span><span style="color: #007700">.</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">escape</span><span style="color: #007700">(</span><span style="color: #0000BB">$user</span><span style="color: #007700">).</span><span style="color: #DD0000">"'"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query_first</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;if&nbsp;user&nbsp;exists<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if(!empty(</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'uid'</span><span style="color: #007700">]))<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">true</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;else<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br />}<br /></span><span style="color: #FF8000">#####<br /><br /><br />//&nbsp;good&nbsp;practice&nbsp;to&nbsp;close&nbsp;the&nbsp;connection&nbsp;when&nbsp;finished<br />//&nbsp;however,&nbsp;PHP&nbsp;will&nbsp;auto-close&nbsp;it&nbsp;when&nbsp;the&nbsp;page&nbsp;ends&nbsp;if&nbsp;you&nbsp;forget<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">close</span><span style="color: #007700">();</span>
+</span>
+</code></div></div>
+
+
+<br class="clear" />
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;update&nbsp;an&nbsp;existing&nbsp;record&nbsp;using&nbsp;update()<br /><br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">'comments'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">3536</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">'title'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"New&nbsp;Article"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;special&nbsp;cases&nbsp;supported&nbsp;for&nbsp;update:&nbsp;NULL&nbsp;and&nbsp;NOW()<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">'author'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"NULL"</span><span style="color: #007700">;</span><span style="color: #FF8000">//&nbsp;it&nbsp;knows&nbsp;to&nbsp;convert&nbsp;NULL&nbsp;and&nbsp;NOW()&nbsp;from&nbsp;a&nbsp;string<br /><br />//&nbsp;also&nbsp;supports&nbsp;increment&nbsp;to&nbsp;the&nbsp;current&nbsp;database&nbsp;value<br />//&nbsp;will&nbsp;also&nbsp;work&nbsp;with&nbsp;a&nbsp;negative&nbsp;number.&nbsp;eg;&nbsp;INCREMENT(-5)<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">'views'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"INCREMENT(1)"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;update()&nbsp;parameters<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;table&nbsp;name&nbsp;(ideally&nbsp;by&nbsp;calling&nbsp;a&nbsp;constant&nbsp;defined&nbsp;in&nbsp;config&nbsp;file)<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assoc&nbsp;array&nbsp;with&nbsp;data&nbsp;(does&nbsp;not&nbsp;need&nbsp;escaped)<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;condition<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">update</span><span style="color: #007700">(</span><span style="color: #0000BB">TABLE_NEWS</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"news_id='46'"</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;would&nbsp;create&nbsp;the&nbsp;query:<br />//&nbsp;UPDATE&nbsp;`news`&nbsp;SET&nbsp;`comments`='3536',&nbsp;`title`='New&nbsp;Article',&nbsp;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`author`=NULL,&nbsp;`views`=`views`&nbsp;+&nbsp;1&nbsp;WHERE&nbsp;news_id='46'</span>
+</span>
+</code></div></div>
+
+
+<br class="clear" />
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;insert&nbsp;a&nbsp;new&nbsp;record&nbsp;using&nbsp;insert()<br /><br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">'news_id'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">47</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">'title'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"You're&nbsp;Top"</span><span style="color: #007700">;&nbsp;</span><span style="color: #FF8000">//&nbsp;insert()&nbsp;will&nbsp;auto&nbsp;escape&nbsp;it&nbsp;for&nbsp;us<br /></span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">'created'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #DD0000">"NOW()"</span><span style="color: #007700">;</span><span style="color: #FF8000">//&nbsp;it&nbsp;knows&nbsp;to&nbsp;convert&nbsp;NULL&nbsp;and&nbsp;NOW()&nbsp;from&nbsp;a&nbsp;string<br /><br />//&nbsp;insert()&nbsp;parameters<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;table&nbsp;name&nbsp;(ideally&nbsp;defined&nbsp;as&nbsp;a&nbsp;constant,&nbsp;but&nbsp;did&nbsp;not&nbsp;for&nbsp;this&nbsp;example)<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;assoc&nbsp;array&nbsp;with&nbsp;data&nbsp;(does&nbsp;not&nbsp;need&nbsp;escaped)<br />//&nbsp;insert()&nbsp;returns<br />//&nbsp;&nbsp;&nbsp;&nbsp;primary&nbsp;id&nbsp;of&nbsp;the&nbsp;inserted&nbsp;record.&nbsp;you&nbsp;can&nbsp;collect&nbsp;or&nbsp;ignore<br /></span><span style="color: #0000BB">$primary_id&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">insert</span><span style="color: #007700">(</span><span style="color: #DD0000">"news"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;then&nbsp;use&nbsp;the&nbsp;returned&nbsp;ID&nbsp;if&nbsp;you&nbsp;want<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #DD0000">"New&nbsp;record&nbsp;inserted:&nbsp;$primary_id"</span><span style="color: #007700">;&nbsp;<br /><br /></span><span style="color: #FF8000">//&nbsp;would&nbsp;create&nbsp;the&nbsp;query:<br />//&nbsp;INSERT&nbsp;INTO&nbsp;`news`&nbsp;(`news_id`,`title`,`created`)&nbsp;<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VALUES&nbsp;('47',&nbsp;'Your\'re&nbsp;Top',&nbsp;NOW())</span>
+</span>
+</code></div></div>
+
+
+<br class="clear" />
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;escape()&nbsp;query()&nbsp;and&nbsp;fetch()<br /><br />//&nbsp;pullout&nbsp;the&nbsp;first&nbsp;10&nbsp;entries&nbsp;where&nbsp;referrer&nbsp;came&nbsp;from&nbsp;google<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;using&nbsp;defined&nbsp;TABLE_USERS&nbsp;table&nbsp;name&nbsp;from&nbsp;config<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db-&gt;escape()&nbsp;escapes&nbsp;string&nbsp;to&nbsp;make&nbsp;it&nbsp;safe&nbsp;for&nbsp;mysql<br /><br /></span><span style="color: #0000BB">$url&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"http://www.google.com/"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;user_id,&nbsp;nickname&nbsp;FROM&nbsp;`"</span><span style="color: #007700">.</span><span style="color: #0000BB">TABLE_USERS</span><span style="color: #007700">.</span><span style="color: #DD0000">"`<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;referrer&nbsp;LIKE&nbsp;'"</span><span style="color: #007700">.</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">escape</span><span style="color: #007700">(</span><span style="color: #0000BB">$url</span><span style="color: #007700">).</span><span style="color: #DD0000">"%'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER&nbsp;BY&nbsp;nickname&nbsp;DESC<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIMIT&nbsp;0,10"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$rows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /><br />while&nbsp;(</span><span style="color: #0000BB">$record&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch</span><span style="color: #007700">(</span><span style="color: #0000BB">$rows</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;tr&gt;&lt;td&gt;$record[user_id]&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;$record[nickname]&lt;/td&gt;&lt;/tr&gt;"</span><span style="color: #007700">;<br />}</span>
+</span>
+</code></div></div>
+
+
+<br class="clear" />
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;using&nbsp;escape()&nbsp;and&nbsp;fetch_array()<br /><br />//&nbsp;pullout&nbsp;the&nbsp;first&nbsp;10&nbsp;entries&nbsp;where&nbsp;url&nbsp;came&nbsp;from&nbsp;google<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;using&nbsp;defined&nbsp;TABLE_USERS&nbsp;table&nbsp;name&nbsp;from&nbsp;config<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db-&gt;escape()&nbsp;escapes&nbsp;string&nbsp;to&nbsp;make&nbsp;it&nbsp;safe&nbsp;for&nbsp;mysql<br /><br /></span><span style="color: #0000BB">$url&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"http://www.google.com/"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;user_id,&nbsp;username&nbsp;FROM&nbsp;`"</span><span style="color: #007700">.</span><span style="color: #0000BB">TABLE_USERS</span><span style="color: #007700">.</span><span style="color: #DD0000">"`<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;referer&nbsp;LIKE&nbsp;'"</span><span style="color: #007700">.</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">escape</span><span style="color: #007700">(</span><span style="color: #0000BB">$url</span><span style="color: #007700">).</span><span style="color: #DD0000">"%'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER&nbsp;BY&nbsp;username&nbsp;DESC<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LIMIT&nbsp;0,10"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;feed&nbsp;it&nbsp;the&nbsp;sql&nbsp;directly.&nbsp;store&nbsp;all&nbsp;returned&nbsp;rows&nbsp;in&nbsp;an&nbsp;array<br /></span><span style="color: #0000BB">$rows&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;print&nbsp;out&nbsp;array&nbsp;later&nbsp;on&nbsp;when&nbsp;we&nbsp;need&nbsp;the&nbsp;info&nbsp;on&nbsp;the&nbsp;page<br /></span><span style="color: #007700">foreach(</span><span style="color: #0000BB">$rows&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$record</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"&lt;tr&gt;&lt;td&gt;$record[user_id]&lt;/td&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;td&gt;$record[username]&lt;/td&gt;&lt;/tr&gt;"</span><span style="color: #007700">;<br />}</span>
+</span>
+</code></div></div>
+
+
+<br class="clear" />
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br />16<br />17<br />18<br />19<br />20<br />21<br />22<br />23<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;using&nbsp;query_first()&nbsp;<br /><br />//&nbsp;get&nbsp;user's&nbsp;nickname&nbsp;using&nbsp;their&nbsp;unique&nbsp;ID<br />//&nbsp;&nbsp;&nbsp;&nbsp;using&nbsp;defined&nbsp;TABLE_USERS&nbsp;table&nbsp;name&nbsp;from&nbsp;config<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;username&nbsp;FROM&nbsp;`"</span><span style="color: #007700">.</span><span style="color: #0000BB">TABLE_USERS</span><span style="color: #007700">.</span><span style="color: #DD0000">"`<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;user_id=$user_id"</span><span style="color: #007700">;<br /><br /></span><span style="color: #FF8000">//&nbsp;since&nbsp;user_id&nbsp;is&nbsp;unique,&nbsp;only&nbsp;one&nbsp;record&nbsp;needs&nbsp;returned<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I&nbsp;use&nbsp;$db-&gt;query_first()&nbsp;instead&nbsp;of&nbsp;$db-&gt;query()&nbsp;and&nbsp;fetch()<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$db-&gt;query_first()&nbsp;will&nbsp;return&nbsp;array&nbsp;with&nbsp;first&nbsp;record&nbsp;found<br /></span><span style="color: #0000BB">$record&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query_first</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /><br /></span><span style="color: #FF8000">//&nbsp;since&nbsp;it&nbsp;only&nbsp;returns&nbsp;one&nbsp;record,&nbsp;query_first()&nbsp;does&nbsp;the&nbsp;fetching<br />//&nbsp;I&nbsp;can&nbsp;print&nbsp;off&nbsp;the&nbsp;record&nbsp;directly<br /></span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$record</span><span style="color: #007700">[</span><span style="color: #DD0000">'username'</span><span style="color: #007700">];<br /><br /><br /></span><span style="color: #FF8000">//&nbsp;query_first()&nbsp;is&nbsp;also&nbsp;good&nbsp;for&nbsp;things&nbsp;like<br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;COUNT(*)&nbsp;AS&nbsp;amount&nbsp;FROM&nbsp;`"</span><span style="color: #007700">.</span><span style="color: #0000BB">TABLE_NEWS</span><span style="color: #007700">.</span><span style="color: #DD0000">"`&nbsp;WHERE&nbsp;`comments`&nbsp;&gt;=&nbsp;50"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query_first</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);<br /><br />echo&nbsp;</span><span style="color: #0000BB">$row</span><span style="color: #007700">[</span><span style="color: #DD0000">'amount'</span><span style="color: #007700">]&nbsp;.</span><span style="color: #DD0000">"&nbsp;articles&nbsp;have&nbsp;50&nbsp;or&nbsp;more&nbsp;comments"</span><span style="color: #007700">;</span>
+</span>
+</code></div></div>
+
+
+<br class="clear" />
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;delete&nbsp;a&nbsp;specific&nbsp;entry<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"DELETE&nbsp;FROM&nbsp;`"</span><span style="color: #007700">.</span><span style="color: #0000BB">TABLE_USERS</span><span style="color: #007700">.</span><span style="color: #DD0000">"`&nbsp;WHERE&nbsp;`user_id`=$user_id"</span><span style="color: #007700">;<br /></span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);</span>
+</span>
+</code></div></div>
+
+
+<br class="clear" />
+
+
+<div class="linecont">Code:<br /><div class="linenum">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12<br />13<br />14<br />15<br /></div>
+<div class="linetext"><code><span style="color: #000000">
+<span style="color: #0000BB"></span><span style="color: #FF8000">//&nbsp;using&nbsp;$db-&gt;affected_rows<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returns&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;in&nbsp;a&nbsp;table&nbsp;affected&nbsp;by&nbsp;your&nbsp;query<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;be&nbsp;used&nbsp;after&nbsp;UPDATE&nbsp;query&nbsp;(to&nbsp;see&nbsp;how&nbsp;many&nbsp;rows&nbsp;are&nbsp;updated)<br />//&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;can&nbsp;be&nbsp;used&nbsp;after&nbsp;SELECT&nbsp;query&nbsp;(to&nbsp;see&nbsp;how&nbsp;many&nbsp;rows&nbsp;will&nbsp;be&nbsp;returned)<br /><br /></span><span style="color: #0000BB">$sql&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"SELECT&nbsp;`username`&nbsp;FROM&nbsp;`"</span><span style="color: #007700">.</span><span style="color: #0000BB">TABLE_USERS</span><span style="color: #007700">.</span><span style="color: #DD0000">"`&nbsp;WHERE&nbsp;`user_status`='1'"</span><span style="color: #007700">;<br /><br /></span><span style="color: #0000BB">$row&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">query</span><span style="color: #007700">(</span><span style="color: #0000BB">$sql</span><span style="color: #007700">);&nbsp;<br /><br />if(</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows&nbsp;</span><span style="color: #007700">&gt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Success!&nbsp;Number&nbsp;of&nbsp;users&nbsp;found:&nbsp;"</span><span style="color: #007700">.&nbsp;</span><span style="color: #0000BB">$db</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">affected_rows</span><span style="color: #007700">;<br />}<br />else{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo&nbsp;</span><span style="color: #DD0000">"Error:&nbsp;No&nbsp;user&nbsp;found."</span><span style="color: #007700">;<br />}</span>
+</span>
+</code></div></div>
+
+<br class="clear" />
+
+
+
+
+And now because I'm lazy and tend to look here all the time myself when i need a reference.<br>
+
+<table style="border-collapse: collapse;" cellspacing="0">
+<tbody><tr>
+	<th class="debut">Data Type</th>
+	<th class="debut">Column Type</th>
+	<th class="debut">Range or Description</th>
+	<th class="debut">Storage</th>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">TinyInt</td>
+	<td class="entry">Signed values from <b>-128</b> to <b>127</b><br>Unsigned values from <b>0</b> to <b>255</b></td>
+	<td class="entry">1 byte</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">SmallInt</td>
+	<td class="entry">Signed values from <b>-32768</b> to <b>32767</b><br>Unsigned values from <b>0</b> to <b>65535</b></td>
+	<td class="entry">2 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">MediumInt</td>
+	<td class="entry">Signed values from <b>-8388608</b> to <b>8388607</b><br>Unsigned values from <b>0</b> to <b>16777215</b></td>
+	<td class="entry">3 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">Int</td>
+	<td class="entry">Signed values from <b>-2147683648</b> to <b>2147483647</b><br>Unsigned values from <b>0</b> to <b>4294967295</b></td>
+	<td class="entry">4 bytes</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">BigInt</td>
+	<td class="entry">Signed values from <b>-9223372036854775808</b> to <b>9223372036854775807</b><br>Unsigned values from <b>0</b> to <b>18446744073709551615</b></td>
+	<td class="entry">8 bytes</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">Float</td>
+	<td class="entry">Minimum non-zero values: 1.175494351E-38<br>Maximum non-zero values: 3.402823466E+38</td>
+	<td class="entry">4 bytes</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">Double Float</td>
+	<td class="entry">Minimum non-zero values: 2.2250738585072014E-308<br>Maximum non-zero values: 1.7976931348623157E+308</td>
+	<td class="entry">8 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 238, 255);">Numeric</td>
+	<td class="entry">Decimal</td>
+	<td class="entry">Varies</td>
+	<td class="entry">Maximum width + 2 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">Char</td>
+	<td class="entry">Range 1-255 characters</td>
+	<td class="entry">Always filled max width</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">VarChar</td>
+	<td class="entry">Range 1-255 characters</td>
+	<td class="entry">Length of string + 1 byte</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">TinyBlob, TinyText</td>
+	<td class="entry">Max length 255 characters</td>
+	<td class="entry">Length of string + 1 byte</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">Blob, Text</td>
+	<td class="entry">Max length 65535 characters (~64KB of text)</td>
+	<td class="entry">Length of string + 2 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">MediumBlob, MediumText</td>
+	<td class="entry">Max length 16777216 characters (16MB of text)</td>
+	<td class="entry">Length of string + 3 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">LongBlob, LongText</td>
+	<td class="entry">Max length 4294967295 characters (4GB of text)</td>
+	<td class="entry">Length of string + 4 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">Enum <em>('value','value2',...)</em></td>
+	<td class="entry">String object that can have only one set of allowed values</td>
+	<td class="entry">1 or 2 bytes</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(255, 238, 238);">String</td>
+	<td class="entry">Set <em>('value','value2',...)</em></td>
+	<td class="entry">String object that can have one or many values of a set of allowed values.</td>
+	<td class="entry">1, 2, 3, 4, or 8 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 255, 238);">Date/Time</td>
+	<td class="entry">Date</td>
+	<td class="entry">'YY-MM-DD', 'YYYY-MM-DD', 'YYMMDD'<br>Range "1000-01-01" to "9999-12-31"</td>
+	<td class="entry">3 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 255, 238);">Date/Time</td>
+	<td class="entry">Time</td>
+	<td class="entry">'HH:MM:SS', 'HHMMSS', 'HHMM', 'HH'<br>Range "-838:59:59" to "838:59:59"</td>
+	<td class="entry">3 bytes</td></tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 255, 238);">Date/Time</td>
+	<td class="entry">DateTime</td>
+	<td class="entry">'YYYY-MM-DD HH:MM:SS'<br>"0000-01-01 00:00:00" to "9999-12-31 23:59:59"</td>
+	<td class="entry">8 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 255, 238);">Date/Time</td>
+	<td class="entry">TimeStamp</td>
+	<td class="entry">19700101000000 to sometime in the year 2037</td>
+	<td class="entry">4 bytes</td>
+</tr>
+
+<tr>
+	<td class="entry" style="background-color: rgb(238, 255, 238);">Date/Time</td>
+	<td class="entry">Year</td>
+	<td class="entry">'YYYY', 'YY' Range "1901" to "2155"</td>
+	<td class="entry">1 byte</td>
+</tr>
+</tbody></table>
+</div>
+
+
+<!-- END main content -->
+</div>
+
+
+
+</body>
+</html>
