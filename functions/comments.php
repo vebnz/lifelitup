@@ -5,7 +5,7 @@ $comments = new Comments;
 
 if (isset($_POST['post_comment'])) {	
 	$userid = (int)$_SESSION['userid'];
-	$pageid = (int)$_POST['pageid'];
+	$pageid = (int)$_POST['page_id'];
 	$content = $_POST['content']; // secure
 
 	$add = $comments->add($userid, $pageid, $content);
