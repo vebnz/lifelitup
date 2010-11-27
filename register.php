@@ -13,6 +13,7 @@ if ($auth->isLoggedIn()) {
 	header("Location: profile.php");
 }
 
+// this is passed directly into an HTML text input, the text must be removed else registration will fail
 $seed = sha1(rand(456, 25000) . 'We love ponies bro' . (6*6));
 
 $template = $twig->loadTemplate('register.html');
