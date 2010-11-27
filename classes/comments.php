@@ -9,7 +9,7 @@ class Comments {
 			FROM " . tbl_comments . "
 			JOIN " . tbl_users . " ON " . tbl_comments . ".user_id = " . tbl_users . ".id
 			WHERE page_id = " . (int)$page_id . "
-			AND table = " . $table;
+			AND tbl = '" . $table. "'";
 		$rows = $db->fetch_array($sql);
 
 		return $rows;	
