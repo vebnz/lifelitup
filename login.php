@@ -11,6 +11,7 @@ require_once('functions/authenticate.php');
 
 if ($_GET['action'] == 'logout') {
 	$auth->logout();
+	// this can definitely be improved. header() causes stuff to break
 	echo '<meta http-equiv="refresh" content="0;url=login.php" />';
 	die;
 }
