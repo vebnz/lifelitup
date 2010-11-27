@@ -12,4 +12,7 @@
 				</div>
                         </div>
 	{% endfor %}
+	{% for comment in comments %}
+		{{ comment.user_id|e }} <br /> {{ comment.content|e }} <br /> <br />
+	{% endfor %}
 {% endblock %}
