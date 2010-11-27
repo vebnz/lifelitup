@@ -15,4 +15,9 @@
 	{% for comment in comments %}
 		{{ comment.username|e }} <br /> {{ comment.content|e }} <br /> <br />
 	{% endfor %}
+	<br /> <br />
+	<form name="post_comment" action="" method="POST">
+    		<textarea name="content">...</textarea> <br/>
+    		<input type="submit" name="post_comment"  value="comment" />
+	</form>
 {% endblock %}
