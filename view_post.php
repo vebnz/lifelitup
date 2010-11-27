@@ -14,7 +14,7 @@ $show = $blog->showPost($_GET['id']);
 $show_comments = $comments->show($_GET['id']);
 
 $template = $twig->loadTemplate('view_post.html');
-echo $template->render(array('title' => 'Lifelitup', 'posts' => $show, 'comments' => $show_comments));
+echo $template->render(array('page_id' => $_GET['id'], 'posts' => $show, 'comments' => $show_comments));
 
 require_once('footer.php');
 $db->close();
