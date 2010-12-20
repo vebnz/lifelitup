@@ -2,6 +2,8 @@
 
 class Authenticate {
 
+	// Authentication system should use bcrypt for storing passwords
+
 	function getUsername($userid) {
 		$db = Database::obtain();
 
