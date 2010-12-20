@@ -5,7 +5,7 @@ define('DB_SERVER', "localhost");
 //database login name
 define('DB_USER', "life");
 //database login password
-define('DB_PASS', "xvgX(RP_CXL0");
+define('DB_PASS', "2vc44rb5");
 
 //database name
 define('DB_DATABASE', "life_app");
