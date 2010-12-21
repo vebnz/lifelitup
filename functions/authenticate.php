@@ -5,12 +5,13 @@ $auth = new Authenticate;
 
 if (isset($_POST['login'])) {
 
-	/*
-		This section needs to be *secured*
-	*/
+	$op = $_POST['op'];
+	if ($op !== 'new' && $op !== 'login') {
+		die 'Unknown request';
+	}
 
-	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$username = $_POST['username']; // secure this from injection
+	$password = $_POST['password']; // secure this from injection
 
 	$login = $auth->login($username, $password);
 	
@@ -25,14 +26,10 @@ if (isset($_POST['login'])) {
 
 if (isset($_POST['register'])) {
 
-	/* 
-		This section needs to be *secured*
-	*/
-	
-	$username = $_POST['username'];
-	$pass1 = $_POST['pass1'];
-	$pass2 = $_POST['pass2'];
-	$remove = $_POST['remove'];
+	$username = $_POST['username']; // secure this from injection
+	$pass1 = $_POST['pass1']; // secure this from injection
+	$pass2 = $_POST['pass2']; // secure this from injection
+	$remove = $_POST['remove']; // secure this from injection
 
 	if (strlen($remove) != 0) {
 		$msg = 'Remove the text to continue';
