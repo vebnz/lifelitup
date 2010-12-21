@@ -1,4 +1,6 @@
 <?php
+require_once('../includes/PasswordHash.php');
+$hasher = new PasswordHash(8, FALSE);
 
 class Authenticate {
 
@@ -42,9 +44,10 @@ class Authenticate {
 	}
 
 	function login($username, $password) {
+		global $hasher;
 	        $db = Database::obtain();
 
-		$sql = "SELECT id, password, salt, username
+		$sql = "SELECT id, password
 			FROM " . tbl_users . "
 			WHERE username = '" . $username . "'
 			";
@@ -55,24 +58,26 @@ class Authenticate {
 			return $msg;
 		}
 
-		$hash = sha1($row['salt'] . sha1($password));
-		
-		if ($hash != $row['password']) {
+		if (!$hasher->CheckPassword($row['password'], $username)) {
 			$msg = 'Password incorrect';
 			return $msg;
 		}
+		unset($hasher);
 
 		return $row;
 	}	
 
-	function register($username, $password) {
+	function register($username, $passworid) {
+		global $hasher;
 		$db = Database::obtain();
 
-		$salt = $this->generateSalt();	
-	
 		$data['username'] = $username;
-		$data['password'] = sha1($salt . sha1($password));
-		$data['salt'] = $salt;
+		$data['password'] = $hasher->HashPassword($password);
+
+		if ($data['password'] < 20) {
+			die 'Failed to hash new password';
+		}
+		unset($hasher);
 
 		$pid = $db->insert(tbl_users, $data);
 	
