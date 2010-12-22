@@ -1,5 +1,6 @@
 <?php
-require_once('/home/life/public_html/classes/authenticate.php');
+require_once('classes/authenticate.php');
+require_once('misc.php');
 
 $auth = new Authenticate;
 
@@ -10,8 +11,18 @@ if (isset($_POST['login'])) {
 		die('Unknown request');
 	}
 
-	$username = $_POST['username']; // secure this from injection
-	$password = $_POST['password']; // secure this from injection
+	$username = $_POST['username']; 
+	$password = $_POST['password']; 
+	
+	if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $username)) {
+		$msg = 'Invalid username';
+		return;
+	}
+
+	if (strlen($password) > 72) {
+		$msg = 'The supplied password is too long';
+		return;
+	}
 
 	$login = $auth->login($username, $password);
 	
@@ -31,10 +42,15 @@ if (isset($_POST['register'])) {
                 die('Unknown request');
         }   
 
-	$username = $_POST['username']; // secure this from injection
-	$pass1 = $_POST['pass1']; // secure this from injection
-	$pass2 = $_POST['pass2']; // secure this from injection
-	$remove = $_POST['remove']; // secure this from injection
+	$username = $_POST['username'];
+	$pass1 = $_POST['pass1']; 
+	$pass2 = $_POST['pass2'];
+	$remove = $_POST['remove'];
+
+        if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $username)) {
+                $msg = 'Invalid username';
+                return;
+        }
 
 	if (strlen($remove) != 0) {
 		$msg = 'Remove the text to continue';
