@@ -75,7 +75,7 @@ class Authenticate {
 		$data['password'] = $hasher->HashPassword($password);
 
 		if ($data['password'] < 20) {
-			die 'Failed to hash new password';
+			die('Failed to hash new password');
 		}
 		unset($hasher);
 
