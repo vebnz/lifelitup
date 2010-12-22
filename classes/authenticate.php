@@ -1,10 +1,8 @@
 <?php
 require_once('includes/PasswordHash.php');
-$hasher = new PasswordHash(8, FALSE);
+$hasher = new PasswordHash(8, TRUE);
 
 class Authenticate {
-
-	// Authentication system should use bcrypt for storing passwords
 
 	function getUsername($userid) {
 		$db = Database::obtain();
@@ -15,11 +13,6 @@ class Authenticate {
 		$row = $db->query_first($sql);
 
 		return $row['username'];
-	}
-
-	function generateSalt() {
-		$string = md5(uniqid(rand(), true));
-		return substr($string, 0, 3);
 	}
 
 	function validateUser($row) {
@@ -57,17 +50,17 @@ class Authenticate {
 			$msg = 'No such user exists';
 			return $msg;
 		}
-
-		if (!$hasher->CheckPassword($row['password'], $username)) {
+		
+		if (!$hasher->CheckPassword($password, $row['password'])) {
 			$msg = 'Password incorrect';
 			return $msg;
 		}
+		
 		unset($hasher);
-
 		return $row;
 	}	
 
-	function register($username, $passworid) {
+	function register($username, $password) {
 		global $hasher;
 		$db = Database::obtain();
 
@@ -78,7 +71,7 @@ class Authenticate {
 			die('Failed to hash new password');
 		}
 		unset($hasher);
-
+		
 		$pid = $db->insert(tbl_users, $data);
 	
 		if ($pid > 0) {
