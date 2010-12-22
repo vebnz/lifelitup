@@ -7,7 +7,7 @@ if (isset($_POST['login'])) {
 
 	$op = $_POST['op'];
 	if ($op !== 'new' && $op !== 'login') {
-		die 'Unknown request';
+		die('Unknown request');
 	}
 
 	$username = $_POST['username']; // secure this from injection
@@ -25,6 +25,11 @@ if (isset($_POST['login'])) {
 }
 
 if (isset($_POST['register'])) {
+
+        $op = $_POST['op'];
+        if ($op !== 'new' && $op !== 'login') {
+                die('Unknown request');
+        }   
 
 	$username = $_POST['username']; // secure this from injection
 	$pass1 = $_POST['pass1']; // secure this from injection
