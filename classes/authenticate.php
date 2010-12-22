@@ -1,5 +1,5 @@
 <?php
-require_once('../includes/PasswordHash.php');
+require_once('includes/PasswordHash.php');
 $hasher = new PasswordHash(8, FALSE);
 
 class Authenticate {
