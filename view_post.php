@@ -6,7 +6,7 @@ require_once('twig/twig.php');
 $db = Database::obtain(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 $db->connect();
 
-require_once('header.php');
+//require_once('header.php');
 require_once('functions/blog.php');
 require_once('functions/comments.php');
 
