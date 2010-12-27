@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %} Content {% endblock %}
+
+{% block content %}
+
+	{% for post in posts %}
+		<article>
+	        	<h1><a href="#">{{ post.title|e }}</a></h1>
+                        <p><small>{{ post.date_posted|date("m/d/Y") }} by <a href="#">{{ post.username|e }}</a></small></p>
+                        <div>
+                       		{{ post.content|nl2br }}
+			</div>
+		</article>
+	{% endfor %}
+	{% if msg %}
+        	<h1> {{ msg|e }} </h1>
+	{% endif %}
+	{% for comment in comments %}
+		{{ comment.username|e }} <br /> {{ comment.content|e }} <br /> <br />
+	{% endfor %}
+	<br /> <br />
+	<form name="post_comment" action="" method="POST">
+    		<input type="hidden" name="page_id" value="{{ page_id|e }}" />
+		<textarea name="content">...</textarea> <br/>
+    		<input type="submit" name="post_comment"  value="comment" />
+	</form>
+{% endblock %}
