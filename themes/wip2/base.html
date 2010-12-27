@@ -5,7 +5,7 @@
 <meta charset="utf-8" />
 <title>{% block title %}{% endblock %} - LifeLitUp</title>
 
-<link rel="stylesheet" href="main.css" type="text/css" />
+<link rel="stylesheet" href="themes/wip2/main.css" type="text/css" />
 
 <!--[if IE]>
 	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -35,8 +35,6 @@
 		{% block content %}{% endblock %}
 	</section>
 
-	<footer>
-		<div class="f">something here</div>
-	</footer>
+	{% block footer %}{% endblock %}
 </body>
 </html>

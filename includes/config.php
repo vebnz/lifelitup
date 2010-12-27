@@ -17,7 +17,7 @@ define('tbl_todo', "tbl_todo");
 define('tbl_blog', "tbl_blog");
 
 // twig
-define('current_theme', "/home/life/public_html/themes/nourish");
+define('current_theme', "/home/life/public_html/themes/wip2");
 
 // start the session
 session_start();

@@ -1,0 +1,248 @@
+body {
+	background-color: #999999;
+	color: #FFFFFF;
+	font-family: Tahoma;
+}
+
+@font-face {
+	font-family: Myriad Pro Light;
+	src: url('../font/myriadpro-semibold_opentype.ttf');
+}
+
+#container {
+	margin: auto;
+	width: 1020px;
+	margin-top: -10px;
+	background-color: #999999;
+}
+
+#nav {
+	background-image: url('../images/navBar.jpg');
+	padding-left: 20px;
+	padding-top: 14px;
+	height: 30px;
+	width: 740px;
+	font-size: 15px;
+	font-weight: 500;
+	font-family: Myriad Pro Light;
+}
+
+#nav a {
+	color: #FFFFFF;
+	text-decoration: none;
+	margin-left: 30px;
+}
+
+#upperHalf {
+	width: 100%;
+}
+
+#left {
+	float: left;
+	width: 760px;	
+}
+
+#bigSlider {
+	background-image: url('../images/bigSlider.jpg');
+	width: 550px;
+	height: 228px;
+	padding-left: 210px;
+	padding-top: 20px;
+}
+
+#sliderControls {
+	background-image: url('../images/sliderBg.jpg');
+	width: 685px;	
+	height: 31px;
+	text-align: center;
+	padding-top: 6px;
+	padding-left: 75px;
+	
+}
+
+#sliderControls img {
+	border: 0px;
+	
+}
+#sliderControls a {
+	text-decoration: none;
+	margin-left: 10px;
+}
+
+#right {
+	float: left;
+	width: 260px;
+}
+
+#login {
+	background-image: url('../images/login.jpg');
+	width: 260px;
+	height: 169px;
+	padding-top: 35px;
+	
+}
+#user {
+	padding-left: 81px;
+	font-weight: 700;
+	font-family: Myriad Pro Light;
+	font-size: 26px;
+}
+
+#loginForm {
+	padding-top: 18px;
+	padding-left: 13px;
+}
+
+.fieldHolder {
+	width: 188px;
+	height: 33px;
+	background: url('../images/loginInput.png') no-repeat;
+	float: left;
+}
+
+.userInput {
+	width: 170px;
+	height: 22px;
+	background: none;
+	border: none;
+	color: #cccccc;
+	font-size: 11px;
+	margin-top: 6px;
+	margin-left: 8px;
+}
+
+#loginButton {
+	width: 78px;
+	float: left;
+}
+
+.signin {
+	margin-top: 5px;
+	margin-left: 3px;
+}
+
+#signup {
+	margin-top: 15px;
+	width: 100px;
+	float: left;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#signup a {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+
+#feature {
+	background-image: url("../images/feature.jpg");
+	height: 337px;
+	width: 260px;
+}
+
+#featureImage {
+	padding-top: 100px;
+	padding-left: 80px;
+}
+
+#featureDesc {
+	margin-top: 40px;
+	margin-left: 33px;
+	font-size: 11px;
+	color: #999999;
+	font-weight: normal;	
+}
+
+.featureTitle {
+	color: #f7931e;
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+
+#news {
+	background-image: url("../images/news.jpg");
+	width: 263px;
+	height: 158px;
+	float: left;
+	color: #999999;
+	font-size: 11px;
+	font-weight: normal;
+	padding-left: 67px;
+	padding-top: 50px;
+}
+
+.newsTitle {
+	color: #02b1e3;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+#leader {
+	background-image: url("../images/leaderboard.jpg");
+	width: 268px;
+	height: 143px;
+	float: left;	
+	color: #666666;
+	font-size: 11px;
+	font-weight: normal;
+	padding-top: 65px;
+	padding-left: 32px;
+}
+
+.userLeader {
+	color: #02b1e3;
+	font-weight: bold;
+}
+
+#popular {
+	background-image: url("../images/popular.jpg");
+	width: 358px;
+	height: 143px;
+	float: left;
+	font-size: 11px;
+	padding-top: 65px;
+	padding-left: 32px;
+}
+
+.popularAchievement {
+	margin-left: 30px;
+	color: #02b1e3;
+	font-weight: bold;
+}
+
+.score {
+	margin-left: 60px;
+	color: #666666;
+}
+
+.points {
+	font-weight: bold;
+}
+
+#footerTop {
+	background-image: url("../images/footerTop.jpg");
+	width: 1020px;
+	height: 20px;
+	color : #015f7a;
+	font-size: 11px;
+	text-align: center;
+	font-weight: regular;
+	padding-top: 15px;
+}
+
+#footerTop a {
+	color : #015f7a;
+	text-decoration: none;
+}
+
+.navSep {
+	color: #00c6ff;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#footerBottom {
+	background-color: #02b1e3;
+	width: 1020px;
+	height: 125px;
+}

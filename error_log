@@ -391,3 +391,105 @@ Stack trace:
 [27-Nov-2010 13:03:03] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/life/public_html/todo.php on line 28
 [27-Nov-2010 13:03:03] PHP Parse error:  syntax error, unexpected '=', expecting ')' in /home/life/public_html/todo.php on line 28
 [27-Nov-2010 13:15:15] PHP Parse error:  syntax error, unexpected ':' in /home/life/public_html/classes/todo.php on line 19
+[21-Dec-2010 12:27:12] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/life/public_html/header.php:15) in /home/life/public_html/profile.php on line 13
+[22-Dec-2010 10:32:13] PHP Warning:  require(PasswordHash.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/life/public_html/test.php on line 9
+[22-Dec-2010 10:32:13] PHP Warning:  require(PasswordHash.php) [<a href='function.require'>function.require</a>]: failed to open stream: No such file or directory in /home/life/public_html/test.php on line 9
+[22-Dec-2010 10:32:13] PHP Fatal error:  require() [<a href='function.require'>function.require</a>]: Failed opening required 'PasswordHash.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/test.php on line 9
+[22-Dec-2010 10:57:58] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/life/public_html/functions/authenticate.php on line 10
+[22-Dec-2010 11:01:39] PHP Parse error:  syntax error, unexpected T_CONSTANT_ENCAPSED_STRING in /home/life/public_html/classes/authenticate.php on line 78
+[22-Dec-2010 11:02:56] PHP Warning:  require_once(../includes/PasswordHash.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/classes/authenticate.php on line 2
+[22-Dec-2010 11:02:56] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '../includes/PasswordHash.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/classes/authenticate.php on line 2
+[22-Dec-2010 11:03:36] PHP Warning:  require_once(/includes/PasswordHash.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/classes/authenticate.php on line 2
+[22-Dec-2010 11:03:36] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/includes/PasswordHash.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/classes/authenticate.php on line 2
+[22-Dec-2010 11:08:01] PHP Warning:  require_once(/home/life/public_html/classes/authenticate.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 11:08:01] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/life/public_html/classes/authenticate.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 11:09:22] PHP Warning:  require_once(/home/life/public_html/classes/authenticate.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 11:09:22] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/life/public_html/classes/authenticate.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 11:21:42] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/life/public_html/classes/authenticate.php on line 62
+[22-Dec-2010 11:23:17] PHP Warning:  Unknown: Your script possibly relies on a session side-effect which existed until PHP 4.2.3. Please be advised that the session extension does not consider global variables as a source of data, unless register_globals is enabled. You can disable this functionality and this warning by setting session.bug_compat_42 or session.bug_compat_warn to off, respectively in Unknown on line 0
+[22-Dec-2010 11:33:11] PHP Warning:  require_once(/home/life/public_html/classes/authenticate.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 11:33:11] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/life/public_html/classes/authenticate.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 11:35:10] PHP Parse error:  syntax error, unexpected T_GLOBAL, expecting T_FUNCTION in /home/life/public_html/classes/authenticate.php on line 6
+[22-Dec-2010 11:35:12] PHP Parse error:  syntax error, unexpected T_GLOBAL, expecting T_FUNCTION in /home/life/public_html/classes/authenticate.php on line 6
+[22-Dec-2010 11:35:26] PHP Parse error:  syntax error, unexpected T_NEW in /home/life/public_html/classes/authenticate.php on line 6
+[22-Dec-2010 11:35:51] PHP Parse error:  syntax error, unexpected T_GLOBAL, expecting T_FUNCTION in /home/life/public_html/classes/authenticate.php on line 7
+[22-Dec-2010 11:35:52] PHP Parse error:  syntax error, unexpected T_GLOBAL, expecting T_FUNCTION in /home/life/public_html/classes/authenticate.php on line 7
+[22-Dec-2010 11:52:30] PHP Fatal error:  Call to a member function CheckPassword() on a non-object in /home/life/public_html/test.php on line 13
+[22-Dec-2010 11:56:30] PHP Fatal error:  Call to a member function CheckPassword() on a non-object in /home/life/public_html/test.php on line 10
+[22-Dec-2010 12:00:30] PHP Warning:  require_once(/home/life/public_html/classes/authenticate.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 12:00:30] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/life/public_html/classes/authenticate.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/functions/authenticate.php on line 2
+[22-Dec-2010 12:00:39] PHP Warning:  Unknown: Your script possibly relies on a session side-effect which existed until PHP 4.2.3. Please be advised that the session extension does not consider global variables as a source of data, unless register_globals is enabled. You can disable this functionality and this warning by setting session.bug_compat_42 or session.bug_compat_warn to off, respectively in Unknown on line 0
+[22-Dec-2010 13:48:48] PHP Warning:  Unknown: Your script possibly relies on a session side-effect which existed until PHP 4.2.3. Please be advised that the session extension does not consider global variables as a source of data, unless register_globals is enabled. You can disable this functionality and this warning by setting session.bug_compat_42 or session.bug_compat_warn to off, respectively in Unknown on line 0
+[25-Dec-2010 16:23:44] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/life/public_html/header.php:15) in /home/life/public_html/profile.php on line 13
+[28-Dec-2010 05:27:23] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/life/public_html/header.php:15) in /home/life/public_html/profile.php on line 13
+[28-Dec-2010 09:36:16] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "header.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('header.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('header.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('header.html')
+#3 /home/life/public_html/header.php(14): Twig_Environment->loadTemplate('header.html')
+#4 /home/life/public_html/index.php(9): require_once('/home/life/publ...')
+#5 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 09:36:45] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "blog.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('blog.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('blog.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('blog.html')
+#3 /home/life/public_html/index.php(14): Twig_Environment->loadTemplate('blog.html')
+#4 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 09:37:17] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "footer.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('footer.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('footer.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('footer.html')
+#3 /home/life/public_html/footer.php(2): Twig_Environment->loadTemplate('footer.html')
+#4 /home/life/public_html/index.php(17): require_once('/home/life/publ...')
+#5 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 09:37:19] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "footer.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('footer.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('footer.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('footer.html')
+#3 /home/life/public_html/footer.php(2): Twig_Environment->loadTemplate('footer.html')
+#4 /home/life/public_html/index.php(17): require_once('/home/life/publ...')
+#5 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 09:37:20] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "footer.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('footer.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('footer.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('footer.html')
+#3 /home/life/public_html/footer.php(2): Twig_Environment->loadTemplate('footer.html')
+#4 /home/life/public_html/index.php(17): require_once('/home/life/publ...')
+#5 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 09:37:27] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "footer.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('footer.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('footer.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('footer.html')
+#3 /home/life/public_html/footer.php(2): Twig_Environment->loadTemplate('footer.html')
+#4 /home/life/public_html/index.php(17): require_once('/home/life/publ...')
+#5 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 09:38:33] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "footer.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('footer.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('footer.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('footer.html')
+#3 /home/life/public_html/footer.php(2): Twig_Environment->loadTemplate('footer.html')
+#4 /home/life/public_html/index.php(17): require_once('/home/life/publ...')
+#5 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 09:44:14] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "header.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('header.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('header.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('header.html')
+#3 /home/life/public_html/header.php(14): Twig_Environment->loadTemplate('header.html')
+#4 /home/life/public_html/view_post.php(9): require_once('/home/life/publ...')
+#5 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
