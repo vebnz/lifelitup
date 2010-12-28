@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<h1>Login</h1>
+
+{% if msg %}
+	<h2> {{ msg|e }} </h2>
+{% endif %}
+
+<form name="login" action="" method="POST">
+    <input type="hidden" name="op" value="login">
+    Username: <input type="text" name="username" /> <br />
+    Password: <input type="password" name="password" /> <br />
+    <input type="submit" name="login"  value="Login" /> 
+</form>
+
+Or <a href="register.php">register</a>
+
+{% endblock %}

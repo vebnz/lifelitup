@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %} Profile page {% endblock %}
+
+{% block content %}
+Welcome to your profile page {{ username|e }}
+
+<br /> <br />
+<ul>
+	<li><a href="todo.php">View TODO list</a></li>
+	<li><a href="login.php?action=logout">Logout</a>
+</ul>
+
+{% endblock %}

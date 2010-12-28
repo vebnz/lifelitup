@@ -493,3 +493,35 @@ Stack trace:
 #4 /home/life/public_html/view_post.php(9): require_once('/home/life/publ...')
 #5 {main}
   thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 10:16:07] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "todo.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('todo.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('todo.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('todo.html')
+#3 /home/life/public_html/todo.php(28): Twig_Environment->loadTemplate('todo.html')
+#4 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 10:16:15] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "profile.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('profile.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('profile.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('profile.html')
+#3 /home/life/public_html/profile.php(19): Twig_Environment->loadTemplate('profile.html')
+#4 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 10:16:29] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "profile.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('profile.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('profile.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('profile.html')
+#3 /home/life/public_html/profile.php(19): Twig_Environment->loadTemplate('profile.html')
+#4 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
+[28-Dec-2010 10:16:33] PHP Fatal error:  Uncaught exception 'Twig_Error_Loader' with message 'Unable to find template "profile.html" (looked into: /home/life/public_html/themes/wip2).' in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php:123
+Stack trace:
+#0 /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php(88): Twig_Loader_Filesystem->findTemplate('profile.html')
+#1 /home/life/public_html/twig/lib/Twig/Environment.php(164): Twig_Loader_Filesystem->getCacheKey('profile.html')
+#2 /home/life/public_html/twig/lib/Twig/Environment.php(176): Twig_Environment->getTemplateClass('profile.html')
+#3 /home/life/public_html/profile.php(19): Twig_Environment->loadTemplate('profile.html')
+#4 {main}
+  thrown in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
