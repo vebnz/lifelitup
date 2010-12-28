@@ -18,6 +18,11 @@ if (isset($_POST['login'])) {
 		$msg = 'Invalid username';
 		return;
 	}
+	
+	if (empty($password)) {
+		$msg = 'You need to enter a password';
+		return;
+	}
 
 	if (strlen($password) > 72) {
 		$msg = 'The supplied password is too long';
@@ -51,6 +56,16 @@ if (isset($_POST['register'])) {
                 $msg = 'Invalid username';
                 return;
         }
+
+	if (empty($pass1)) {
+		$msg = 'You need a password to continue';
+		return;
+	}
+
+	if (empty($pass2)) {
+		$msg = 'You need to confirm your password';
+		return;
+	}
 
 	if (strlen($remove) != 0) {
 		$msg = 'Remove the text to continue';
