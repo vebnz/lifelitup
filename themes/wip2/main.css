@@ -136,13 +136,34 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 }
 
 #featurebox p {
-        padding-left: 30%;
+        padding-left: 10%;
 }
 
 #featurebox strong.name{
         font-size: 150%;
 }
 
+/* Leader Box */
+#leaderbox {
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        background: #016e8d;
+        width: 15%;
+        height: 200px;
+        float: right;
+        margin-top: 30.1%;
+        margin-right: -16%;
+        border: 8px solid #03c1e9;
+        color: #fff;
+}
+
+#leaderbox p {
+        padding-left: 10%;
+}
+
+#leaderbox strong.name{
+        font-size: 150%;
+}
 
 /* Header */
 header {
