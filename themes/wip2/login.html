@@ -10,6 +10,7 @@
 <script type="text/javascript" language="javascript">
 	/*<![CDATA[*/
 	$(function(){
+		if(jQuery.browser.safari) { $('label').css('font-weight', '600'); }
 		/* Some multi-use functions. */
 		$.fn.error = function(_e) {
 			return $('<span class="err" />')
@@ -69,7 +70,7 @@
 
 
 <form name="login" action="" method="POST">
-    <input type="hidden" name="op" value="login">
+    <input type="hidden" name="op" value="login" />
     <p><input class="required" id="usrName" type="text" name="username" /><label for="usrName" accesskey="n">Username: </label></p>
     <p><input class="required" id="usrPassword" type="password" name="password" /><label for="usrPassword" accesskey="p">Password: </label></p>
     <p><input type="submit" name="login"  value="Login" />{% if msg %}<span class="err"><span class="error"><strong>Error</strong>: {{ msg|e }}.</span></span>{% endif %}</p>

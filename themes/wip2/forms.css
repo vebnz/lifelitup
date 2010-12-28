@@ -19,34 +19,27 @@ input[type="submit"] {
   -webkit-text-shadow: 1px 1px 2px #222222;
   -moz-text-shadow: 1px 1px 2px #222222;
 }
-form > p { margin: 0.25em 0 0; }
+form > p { margin: 0.25em 0 0;display:block; }
 form > p:last-child { margin-top: 0.75em; }
 form[name="register"] label { width: 125px; }
 form[name="login"] label { width: 75px; }
 form label {
   float: left;
-  color: #333333;
-  text-shadow: 1px 1px 1px #aaaaaa;
-  -webkit-text-shadow: 1px 1px 1px #aaaaaa;
-  -moz-text-shadow: 1px 1px 1px #aaaaaa;
+  color: #222;
+  text-shadow: 1px 1px 1px #aaa;
+  -webkit-text-shadow: 1px 1px 1px #aaa;
+  -moz-text-shadow: 1px 1px 1px #aaa;
   display: inline-block;
 }
-input[type="text"]:focus + label {
-  color: #202020;
-  text-shadow: 1px 1px 2px #777777;
-  -webkit-text-shadow: 1px 1px 2px #777777;
-  -moz-text-shadow: 1px 1px 2px #777777;
+input[type="text"]:focus + label,input[type="password"]:focus + label {
+  color: #101010;
+  text-shadow: 1px 1px 2px #666;
+  -webkit-text-shadow: 1px 1px 2px #666;
+  -moz-text-shadow: 1px 1px 2px #777;
+  text-decoration: underline;
 }
-input[type="password"]:focus + label {
-  color: #202020;
-  text-shadow: 1px 1px 2px #777777;
-  -webkit-text-shadow: 1px 1px 2px #777777;
-  -moz-text-shadow: 1px 1px 2px #777777;
-}
-input[type="submit"]:hover { background-position: 0 -31px; }
-input[type="submit"]:focus { background-position: 0 -31px; }
-input[type="submit"]:active { background-position: 0 -62px; }
-input[type="submit"]:active:hover { background-position: 0 -62px; }
+input[type="submit"]:hover,input[type="submit"]:focus  { background-position: 0 -31px; }
+input[type="submit"]:active,input[type="submit"]:active:hover { background-position: 0 -62px; }
 input[type="submit"]::-moz-focus-inner {
   border: 0 !important;
   outline: none !important;
@@ -61,16 +54,13 @@ input[type="text"], input[type="password"] {
   -webkit-border-radius: 2px;
   border-radius: 2px;
 }
-input[type="text"]:focus {
-  box-shadow: 0px 0px 2px #0297b7;
-  -webkit-box-shadow: 0px 0px 2px #0297b7;
+input[type="text"]:focus,input[type="password"]:focus {
+  box-shadow: 0px 0px 3px #0297b7;
+  -webkit-box-shadow: 0px 0px 3px #0297b7;
   -moz-box-shadow: 0px 0px 2px #0297b7;
+  outline:0 none;
 }
-input[type="password"]:focus {
-  box-shadow: 0px 0px 2px #0297b7;
-  -webkit-box-shadow: 0px 0px 2px #0297b7;
-  -moz-box-shadow: 0px 0px 2px #0297b7;
-}
+
 span.err {
   box-shadow: 1px 1px 2px #aaaaaa;
   -webkit-box-shadow: 1px 1px 2px #aaaaaa;
