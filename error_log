@@ -576,3 +576,17 @@ Stack trace:
 #6 /home/life/public_html/index.php(15): Twig_Template->render(Array)
  in /home/life/public_html/twig/lib/Twig/Loader/Filesystem.php on line 123
 [28-Dec-2010 13:03:34] PHP Warning:  Unknown: Your script possibly relies on a session side-effect which existed until PHP 4.2.3. Please be advised that the session extension does not consider global variables as a source of data, unless register_globals is enabled. You can disable this functionality and this warning by setting session.bug_compat_42 or session.bug_compat_warn to off, respectively in Unknown on line 0
+[28-Dec-2010 14:34:16] PHP Parse error:  syntax error, unexpected ')' in /home/life/public_html/classes/people.php on line 49
+[28-Dec-2010 14:34:27] PHP Parse error:  syntax error, unexpected ')' in /home/life/public_html/classes/people.php on line 49
+[28-Dec-2010 14:35:05] PHP Fatal error:  Function name must be a string in /home/life/public_html/classes/people.php on line 11
+[28-Dec-2010 14:35:10] PHP Fatal error:  Function name must be a string in /home/life/public_html/classes/people.php on line 11
+[28-Dec-2010 14:35:32] PHP Warning:  require_once(classes/people.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/functions/people.php on line 2
+[28-Dec-2010 14:35:32] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'classes/people.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/functions/people.php on line 2
+[28-Dec-2010 14:35:35] PHP Fatal error:  Call to undefined method People::counted() in /home/life/public_html/footer.php on line 16
+[28-Dec-2010 14:35:58] PHP Warning:  Invalid argument supplied for foreach() in /home/life/public_html/database/db.php on line 202
+[28-Dec-2010 14:36:00] PHP Warning:  Invalid argument supplied for foreach() in /home/life/public_html/database/db.php on line 202
+[28-Dec-2010 14:36:04] PHP Warning:  Invalid argument supplied for foreach() in /home/life/public_html/database/db.php on line 202
+[28-Dec-2010 14:38:55] PHP Warning:  Invalid argument supplied for foreach() in /home/life/public_html/database/db.php on line 202
+[28-Dec-2010 14:39:08] PHP Warning:  Invalid argument supplied for foreach() in /home/life/public_html/database/db.php on line 202
+[28-Dec-2010 14:39:34] PHP Warning:  Invalid argument supplied for foreach() in /home/life/public_html/database/db.php on line 202
+[28-Dec-2010 14:39:40] PHP Warning:  Invalid argument supplied for foreach() in /home/life/public_html/database/db.php on line 202
