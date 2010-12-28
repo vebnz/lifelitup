@@ -121,6 +121,29 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 	font-size: 150%;
 }
 
+/* Feature Box */
+#featurebox {
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+        background: #016e8d;
+        width: 15%;
+        height: 200px;
+        float: right;
+        margin-top: 16.1%;
+        margin-right: -16%;
+        border: 8px solid #03c1e9;
+        color: #fff;
+}
+
+#featurebox p {
+        padding-left: 30%;
+}
+
+#featurebox strong.name{
+        font-size: 150%;
+}
+
+
 /* Header */
 header {
 	margin: 0 auto;
