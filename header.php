@@ -7,6 +7,7 @@ $logged_in = 1;
 
 if ($auth->isLoggedIn()) {
 	$logged_in = 0;
+	$username = $_SESSION['username'];
 }
 
 /*$showPages = $pages->createNavbar($logged_in);
