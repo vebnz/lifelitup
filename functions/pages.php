@@ -1,5 +1,5 @@
 <?php
-require_once('/home/life/public_html/classes/pages.php');
+require_once('classes/pages.php');
 
 $pages = new Pages;
 

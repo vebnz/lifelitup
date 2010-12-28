@@ -1,6 +1,6 @@
 <?php
 require_once('classes/authenticate.php');
-require_once('misc.php');
+require_once('functions/misc.php');
 
 $auth = new Authenticate;
 

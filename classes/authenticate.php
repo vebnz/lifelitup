@@ -18,15 +18,23 @@ class Authenticate {
 	function validateUser($row) {
 		session_regenerate_id();
 
-		$_SESSION['valid'] = 1;
-		$_SESSION['userid'] = $row['id'];
-		$_SESSION['username'] = $row['username'];
+		if(key_exists('valid', $_SESSION)) {
+			$_SESSION['valid'] = 1;
+			$_SESSION['userid'] = $row['id'];
+			$_SESSION['username'] = $row['username'];
+		} else {
+			$_SESSION = array(
+				'valid' => 1,
+				'userid' => $row['id'],
+				'username' => $row['username'],
+			);
+		}
 	}
 
 	function isLoggedIn() {
-		if ($_SESSION['valid']) {
-			return true;
-		}
+		if(key_exists('valid', $_SESSION))
+			if ($_SESSION['valid'])
+				return true;
 
 		return false;
 	}

@@ -8,12 +8,13 @@ $db->connect();
 
 require_once('header.php');
 require_once('functions/authenticate.php');
-
-if ($_GET['action'] == 'logout') {
-	$auth->logout();
-	// this can definitely be improved. header() causes stuff to break
-	echo '<meta http-equiv="refresh" content="0;url=login.php" />';
-	die;
+if(key_exists('action',$_GET)) {
+	if ($_GET['action'] == 'logout') {
+		$auth->logout();
+		// this can definitely be improved. header() causes stuff to break
+		echo '<meta http-equiv="refresh" content="0;url=login.php" />';
+		die;
+	}
 }
 
 if ($auth->isLoggedIn()) {
@@ -22,6 +23,7 @@ if ($auth->isLoggedIn()) {
 }
 
 $template = $twig->loadTemplate('login.html');
+$msg = isset($msg) ? $msg : '';
 echo $template->render(array('msg' => $msg));
 
 require_once('footer.php');

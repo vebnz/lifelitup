@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('lib/Twig/Autoloader.php');
 
 Twig_Autoloader::register();
