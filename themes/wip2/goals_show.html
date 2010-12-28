@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %} Showing Goal {% endblock %}
+
+{% block content %}
+
+{% if msg %}
+        <h2> {{ msg|e }} </h2>
+{% endif %}
+
+
+Browsing goal: {{ goal.name|upper }}
+
+<ul>
+<img src="{{ goal.icon|e }}" /> 
+<br />
+{{ goal.name|e }} 
+<br />
+{{ goal.info|e }}
+</ul>
+<br > <br />
+        {% for comment in comments %}
+                {{ comment.username|e }} <br /> {{ comment.content|e }} <br /> <br />
+        {% endfor %}
+        <br /> <br />
+        <form name="post_comment" action="" method="POST">
+                <input type="hidden" name="page_id" value="{{ page_id|e }}" />
+                <textarea name="content">...</textarea> <br/>
+                <input type="submit" name="post_comment"  value="comment" />
+        </form>
+
+<br /> <br />
+<a href="todo.php">View TODO list</a>
+{% endblock %}

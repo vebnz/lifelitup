@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} Showing todo list {% endblock %}
+
+{% block content %}
+showing todo list for {{ username|e }}
+
+<ul>
+	{% for goal in goals %}
+		<li> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+	{% endfor %}
+</ul>
+
+{% if not_me == 0 %}
+	<a href="goals.php">Add more goals</a>
+{% endif %}
+
+{% endblock %}
