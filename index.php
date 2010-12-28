@@ -12,7 +12,7 @@ require_once('functions/blog.php');
 $show = $blog->showAll();
 
 $template = $twig->loadTemplate('blog.html');
-echo $template->render(array('posts' => $show));
+echo $template->render(array('posts' => $show, 'username' => $username));
 
 require_once('footer.php');
 $db->close();
