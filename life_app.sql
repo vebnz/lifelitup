@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 27, 2010 at 05:27 PM
+-- Generation Time: Dec 28, 2010 at 01:18 PM
 -- Server version: 5.0.91
 -- PHP Version: 5.2.6
 
@@ -60,6 +60,36 @@ CREATE TABLE IF NOT EXISTS `tbl_category` (
 
 INSERT INTO `tbl_category` (`id`, `name`) VALUES
 (1, 'Water');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_comments`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_comments` (
+  `id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) NOT NULL,
+  `page_id` int(11) NOT NULL,
+  `date_posted` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  `content` text NOT NULL,
+  `tbl` varchar(28) NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Dumping data for table `tbl_comments`
+--
+
+INSERT INTO `tbl_comments` (`id`, `user_id`, `page_id`, `date_posted`, `content`, `tbl`) VALUES
+(1, 6, 2, '2010-11-27 17:51:06', 'omg omg this is soooo cool - from Hamr', 'tbl_blog'),
+(16, 13, 1, '2010-12-28 12:30:02', 'testing 1 23', 'tbl_goals'),
+(15, 13, 2, '2010-12-28 12:29:13', 'eeeest', 'tbl_blog'),
+(14, 13, 2, '2010-12-28 12:29:03', '...reeee', 'tbl_blog'),
+(11, 6, 2, '2010-11-27 21:24:59', '...OMG I SO WANT TO JET SKI ALREADY FFFFUCK', 'tbl_goals'),
+(9, 6, 2, '2010-11-27 21:22:28', '...dv', 'tbl_blog'),
+(10, 6, 2, '2010-11-27 21:24:22', 'HEY JET SKI AWESOME', 'tbl_goals'),
+(17, 13, 2, '2010-12-28 12:33:27', 'jetskiing is the shit man', 'tbl_goals');
 
 -- --------------------------------------------------------
 
@@ -121,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `tbl_todo` (
   `goal_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `tbl_todo`
@@ -130,7 +160,9 @@ CREATE TABLE IF NOT EXISTS `tbl_todo` (
 INSERT INTO `tbl_todo` (`id`, `goal_id`, `user_id`) VALUES
 (1, 1, 1),
 (20, 2, 6),
-(21, 1, 6);
+(21, 1, 6),
+(22, 1, 13),
+(23, 2, 13);
 
 -- --------------------------------------------------------
 
@@ -141,12 +173,12 @@ INSERT INTO `tbl_todo` (`id`, `goal_id`, `user_id`) VALUES
 CREATE TABLE IF NOT EXISTS `tbl_users` (
   `id` int(11) NOT NULL auto_increment,
   `username` varchar(30) NOT NULL,
-  `password` varchar(40) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `email` varchar(24) NOT NULL,
   `salt` varchar(3) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `username-unique` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `tbl_users`
@@ -154,4 +186,11 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
 
 INSERT INTO `tbl_users` (`id`, `username`, `password`, `email`, `salt`) VALUES
 (6, 'bob', 'b1a83f4027aef008ab5f8ef8837fdab8e54f0cc4', '', '5b0'),
-(8, 'Lapsus', '8a37018f060cff49e3f64014732cab7fd82f01ef', '', '10d');
+(8, 'Lapsus', '8a37018f060cff49e3f64014732cab7fd82f01ef', '', '10d'),
+(9, 'hog', '$2a$08$Rq8xQMFfqW/D8wc7BdzUCuia4UkjO4haU', '', ''),
+(10, 'chac', '$2a$08$/549gvYsAzNyEcXATKmQO.uvieOQq4knzEB2Sb2Ch65Fgd4th//KG', '', ''),
+(11, 'gay', '$2a$08$lHvtIbvCksYzxxJ876R4cuIYu9gLMMPL1I0veKAb9eMa86BH/RMfK', '', ''),
+(12, 'fuck', '$P$Bx2wjNwj.MyIHHUjZfEOU3zwBHk/eL/', '', ''),
+(13, 'man', '$P$BBHajW9TXgGO9jtqv9F4MMN3QaqKDI/', '', ''),
+(14, 'cgrunwald', '$P$BObhbcoKX/1ezyH/gDqWLyxHzCp2pO0', '', '');
+
