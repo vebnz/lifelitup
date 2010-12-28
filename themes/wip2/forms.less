@@ -27,7 +27,7 @@ input[type="submit"] {
 	font-size: 12px;
 	text-transform: uppercase;
 	border: 0 none;
-	width: 70px;
+	width: 80px;
 	height: 31px;
 	letter-spacing: 1.2pt;
 	cursor:pointer;
@@ -43,12 +43,14 @@ form > p:last-child {
 	margin-top: 0.75em;
 }
 
+form[name="register"] label { width: 125px; }
+form[name="login"] label { width: 75px; }
+
 form label {
 	float: left;
 	color: #333;
 	.text-shadow(1px,1px,1px,#aaa);
 	display: inline-block;
-	width: 75px;
 }
 
 input[type="text"]:focus + label, input[type="password"]:focus + label {
