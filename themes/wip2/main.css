@@ -125,14 +125,14 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 #featurebox {
         -moz-border-radius: 15px;
         border-radius: 15px;
-        background: #016e8d;
+        background: #fff;
         width: 15%;
         height: 200px;
         float: right;
         margin-top: 16.1%;
         margin-right: -16%;
-        border: 8px solid #03c1e9;
-        color: #fff;
+        border: 8px solid #fff;
+        color: #CCC;
 }
 
 #featurebox p {
