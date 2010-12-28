@@ -16,6 +16,7 @@ if (isset($_POST['post_comment'])) {
 	
 	$userid = (int)$_SESSION['userid'];
 	$pageid = (int)$_POST['page_id'];
+	$table = (int)$_POST['module_id'];
 	$content = $_POST['content']; // secure
 
 	if (empty($userid)) {
@@ -38,7 +39,21 @@ if (isset($_POST['post_comment'])) {
 		return;
 	}
 
-	$add = $comments->add($userid, $pageid, $content);
+	if (empty($table)) {
+		$msg = 'You need to include the table';
+		return;
+	}
+
+	switch ($table) {
+		case 1:
+			$table = tbl_blog;
+			break;
+		case 2:
+			$table = tbl_goals;
+			break;
+	}
+
+	$add = $comments->add($userid, $pageid, $table, $content);
 	if (!empty($add)) {
 		$msg = 'Thank you for adding your comment ' . $_SESSION['username'];
 	}
