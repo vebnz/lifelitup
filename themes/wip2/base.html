@@ -18,7 +18,19 @@
 
 <body id="index" class="home">
 	<div id="userbox">
-		<p>Welcome <br /><strong class="name">GUEST</strong></p>
+		<p>
+			Welcome 
+			<br />
+			<strong class="name">
+				{% if username %}
+					{% filter upper %}
+						{{ username|e }}
+					{% endfilter %}
+				{% else %}
+					GUEST
+				{% endif %}
+			</strong>
+		</p>
 	</div>
 	<header>
 		<nav>
