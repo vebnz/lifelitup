@@ -14,8 +14,6 @@ if (!$auth->isLoggedIn()) {
 	die;
 }
 
-$username = $_SESSION['username'];
-
 $template = $twig->loadTemplate('profile.html');
 echo $template->render(array('title' => 'Lifelitup', 'username' => $username));
 
