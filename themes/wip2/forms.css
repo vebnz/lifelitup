@@ -1,22 +1,23 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:bold);
 input[type="submit"] {
   background: url('images/button-bg.png') no-repeat 0 0 transparent;
   clip: auto;
   color: #ffffff;
-  font-weight: lighter;
-  font-family: Myriad Pro Light, serif;
+  font-weight: bold;
+  font-family: 'Lato', arial, serif;
   font-size: 12px;
   text-transform: uppercase;
   border: 0 none;
   width: 80px;
   height: 31px;
-  letter-spacing: 1.2pt;
+  letter-spacing: 0.2pt;
   cursor: pointer;
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;
   border-radius: 15px;
-  text-shadow: 0 0 2px #222222;
-  -webkit-text-shadow: 0 0 2px #222222;
-  -moz-text-shadow: 0 0 2px #222222;
+  text-shadow: 1px 1px 2px #222222;
+  -webkit-text-shadow: 1px 1px 2px #222222;
+  -moz-text-shadow: 1px 1px 2px #222222;
 }
 form > p { margin: 0.25em 0 0; }
 form > p:last-child { margin-top: 0.75em; }

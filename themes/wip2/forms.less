@@ -1,3 +1,7 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:bold);
+@site_blue: #0297b7;
+@button_font = 'Lato', arial, serif;
+
 .border-radius (@radius: 5px) {
   -moz-border-radius: @radius;
   -webkit-border-radius: @radius;
@@ -16,23 +20,23 @@
 	-moz-box-shadow: @x @y @blur @color; /* Firefox */
 }
 
-@site_blue: #0297b7;
+
 
 input[type="submit"] {
 	background: url('images/button-bg.png') no-repeat 0 0 transparent;
 	clip: auto;
 	color: #fff;
-	font-weight: lighter;
-	font-family: Myriad Pro Light,serif;
+	font-weight: bold;
+	font-family: @button_font;
 	font-size: 12px;
 	text-transform: uppercase;
 	border: 0 none;
 	width: 80px;
 	height: 31px;
-	letter-spacing: 1.2pt;
+	letter-spacing: 0.2pt;
 	cursor:pointer;
 	.border-radius(15px);
-	.text-shadow;
+	.text-shadow(1px,1px,2px,#222);
 }
 
 form > p {
