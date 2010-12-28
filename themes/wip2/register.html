@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+<h1>Register</h1>
+
+{% if msg %}
+	<h2> {{ msg|e }} </h2>
+{% endif %}
+
+<form name="register" action="" method="POST">
+   <input type="hidden" name="op" value="new">
+    Username: <input type="text" name="username" maxlength="30" /> <br />
+    Password: <input type="password" name="pass1" /> <br />
+    Password Again: <input type="password" name="pass2" /> <br />
+    Remove text: <input type="text" name="remove" value="{{ seed|e }}"/> <br/>
+    <input type="submit" name="register"  value="Register" />
+</form>
+
+<br />
+Or <a href="login.php">login</a>
+
+{% endblock %}
