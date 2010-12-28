@@ -42,6 +42,9 @@
 				if($('span.err').length == 0) {
 					$('input[type=submit]').error('Username and password required.');
 					return false;
+				} else {
+					$('span.error').html('<strong>Error</strong>: ' + 'Username and password required.' + '</span>');
+					return false;
 				}
 			}
 			return true;
