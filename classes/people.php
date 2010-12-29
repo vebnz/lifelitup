@@ -53,3 +53,20 @@ class People {
 }
 
 ?>
+
+<?php
+require_once('class_people.php');
+$people = new People;
+
+$ip = $_SERVER['REMOTE_ADDR'];
+if (!$people->exists($ip)) {
+	$people->insert($ip);
+}
+else {
+	$people->update($ip);
+}
+
+$people->truncate();
+
+echo $people->online();
+?>
