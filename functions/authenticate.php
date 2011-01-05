@@ -85,6 +85,13 @@ if (isset($_POST['register'])) {
 		return;
 	}
 
+	event::register('USER_REGISTRATION', function($args = array()){
+		if ($_SERVER['HTTP_REFERER'] != 'http://lifelitup.com/register.php') {
+			// can't really do much here until the site is live... but it's an example nevertheless.
+		}
+		// give person a badge for registering etc
+	});
+	
 	$register = $auth->register($username, $pass1);
 	
 	if ($register == true) {
