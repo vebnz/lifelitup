@@ -14,9 +14,9 @@ class Log
 		function NewLog($event) {
 				$db = Database::obtain();
 
-				$date = date("d/m/y") ." ". date("H:i:s");
-
 				$ip = $this->getIP();
+				
+				$time = time();
 				$host = gethostbyaddr($ip);
 				$page = basename($_SERVER['PHP_SELF']); 
 				$pageid = isset($_GET['page']) ? $_GET['page'] : '0';
@@ -26,7 +26,7 @@ class Log
 				//$db->insert(tbl_logs, $data); -- we need a bit more configurability in our query
 				$sql = "INSERT DELAYED INTO " . tbl_logs . " 
 						('event_type', 'log_date', 'details') 
-						VALUES ('" . $event . "', '" . $date . "', '" . $details . "');";
+						VALUES ('" . $event . "', '" . $time . "', '" . $details . "');";
 				$db->query($sql);
 		}  
 
