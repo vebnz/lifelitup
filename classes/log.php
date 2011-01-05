@@ -14,11 +14,7 @@ class Log
 	function NewLog($event) {
 		$db = Database::obtain();
 
-		$data['event_type'] = $event;
-
 		$date = date("d/m/y") ." ". date("H:i:s");
-		$data['log_date'] = $date;
-
 
 		$ip = $this->getIP();
 		$host = gethostbyaddr($ip);
@@ -27,9 +23,10 @@ class Log
 		$referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '0';
 		$details = $ip . "," . $host . "," . $page . "," . $pageid . "," . $referrer;
 
-		$data['details'] = $details;
-
-		$db->insert(tbl_logs, $data);
+		//$db->insert(tbl_logs, $data); -- we need a bit more configurability in our query
+		$sql = "INSERT DELAYED INTO " . tbl_logs . " 
+				('event_type', 'log_date', 'details') 
+				VALUES ('" . $event . "', '" . $date . "', '" . $details . "');";
 
 	}  
 
