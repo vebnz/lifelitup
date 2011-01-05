@@ -1,5 +1,5 @@
 <?php
-require_once('/home/life/public_html/classes/todo.php');
+require_once('classes/todo.php');
 
 $todo = new Todo;
 
