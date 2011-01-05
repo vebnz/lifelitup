@@ -14,11 +14,7 @@
   
 		function NewLog($event)
 		{
-			// connect to database
-			// insert log info
-			// ID, TYPE, DATE
-			// close db
-			
+	
 			$db = Database::obtain();
 			
 			$data['event_type'] = $event;
