@@ -4,11 +4,14 @@ require_once('functions/people.php');
 $template = $twig->loadTemplate('footer.html');
 
 $ip = $_SERVER['REMOTE_ADDR'];
-if (!$people->exists($ip)) {
-	$people->insert($ip);
-}
-else {
-	$people->update($ip);
+
+if ($ip > 0) {
+    if (!$people->exists($ip)) {
+            $people->insert($ip);
+    }
+    else {
+            $people->update($ip);
+    }
 }
 
 $people->truncate();
