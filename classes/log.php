@@ -3,8 +3,7 @@ class Log
 {
 	private static $logInstance;
 
-	public static function getInstance()
-	{
+	public static function getInstance() {
 		if (!self::$logInstance)
 		{
 			self::$logInstance = new Log();
@@ -12,9 +11,7 @@ class Log
 		return self::$logInstance;
 	}	 
 
-	function NewLog($event)
-	{
-
+	function NewLog($event) {
 		$db = Database::obtain();
 
 		$data['event_type'] = $event;
@@ -36,7 +33,6 @@ class Log
 
 	}  
 
-<<<<<<< HEAD
         function getIP() {
                 if (!empty($_SERVER['HTTP_CLIENT_IP'])) { // localhost
                         $ip = $_SERVER['HTTP_CLIENT_IP'];
@@ -49,23 +45,5 @@ class Log
                 }
                 return $ip;
         }
-=======
-	function getRealIpAddr()
-	{
-		if (!empty($_SERVER['HTTP_CLIENT_IP']))   //check ip from share internet
-		{
-			$ip = $_SERVER['HTTP_CLIENT_IP'];
-		}
-		elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))   //to check ip is pass from proxy
-		{
-			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}
-		else
-		{
-			$ip = $_SERVER['REMOTE_ADDR'];
-		}
-		return $ip;
-	}
->>>>>>> d919e4cf24346f580794c12163ae2b514dcc1d81
 }
 ?> 
