@@ -1,5 +1,4 @@
 <?php
-require_once('log.class.php');
 
 class event
 {
@@ -20,17 +19,6 @@ class event
 			$Log->NewLog($event);
 
 		}
-		public static function register($event, Closure $func)
-		{
-			self::$events[$event][] = $func;			
-			foreach(self::$events[$event] as $func)
-			{
-				call_user_func($func, $args);
-				$Log = Log::getInstance();
-				$Log->NewLog($event, $args);					
-			}
-		}
-
 	}
 	public static function register($event, Closure $func)
 	{

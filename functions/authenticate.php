@@ -1,8 +1,8 @@
 <?php
 require_once('classes/authenticate.php');
 require_once('functions/misc.php');
-require_once('classes/event.php');
 require_once('classes/log.php');
+require_once('classes/event.php');
 
 $auth = new Authenticate;
 
