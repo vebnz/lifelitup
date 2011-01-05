@@ -26,8 +26,8 @@ class Log
 		$ip = $this->getRealIpAddr();
 		$host = gethostbyaddr($ip);
 		$page = basename($_SERVER['PHP_SELF']); 
-		$pageid = isset($_GET['page']) ? $_GET['page'] : '';
-		$referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+		$pageid = isset($_GET['page']) ? $_GET['page'] : '0';
+		$referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '0';
 		$details = $ip . "," . $host . "," . $page . "," . $pageid . "," . $referrer;
 
 		$data['details'] = $details;
