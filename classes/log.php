@@ -20,7 +20,7 @@ class Log
 		$data['log_date'] = $date;
 
 
-		$ip = $this->getRealIpAddr();
+		$ip = $this->getIP();
 		$host = gethostbyaddr($ip);
 		$page = basename($_SERVER['PHP_SELF']); 
 		$pageid = isset($_GET['page']) ? $_GET['page'] : '0';
