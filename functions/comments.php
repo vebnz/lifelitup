@@ -1,5 +1,7 @@
 <?php
-require_once('/home/life/public_html/classes/comments.php');
+require_once('classes/comments.php');
+require_once('classes/log.php');
+require_once('classes/event.php');
 
 $comments = new Comments;
 
@@ -55,6 +57,7 @@ if (isset($_POST['post_comment'])) {
 
 	$add = $comments->add($userid, $pageid, $table, $content);
 	if (!empty($add)) {
+		event::fire('COMMENT_POST');
 		$msg = 'Thank you for adding your comment ' . $_SESSION['username'];
 	}
 }
