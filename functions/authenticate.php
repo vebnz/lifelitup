@@ -35,6 +35,7 @@ if (isset($_POST['login'])) {
 	
 	if ($login > 0) {
 		$auth->validateUser($login);
+		event::fire('USER_LOGIN');
 		header("Location: profile.php");
 		die;
 	}
