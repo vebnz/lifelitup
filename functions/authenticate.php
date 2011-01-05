@@ -1,6 +1,8 @@
 <?php
 require_once('classes/authenticate.php');
 require_once('functions/misc.php');
+require_once('classes/event.php');
+require_once('classes/log.php');
 
 $auth = new Authenticate;
 
@@ -86,6 +88,7 @@ if (isset($_POST['register'])) {
 	
 	if ($register == true) {
 		$msg = 'You have registered';
+		event::fire('USER_REGISTRATION');
 		return;
 	}
 	else {
