@@ -25,7 +25,7 @@ class Log
 
 				//$db->insert(tbl_logs, $data); -- we need a bit more configurability in our query
 				$sql = "INSERT DELAYED INTO " . tbl_logs . " 
-						('event_type', 'details', 'log_date') 
+						(event_type, details, log_date) 
 						VALUES ('" . $event . "', '" . $details . "', '" . $time . "')";
 				$db->query($sql);
 		}  
