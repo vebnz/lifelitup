@@ -1,5 +1,7 @@
 <?php
 require_once('classes/todo.php');
+require_once('classes/log.php');
+require_once('classes/event.php');
 
 $todo = new Todo;
 
@@ -14,6 +16,7 @@ if ($_GET['action'] == 'addGoal') {
 	}
 
 	if (empty($add)) {
+		event::fire('USER_NEW_GOAL');
 		$msg = 'Added successfully';
 	}
 	else {
