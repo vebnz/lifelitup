@@ -46,4 +46,4 @@ class Log
                 return $ip;
         }
 }
-?> 
+?>
