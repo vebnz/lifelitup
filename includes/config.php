@@ -1,6 +1,6 @@
 <?php
 //database server
-define('DB_SERVER', "localhost");
+define('DB_SERVER', "lifelitup.com");
 
 //database login name
 define('DB_USER', "life");
