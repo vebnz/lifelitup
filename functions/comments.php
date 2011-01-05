@@ -1,5 +1,5 @@
 <?php
-require_once('/home/life/public_html/classes/comments.php');
+require_once('classes/comments.php');
 
 $comments = new Comments;
 
