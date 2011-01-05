@@ -16,6 +16,7 @@ define('tbl_goals', "tbl_goals");
 define('tbl_todo', "tbl_todo");
 define('tbl_blog', "tbl_blog");
 define('tbl_people', "tbl_people");
+define('tbl_logs', "tbl_logs");
 
 // twig
 define('current_theme', "themes/wip2");
