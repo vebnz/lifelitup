@@ -45,20 +45,20 @@ if (isset($_POST['login'])) {
 
 if (isset($_POST['register'])) {
 
-        $op = $_POST['op'];
-        if ($op !== 'new' && $op !== 'login') {
-                die('Unknown request');
-        }   
+    $op = $_POST['op'];
+    if ($op !== 'new' && $op !== 'login') {
+	    die('Unknown request');
+    }   
 
 	$username = $_POST['username'];
 	$pass1 = $_POST['pass1']; 
 	$pass2 = $_POST['pass2'];
 	$remove = $_POST['remove'];
 
-        if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $username)) {
-                $msg = 'Invalid username';
-                return;
-        }
+    if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $username)) {
+	    $msg = 'Invalid username';
+        return;
+    }
 
 	if (empty($pass1)) {
 		$msg = 'You need a password to continue';
