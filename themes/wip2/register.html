@@ -72,7 +72,7 @@
 
 <form name="register" action="" method="POST">
    <input type="hidden" name="op" value="new" />
-    <p><input title="Username" class="required" id="usrName" type="text" name="username" maxlength="30" /><label for="usrName" accesskey="n">Username: </label></p>
+    <p><input title="Username" class="required" placeholder="john.doe" id="usrName" type="text" name="username" maxlength="30" /><label for="usrName" accesskey="n">Username: </label></p>
     <p><input title="Password" class="required" id="usrPassA"  type="password" name="pass1" /><label for="usrPassA" accesskey="p">Password: </label></p>
 	<p><input title="Password Repeated" class="required" id="usrPassB"  type="password" name="pass2" /><label for="usrPassB" accesskey="a">Password Again: </label></p>
     <p><input class="empty" id="usrSeed" value="{{ seed|e }}" type="text" name="remove" /><label for="usrSeed" accesskey="r">Remove text: </label></p>
