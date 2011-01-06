@@ -1,18 +1,15 @@
 {% extends "base.html" %}
-{% block title %} Register {% endblock %}
+{% block title %} Admin - User Management {% endblock %}
 {% block head %}
 {% parent %}
-
+  <script type="text/javascript" src="includes/TableGear/javascripts/TableGear1.6.1-jQuery.js"></script>
+  <link type="text/css" rel="stylesheet" href="includes/TableGear/stylesheets/tablegear.css" />
 {% endblock %}
 
 {% block content %}
 
-<h1>LLU Users</h1>
-<ul>
-  {% for key, user in users %}
-    <li>{{ key }}: {{ user.username|e }}</li>
-  {% endfor %}
-</ul>
+{{ get_table }}
 
+{{ get_js }}
 
 {% endblock %}

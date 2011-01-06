@@ -35,6 +35,10 @@ class TableGear
   function TableGear($options)
   {
     global $tgTableID;
+	$options["database"]["host"]        = DB_SERVER;
+	$options["database"]["name"]        = DB_DATABASE;
+	$options["database"]["username"]    = DB_USER;
+	$options["database"]["password"]    = DB_PASS;
     $this->editableFields = array();
     $options = $this->_setDefaults($options);
     if($options["editable"]) $this->form = array("url" => $_SERVER["REQUEST_URI"], "method" => "post", "submit" => "Update");
