@@ -19,7 +19,6 @@ $seed = sha1(rand(456, 25000) . 'We love ponies bro' . (6*6));
 $template = $twig->loadTemplate('register.html');
 echo $template->render(array('title' => 'Lifelitup', 'msg' => $msg, 'seed' => $seed));
 
-require_once('footer.php');
 $db->close();
 
 ?>

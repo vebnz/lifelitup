@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %} Register {% endblock %}
+{% block head %}
+{% parent %}
+<link rel="stylesheet" href="themes/wip2/forms.css" type="text/css" media="screen" />
+<!--[if IE]><link rel="stylesheet" href="/themes/wip2/forms.ie.css" type="text/css" media="screen" /><![endif]-->
+<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript">
+	/*<![CDATA[*/
+	$(function(){
+		/* Global error stack */
+		var _errs = [];
+
+		/* Some multi-use functions. */
+		$.fn.error = function(_e) {
+			return $('<span class="err" />')
+					.html('<span class="error"><strong>Error</strong>: ' + _e + '</span>')
+					.insertAfter(this);
+		};
+		$.fn.checkForm = function() {
+			_errs = [];
+			var _c = true;
+			$('input.required').each(function() {
+				if(!_c) {return;}
+				_c = ($(this).val().length > 0) && _c;
+				if(!_c) { _errs.push($(this).attr('title') + ' is a required field.'); }
+			});
+			$('input.empty').each(function(){
+				if(!_c) {return;}
+				_c = ($(this).val().length == 0) && _c;
+				if(!_c) { _errs.push('You must remove the text from the last box.'); }
+			});
+			if($('#usrPassA').val() != $('#usrPassB').val()) { _c = false; _errs.push('Your two passwords do not match.'); }
+			return _c;
+		}
+
+
+		/* Clear any error message when the user begins typing. */
+		$('input.required').add('input.empty').keypress(function(event) {
+			if($('span.err').length > 0) {
+				if($(this).checkForm()) {
+					$('span.err').fadeOut(750, function(){
+						$(this).remove();
+					})
+				}
+			}
+		});
+
+		/* Validate that forms are filled before submitting them.. */
+		$('form[name=register]').submit(function(){
+			if(!$(this).checkForm()) {
+				if($('span.err').length == 0) {
+					$('input[type=submit]').error(_errs[0]);
+					return false;
+				} else {
+					$('span.error').html('<strong>Error</strong>: ' + _errs[0] + '</span>');
+					return false;
+				}
+			}
+			return true;
+		});
+	});
+	/*]]>*/
+</script>
+{% endblock %}
+
+{% block content %}
+
+<!--{% if msg %}<h2> {{ msg|e }} </h2>{% endif %}-->
+
+<div class="section-full wrap text clearfix">
+	
+	<div class="section full">
+			
+		<h1>Signup for your personal LifeLitUp account</h1>
+		<div>
+			<div class="signup-login">
+				<div class="signup-login-text-alt">
+					<h4>Why Sign Up with LifeLitUp?</h4>
+						<p><img src="themes/dotdotgo/images/info-icon.png" alt="image" class="alignleft" />Sign up for dot.dot.go web products, and get special access to all of our products and new releases. Just enter your name and email address on the right hand side &rarr;</p>
+				</div>
+				<form name="register" action="" method="POST">
+					<input type="hidden" name="op" value="new" />
+					<p><input title="Username" class="required" placeholder="john.doe" id="usrName" type="text" name="username" maxlength="30" /><label for="usrName" accesskey="n">Username: </label></p>
+					<p><input title="Password" class="required" id="usrPassA"  type="password" name="pass1" /><label for="usrPassA" accesskey="p">Password: </label></p>
+					<p><input title="Password Repeated" class="required" id="usrPassB"  type="password" name="pass2" /><label for="usrPassB" accesskey="a">Password Again: </label></p>
+					<p><input class="empty" id="usrSeed" value="{{ seed|e }}" type="text" name="remove" /><label for="usrSeed" accesskey="r">Remove text: </label></p>
+					<p><input type="submit" name="register" value="Register" />{% if msg %}{% if msg == 'You have registered' %}<span class="msg"><span class="messg"><strong>Success</strong>: {{ msg|e }}.</span></span>{% else %}<span class="err"><span class="error"><strong>Error</strong>: {{ msg|e }}.</span></span>{% endif %}{% endif %}</p>
+				</form>
+			</div>
+		</div><!-- Signup Box, hidden from view -->
+		<br />
+		Or <a href="login.php">login</a>
+
+	</div><!-- Section -->
+</div><!-- Wrap -->
+
+{% endblock %}

@@ -601,6 +601,7 @@ Tags: business, enterprise, product, application
 	.signup-login form a:hover, .signup-login a:hover { background: none; color: #e7e7e7; text-decoration: none; }
 	.signup-login:after { clear: both; content: " "; display: block; line-height: 0; height: 0; visibility: hidden; }
 	.signup-login-text { float: left; width: 100px; }
+	.signup-login-text-alt { float: left; width: 97%; margin-bottom: 10px; }
 	.signup-login h3 { color: #f7f7f7; font-size: 1.2em; text-align: left; text-shadow: #222 0 -1px; }
 	.signup-login p { text-align: left; }
 	.signup-login form { float: left; width: auto; }
