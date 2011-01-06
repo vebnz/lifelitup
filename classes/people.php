@@ -2,6 +2,15 @@
 
 class People {
 
+	function user_count() {
+		$db = Database::obtain();
+
+		$sql = "SELECT count(*) as 'c' FROM " . tbl_users;
+		$row = $db->query_first($sql);
+
+		return $row['c'];
+	}
+
 	function exists($ip) {
 		$db = Database::obtain();
 
