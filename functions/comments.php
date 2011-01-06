@@ -41,6 +41,7 @@ if (isset($_POST['post_comment'])) {
 		return;
 	}
 
+	/* is this hack... shit? */
 	if (empty($table)) {
 		$msg = 'You need to include the table';
 		return;
@@ -54,6 +55,13 @@ if (isset($_POST['post_comment'])) {
 			$table = tbl_goals;
 			break;
 	}
+
+    event::register('COMMENT_POST', function($args = array()){
+    	/*
+			We want to give a badge to every user who posts heaps...
+		*/
+	}); 
+
 
 	$add = $comments->add($userid, $pageid, $table, $content);
 	if (!empty($add)) {

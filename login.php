@@ -2,6 +2,8 @@
 require_once('includes/config.php');
 require_once('database/db.php');
 require_once('twig/twig.php');
+require_once('classes/log.php');
+require_once('classes/event.php');
 
 $db = Database::obtain(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 $db->connect();
@@ -10,6 +12,7 @@ require_once('header.php');
 require_once('functions/authenticate.php');
 if(key_exists('action',$_GET)) {
 	if ($_GET['action'] == 'logout') {
+		event::fire('USER_LOGOUT');
 		$auth->logout();
 		// this can definitely be improved. header() causes stuff to break
 		echo '<meta http-equiv="refresh" content="0;url=login.php" />';
