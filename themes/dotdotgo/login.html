@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %} Login {% endblock %}
+{% block head %}
+{% parent %}
+<!--[if IE]><link rel="stylesheet" href="/themes/wip2/forms.ie.css" type="text/css" media="screen" /><![endif]-->
+<script type="text/javascript" language="javascript">
+	/*<![CDATA[*/
+	$(function(){
+		if(jQuery.browser.safari) { $('label').css('font-weight', '600'); }
+		/* Some multi-use functions. */
+		$.fn.error = function(_e) {
+			return $('<span class="err" />')
+					.html('<span class="error"><strong>Error</strong>: ' + _e + '</span>')
+					.insertAfter(this);
+		};
+		$.fn.checkForm = function() {
+			var _c = true;
+			$('input.required').each(function() {
+				_c = ($(this).val().length > 0) && _c;
+			});
+			return _c;
+		}
+
+
+		/* Clear any error message when the user begins typing. */
+		$('input.required').keypress(function(event) {
+			if($('span.err').length > 0) {
+				if($(this).checkForm()) {
+					$('span.err').fadeOut(750, function(){
+						$(this).remove();
+					})
+				}
+			}
+		});
+
+		/* Validate that forms are filled before submitting them.. */
+		$('form[name=login]').submit(function(){
+			if(!$(this).checkForm()) {
+				if($('span.err').length == 0) {
+					$('input[type=submit]').error('Username and password required.');
+					return false;
+				} else {
+					$('span.error').html('<strong>Error</strong>: ' + 'Username and password required.' + '</span>');
+					return false;
+				}
+			}
+			return true;
+		});
+	});
+	/*]]>*/
+</script>
+{% endblock %}
+{% block content %}
+
+
+	<!--<h2> {{ msg|e }} </h2>-->
+
+
+<div class="section-full wrap text clearfix">
+	
+		<div class="section full">
+			
+			<h1>Login to your LifeLitUp account</h1>
+            
+             <div>
+				<div class="signup-login">
+					<div class="signup-login-text">
+						<p><img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" /></p>
+					</div>
+					<form method="POST" name="login" id="loginform" action="login.php" >
+						<input type="hidden" name="op" value="login" />
+						<p><input type="text" name="username" value="Your Name" onblur="if (this.value == '') {this.value = 'Your Name';}" onfocus="if (this.value == 'Your Name') {this.value = '';}" class="yourname" />
+						<input type="password" name="password" value="Your Password" onblur="if (this.value == '') {this.value = 'Your Password';}" onfocus="if (this.value == 'Your Password') {this.value = '';}" class="yourpassword" /></p>
+						{% if msg %}<span class="err"><span class="error"><strong>Error</strong>: {{ msg|e }}.</span></span>{% endif %}
+						<p><input type="submit" name="login" value="Login" /><a href="#">Forgotten Password?</a></p>
+					</form>
+				</div>
+			</div>
+			
+			POSSIBLY DO SOMETHING WITH THESE THINGS BELOW FOR ERRORS ETC!!!!
+            
+            <p class="alert">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="add">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="download">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="wrong">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="heart">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="star">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="warning">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+            <p class="check">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
+     	
+		</div><!-- Section -->
+	
+	
+    
+    </div><!-- Wrap -->
+
+{% endblock %}

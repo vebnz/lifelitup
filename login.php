@@ -15,7 +15,7 @@ if(key_exists('action',$_GET)) {
 		event::fire('USER_LOGOUT');
 		$auth->logout();
 		// this can definitely be improved. header() causes stuff to break
-		echo '<meta http-equiv="refresh" content="0;url=login.php" />';
+		echo '<meta http-equiv="refresh" content="0;url=index.php" />';
 		die;
 	}
 }
@@ -25,9 +25,9 @@ if ($auth->isLoggedIn()) {
 	die;
 }
 
-//$template = $twig->loadTemplate('login.html');
-//$msg = isset($msg) ? $msg : '';
-//echo $template->render(array('msg' => $msg));
+$template = $twig->loadTemplate('login.html');
+$msg = isset($msg) ? $msg : '';
+echo $template->render(array('msg' => $msg));
 
 //require_once('footer.php');
 $db->close();

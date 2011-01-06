@@ -11,7 +11,7 @@ require_once('functions/blog.php');
 
 $show = $blog->showAll();
 
-$template = $twig->loadTemplate('base.html');
+$template = $twig->loadTemplate('content.html');
 $username = isset($username) ? $username : '';
 echo $template->render(array('posts' => $show, 'username' => $username));
 
