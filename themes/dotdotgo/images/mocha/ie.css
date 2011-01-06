@@ -1,0 +1,5 @@
+.clearfix { zoom: 1; display: block; }
+
+#nav { width: 962px; }
+.scroll-title { width: 927px; }
+.scroll-title span { padding: 25px 0 55px; }

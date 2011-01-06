@@ -1,0 +1,12 @@
+ul.tabs a { line-height: normal; padding: 7px 20px; }
+
+.clearfix, ul.meta, ul.list-gallery, ul.gallery-alt, .aside li, signup-login { display: inline-block; }  /* for IE/Mac */
+.aside li ul.thumbnail-images li { display: inherit; }
+.search #searchsubmit { text-transform: capitalize; }
+
+.scroll-title { bottom: 0; height: 250px; overflow: hidden; position: absolute; width: 928px; z-index: 998; }
+.scroll-title h2 { background: url(images/scrollable-arrow.png) no-repeat center top; bottom: -70px; color: #fff; margin: 0; opacity: 0.85; padding: 11px 0 0; position: absolute; text-align: center; top: 212px; }
+	.scroll-title h2 a { color: #018ede; }
+	.scroll-title h2 a:hover { background: none; color: #fff; text-decoration: underline; text-shadow: none; }
+	
+.signup-login form { width: 235px; }

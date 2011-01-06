@@ -1,0 +1,71 @@
+/*===============
+	[1] - Body
+===============*/
+	
+	a.back-to-top { color: #777; display: block; font-size: 1.6em; padding: 15px 0 30px; text-align: center; text-decoration: none; text-shadow: none; }
+	a.back-to-top:hover { background: none; color: #018EDE; text-shadow: none; }
+	#body { background: none; }
+
+/*=======================
+	[2] - Font, Links
+=======================*/
+
+	@font-face { font-family: Quicksand; src: url('Quicksand_Book.otf'); }
+	@font-face { font-family: Quicksand; font-weight: bold; src: url('Quicksand_Bold.otf'); }
+
+	body { background: url(images/darkwood.jpg); font-family: Verdana, Geneva, Tahoma, sans-serif; }
+	
+	p.title { font-family: Quicksand, sans-serif; }
+	
+/*=======================
+	[3] - Text, Images
+=======================*/
+	
+/*=================
+	[4] - Header
+=================*/
+
+	.header a { color: #fff; }
+	.header a:hover { text-shadow: none; }
+
+/*=====================
+	[5] - Navigation
+=====================*/
+	
+/*===================
+	[6] - Sections
+===================*/
+
+/*=================
+	[7] - Aside
+=================*/
+	
+/*=================
+	[8] - Footer
+=================*/
+
+	/* Footer End */
+
+	.foot-end { border: 0; border-top: 1px solid #777; border-bottom: 1px solid #777; margin: 0; padding: 0; }
+	.foot-end ul { background: none; border: 0; color: #ccc; padding: 15px 0; -moz-border-radius: 0; -webkit-border-radius: 0; }
+	.foot-end li li { border-right: 1px solid #018EDE; display: inline; font-size: 1em; padding: 0; }
+	.foot-end a { color: #018EDE; }
+	.foot-end a:hover { color: #ccc; text-shadow: none; }
+
+/*===================
+	[9] - Comments
+===================*/
+
+/*===============================
+	[A] - Drop Down Navigation
+===============================*/
+
+	#nav li { border: none; }
+
+/*====================================
+	[B] - WordPress Specific Styles
+====================================*/
+
+/*====================================
+	[C] - jQuery Specific Styles
+====================================*/

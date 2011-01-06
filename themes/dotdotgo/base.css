@@ -1,0 +1,323 @@
+/*
+	Base Styles for Weborithm Theme Framework.
+	
+	Do not edit the styles in here as this file will be updated, instead add your custom styles in STYLE.CSS
+		
+	License: Do Whatever You Want License
+
+	Theme Name: Weborithm Theme Framework
+	Theme URI: http://www.weborithm.com/framework/
+	Description: A theme framework by Weborithm
+	Version: 0.6.2 - Updated March 9th, 2010
+	Author: Hyder Jaffari
+*/
+
+/*==============================================================
+
+	Table of Contents
+	
+	[0] - Reset CSS
+	[1] - Main Body, Clear
+	[2] - Font, Links
+	[3] - Basic text styling
+	[4] - Header area
+	[5] - Navigation area
+	[6] - Content Holders
+	[7] - Aside
+	[8] - Footer
+	
+	[A] - Drop Down Navigation
+	[C] - jQuery Specific Styles
+	
+==============================================================*/
+	
+/*==================================
+	[0] - Reset CSS
+==================================*/
+
+	/* Global */
+	
+		body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin: 0; padding: 0; }
+		table { border-collapse: collapse; }
+		fieldset, img { border: 0; }
+		address, caption, cite, code, dfn, em, strong, th, var { font-style: normal; font-weight: normal; }
+		ul { list-style: none; }
+		caption, th { text-align: left; }
+		h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+	
+	/* Basic */
+	
+		strong { font-weight: bold; }
+		em { font-style: italic; }
+		a img { border: none; }
+
+/*==================================
+	[1] - Main Body, Clear
+==================================*/
+	
+	body { font-size: 62.5%; }
+	
+	/* Main Body ID */
+	
+	#body { background: #fff; font-size: 1.6em; margin: auto; width: 960px; }
+	
+	/* Clear */
+	
+	.clearfix:after, .wrap:after, .accord-text:after, .left-equal li:after { clear: both; content: " "; display: block; line-height: 0; height: 0; visibility: hidden; }
+	.clear { height: 0; margin: 0; overflow: auto; padding: 0; }
+	
+/*=======================
+	[2] - Font, Links
+=======================*/
+
+	@font-face { font-family: Quicksand; src: url('Quicksand_Book.otf'); }
+	@font-face { font-family: Quicksand; font-weight: bold; src: url('Quicksand_Bold.otf'); }
+	
+	/* Font */
+	
+	body { font-family: Verdana, Arial, Helvetica, sans-serif; }
+	h1, h2, h3, h4, h5, h6 { font-family: Georgia, "Times New Roman", Times, serif; font-weight: normal; margin-bottom: 15px; }
+	
+	/* Links */
+	
+	a { color: #0066CC; text-decoration: none; }
+	a:hover { text-decoration: underline; }
+	
+/*==============================
+	[3] - Basic text styling
+==============================*/
+	
+	/* Text class - used for text styling only */
+	
+	.text a { text-decoration: underline; }
+	.text a:hover { text-decoration: none; }
+	
+	.text p { font-size: 0.8em; line-height: 1.8em; padding: 0 0 1.172em; }
+	.text h1 { font-size: 2em; }
+	.text h2 { font-size: 1.859em; }
+	.text h3 { font-size: 1.459em; }
+	.text h4 { font-size: 1.059em; }
+	.text h5 { font-size: 1em; }
+	.text h6 { font-size: 0.9em; }
+	.text pre { background: #f9f9f9; border: 1px solid #eee; font: normal 0.759em 'Courier New', Courier, monospace; line-height: 1.8em; margin-bottom: 1.235em; padding: 1.235em; white-space: normal; -moz-border-radius: 5px; -webkit-border-radius: 5px; }
+	
+	/* Lists */
+
+	.text ul { list-style: disc; margin: 0 1.875em 0.937em; }
+		.text ul ul { list-style: circle; margin: 1.172em 1.563em 0.781em; } 
+		
+	.text ol { margin: 0 1.875em 0.937em 0; }
+		.text ol ol { margin: 1.172em 0 0.781em; padding: 0.390em 0 0.390em 0.781em; }
+		
+	.text li { font-size: 0.8em; line-height: 1.6em; padding: 0.390em; }
+		.text li li { font-size: 1em; }
+	
+	/* Tables */
+	
+	.text table { font-size: 0.8em; margin: 0 0 1.172em; }
+	.text th { background: #eee; border: 1px solid #ccc; font-weight: bold; padding: 0.390em; }
+	.text td { border: 1px solid #eee; padding: 0.781em 0.390em; }
+	
+	/* Blockquotes */
+
+	.text blockquote { background: #F9F9F9; border: 1px solid #eee; font-size: 1em; padding: 0.938em 0.938em 0; margin: 0.938em 1.875em 1.875em; -moz-border-radius: 5px; -webkit-border-radius: 5px;  }
+	
+/*=======================
+	[4] - Header area
+=======================*/
+	
+	.header { padding: 1.25em 0.625em; }
+	.header h1 { font-size: 2.2em; margin: 0; }
+	.header p { font-size: 0.9em; padding: 0; }
+	.header a { text-decoration: none; }
+	.header a:hover { text-decoration: underline; }
+		
+/*===========================
+	[5] - Navigation area
+===========================*/
+		
+	.nav { background: #f9f9f9; }
+	
+/*===============================
+	[6] - Content Holders
+===============================*/
+			
+	/* Outer Box */
+		
+	.wrap { /* Can be used as a container to add padding between stacked divs */ }
+		
+	/* Section - Used For Layout Purpose Only */
+		
+	.section { padding: 0.625em 0.625em 0; width: 940px; }	
+		
+		.left { float: left; width: 620px; } /* For Left Aside Template */
+		.right { float: right; width: 620px; } /* For Right Aside Template */
+		
+		.center { float: left; width: 580px; } /* For Left/Right Aside Template */
+		
+		.left-alt { float: left; width: 580px; } /* For Two Left Asides Template */
+		.right-alt { float: right; width: 580px; } /* For Two Right Asides Template */
+		
+		.left-equal { float: left; width: 460px; } /* For Two Equal Boxes Template */
+		.right-equal { float: right; width: 460px; } /* For Two Equal Boxes Template */
+
+		.top-left { float: left; width: 620px; } /* For Featured Left Template */
+		.top-right { float: right; width: 300px; } /* For Featured Left Template */
+		
+		.top-left-alt { float: left; width: 300px; } /* For Featured Right Template */
+		.top-right-alt { float: right; width: 620px; } /* For Featured Right Template */
+
+		.three-one { float: left; padding: 0.625em 0.625em 0; width: 300px; } /* For Three Equal Boxes */
+		.three-two { float: left; padding: 0.625em 0.625em 0; width: 300px; } /* For Three Equal Boxes */
+		.three-three { float: right; padding: 0.625em 0.625em 0; width: 300px; } /* For Three Equal Boxes */
+
+		.four-one { float: left; width: 220px; } /* For Four Equal Boxes */
+		.four-two { float: left; width: 220px; } /* For Four Equal Boxes */
+		.four-three { float: left; width: 220px; } /* For Four Equal Boxes */
+		.four-four { float: right; width: 220px; } /* For Four Equal Boxes */
+		
+		.four-one-small { float: left; width: 160px; } /* For Four Unequal Boxes */
+		.four-two-small { float: left; width: 160px; } /* For Four Unequal Boxes */
+		.four-three-small { float: left; width: 160px; } /* For Four Unequal Boxes */
+		.four-four-big { float: right; width: 400px; } /* For Four Unequal Boxes - Wider On The Left*/
+		
+		.four-one-small-alt { float: left; width: 400px; } /* For Four Unequal Boxes - Wider On The Right */
+		.four-two-small-alt { float: left; width: 160px; } /* For Four Unequal Boxes */
+		.four-three-small-alt { float: left; width: 160px; } /* For Four Unequal Boxes */
+		.four-four-big-alt { float: right; width: 160px; } /* For Four Unequal Boxes */
+		
+		.five-one { float: left; width: 172px; } /* For Five Equal Boxes */
+		.five-two { float: left; width: 172px; } /* For Five Equal Boxes */
+		.five-three { float: left; width: 172px; } /* For Five Equal Boxes */
+		.five-four { float: left; width: 172px; } /* For Five Equal Boxes */
+		.five-five { float: right; width: 172px; } /* For Five Equal Boxes */
+			
+	/* You can use this class to hold a post for further customizations, usually used in WordPress themes */
+		
+		.post { }
+			
+/*==============================================================
+	[7] - Aside {or sidebar or whatever you want to call it}
+==============================================================*/
+	
+	.aside { font-size: 0.8em; padding: 0.781em 0.781em 0; }
+	.aside h3 { font-size: 1.3em; margin: 0 0 0.601em; }
+	.aside p { line-height: 1.6em; padding: 0 0 0.781em; }
+					
+	.aside ul { margin: 0; }
+	.aside li { padding: 0 0 1.562em; }
+			
+	.aside li li { padding: 0.390em 0; }
+		
+		/* For Left Aside Template */
+		
+		.aside-left { float: left; width: 300px; }
+		
+		/* For Right Aside Template */	
+		
+		.aside-right { float: right; width: 300px; }
+		
+		/* For Left and Right Aside Template */
+
+		.aside-one { float: left; width: 160px; }
+		.aside-two { float: right; width: 160px; }
+			
+		/* For Two Left Asides Template */	
+			
+		.aside-one-left { float: left; width: 160px; }
+		.aside-two-left { float: left; width: 160px; }
+			
+		/* For Two Right Asides Template */
+		
+		.aside-one-right { float: left; width: 160px; }
+		.aside-two-right { float: right; width: 160px; }
+		
+/*==================
+	[8] - Footer
+==================*/
+
+	/* Footer */
+	
+	.footer { clear: both; font-size: 0.8em; padding: 0.781em 0 0; }
+	.footer h3 { font-size: 1.3em; margin: 0 0 0.601em; }	
+	.footer p { line-height: 1.6em; padding: 0 0 0.781em; }
+	
+	.footer ul { list-style: none; margin: 0; }
+	.footer ul ul { /* Second Level Widgets */ }
+	
+	.footer li { padding: 0 0.781em 1.562em; }
+	.footer li li { padding: 0.39em 0; float: none; }	
+		
+		/* One Footer */
+		
+		.foot-one li { float: left; width: 940px; }
+		
+		/* Two Footers */
+		
+		.foot-two li { float: left; width: 460px; }
+		
+		/* Three Footers */
+		
+		.foot-three li { float: left; width: 300px; }
+
+/*===============================
+	[A] - Drop Down Navigation
+===============================*/
+
+	#nav, #nav ul { list-style: none; overflow: auto; margin: 0; padding: 0; }
+	#nav a { display: block; padding: 10px; outline: none; }
+	#nav li { /* all list items */ float: left; font-size: 0.8em; margin: 0; padding: 0; }
+	#nav li li { background: #f0f0f0; border-bottom: 1px solid #fff; font-size: 1em; width: 100%; }
+	#nav li li:hover { background: #f9f9f9; }
+		
+	#nav li ul { /* second-level lists */ background: #ccc; border-top: 1px solid #eee; left: -9999em; padding: 0; overflow: visible; position: absolute; width: 10em; }
+	#nav li ul ul { /* third-level lists */ border-top: none; margin: -2.559em 0 0 10em; }
+	#nav li ul ul ul { /* fourth-level lists */ border-top: none; margin: -2.559em 0 0 10em; }
+	#nav li ul ul ul ul { /* fifth-level lists */ border-top: none; margin: -2.559em 0 0 10em; }
+	
+	#nav li:hover ul ul,
+	#nav li:hover ul ul ul,
+	#nav li:hover ul ul ul ul,
+	#nav li.sfhover ul ul,
+	#nav li.sfhover ul ul ul,
+	#nav li.sfhover ul ul ul ul
+	{ left: -9999em; }
+	
+	#nav li:hover ul,
+	#nav li li:hover ul,
+	#nav li li li:hover ul,
+	#nav li li li li:hover ul,
+	#nav li.sfhover ul,
+	#nav li li.sfhover ul,
+	#nav li li li.sfhover ul,
+	#nav li li li li.sfhover ul
+	{ left: auto; }
+	
+	#nav-page, #nav-page ul { list-style: none; overflow: auto; margin: 0; padding: 0; }
+	#nav-page a { display: block; padding: 10px; }
+	#nav-page li { /* all list items */ float: left; font-size: 0.8em; margin: 0; padding: 0; }
+	#nav-page li li { background: #f0f0f0; border-bottom: 1px solid #fff; font-size: 1em; width: 100%; }
+	#nav-page li li:hover { background: #f9f9f9; }
+		
+	#nav-page li ul { /* second-level lists */ background: #ccc; border-top: 1px solid #eee; left: -9999em; padding: 0; overflow: visible; position: absolute; width: 10em; }
+	#nav-page li ul ul { /* third-level lists */ border-top: none; margin: -2.559em 0 0 10em; }
+	#nav-page li ul ul ul { /* fourth-level lists */ border-top: none; margin: -2.559em 0 0 10em; }
+	#nav-page li ul ul ul ul { /* fifth-level lists */ border-top: none; margin: -2.559em 0 0 10em; }
+	
+	#nav-page li:hover ul ul,
+	#nav-page li:hover ul ul ul,
+	#nav-page li:hover ul ul ul ul,
+	#nav-page li.sfhover ul ul,
+	#nav-page li.sfhover ul ul ul,
+	#nav-page li.sfhover ul ul ul ul
+	{ left: -9999em; }
+	
+	#nav-page li:hover ul,
+	#nav-page li li:hover ul,
+	#nav-page li li li:hover ul,
+	#nav-page li li li li:hover ul,
+	#nav-page li.sfhover ul,
+	#nav-page li li.sfhover ul,
+	#nav-page li li li.sfhover ul,
+	#nav-page li li li li.sfhover ul
+	{ left: auto; }

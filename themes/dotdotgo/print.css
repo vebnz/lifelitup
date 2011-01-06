@@ -1,0 +1,15 @@
+/*
+Theme Name: Weborithm Theme Framework
+Theme URI: http://www.weborithm.com/framework/
+Description: Print CSS
+Version: 0.1 - Updated January 1st, 2010
+Author: Hyder Jaffari
+Author URI: http://www.weborithm.com
+*/
+	body { background: #fff; }
+	h1, h2, h3, h4, h5, h6 { color: #333; font-family: Arial, Helvetica, sans-serif; }	
+	.text { font-family: Arial, Helvetica, sans-serif; }
+	
+	#nav, .aside, .footer { display: none; }
+	
+	a { color: #555; text-decoration: none; }

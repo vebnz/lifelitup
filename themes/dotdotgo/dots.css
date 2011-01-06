@@ -1,0 +1,66 @@
+/*===============
+	[1] - Body
+===============*/
+	
+	a.back-to-top { color: #e9e9e9; display: block; font-size: 1.6em; padding: 15px 0 30px; text-align: center; text-decoration: none; text-shadow: #a9a9a9 0 -1px; }
+	a.back-to-top:hover { background: none; color: #018EDE; text-shadow: none; }
+	#body { background: none; }
+
+/*=======================
+	[2] - Font, Links
+=======================*/
+
+	@font-face { font-family: Quicksand; src: url('Quicksand_Book.otf'); }
+	@font-face { font-family: Quicksand; font-weight: bold; src: url('Quicksand_Bold.otf'); }
+
+	body { background: url(images/dot-bg.gif); font-family: Verdana, Geneva, Tahoma, sans-serif; }
+	
+	p.title { font-family: Quicksand, sans-serif; }
+	
+/*=======================
+	[3] - Text, Images
+=======================*/
+	
+/*=================
+	[4] - Header
+=================*/
+
+	.header a { color: #222; }
+	.header a:hover { color: #018EDE; text-shadow: none; }
+
+/*=====================
+	[5] - Navigation
+=====================*/
+	
+/*===================
+	[6] - Sections
+===================*/
+
+/*=================
+	[7] - Aside
+=================*/
+	
+/*=================
+	[8] - Footer
+=================*/
+
+	/* Footer End */
+
+	.foot-end { border: 0; border-top: 1px solid #c9c9c9; border-bottom: 1px solid #c9c9c9; }
+	.foot-end ul { background: none; border: 0; color: #222; }
+
+/*===================
+	[9] - Comments
+===================*/
+
+/*===============================
+	[A] - Drop Down Navigation
+===============================*/	
+
+/*====================================
+	[B] - WordPress Specific Styles
+====================================*/
+
+/*====================================
+	[C] - jQuery Specific Styles
+====================================*/
