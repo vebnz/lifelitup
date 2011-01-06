@@ -7,7 +7,12 @@ $db = Database::obtain(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 $db->connect();
 
 require_once('functions/admin/user.php');
+require_once('functions/authenticate.php');
 require_once('includes/TableGear/include/TableGear1.6.1.php');
+
+if (!$auth->isLoggedIn()) {
+    die('log in plz');
+}
 
 $options["database"]["table"] = "tbl_users";
 $table = new TableGear($options);
