@@ -1,6 +1,6 @@
 <?
 
-include("include/TableGear1.6.php");
+include("include/TableGear1.6.1.php");
 
 //
 // TableGear Usage:
@@ -20,15 +20,15 @@ $options["pagination"] = array();
 
 
 // Database host: if omitted defaults to localhost.
-// $options["database"]["host"]        = "<DATABASE_HOST>",
+$options["database"]["host"]        = "lifelitup.com";
 
 
 // Basic database information. These are required.
 
-$options["database"]["name"]        = "<DATABASE_NAME>";
-$options["database"]["username"]    = "<DATABASE_USERNAME>";
-$options["database"]["password"]    = "<DATABASE_PASSWORD>";
-$options["database"]["table"]       = "<DATABASE_TABLE>";
+$options["database"]["name"]        = "life_app";
+$options["database"]["username"]    = "life";
+$options["database"]["password"]    = "2vc44rb5";
+$options["database"]["table"]       = "tbl_users";
 
 
 
