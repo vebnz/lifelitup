@@ -11,7 +11,8 @@ require_once('functions/authenticate.php');
 require_once('includes/TableGear/include/TableGear1.6.1.php');
 
 if (!$auth->isLoggedIn()) {
-    die('log in plz');
+	echo '<meta http-equiv="refresh" content="0;url=../login.php" />';
+	die;
 }
 
 $options["database"]["table"] = "tbl_users";
