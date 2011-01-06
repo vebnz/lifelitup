@@ -11,10 +11,10 @@ require_once('functions/blog.php');
 
 $show = $blog->showAll();
 
-$template = $twig->loadTemplate('blog.html');
+$template = $twig->loadTemplate('base.html');
 $username = isset($username) ? $username : '';
 echo $template->render(array('posts' => $show, 'username' => $username));
 
-require_once('footer.php');
+//require_once('footer.php');
 $db->close();
 ?>

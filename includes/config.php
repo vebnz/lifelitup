@@ -19,7 +19,7 @@ define('tbl_people', "tbl_people");
 define('tbl_logs', "tbl_logs");
 
 // twig
-define('current_theme', "themes/wip2");
+define('current_theme', "themes/dotdotgo");
 
 // start the session
 session_start();
