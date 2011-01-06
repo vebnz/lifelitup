@@ -67,17 +67,17 @@
 					<div class="signup-login-text">
 						<p><img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" /></p>
 					</div>
-					<form method="POST" name="login" id="loginform" action="login.php" >
+					<form method="POST" name="login" id="loginform" action="login.php" autocomplete="off">
 						<input type="hidden" name="op" value="login" />
-						<p><input type="text" name="username" value="Your Name" onblur="if (this.value == '') {this.value = 'Your Name';}" onfocus="if (this.value == 'Your Name') {this.value = '';}" class="yourname" />
-						<input type="password" name="password" value="Your Password" onblur="if (this.value == '') {this.value = 'Your Password';}" onfocus="if (this.value == 'Your Password') {this.value = '';}" class="yourpassword" /></p>
-						{% if msg %}<span class="err"><span class="error"><strong>Error</strong>: {{ msg|e }}.</span></span>{% endif %}
+						<p><input type="text" name="username" placeholder="Your name" class="yourname" />
+						<input type="password" name="password" placeholder="Your password" class="yourpassword" /></p>
+						{% if msg %}<p class="wrong">{{ msg|e }}.</p>{% endif %}
 						<p><input type="submit" name="login" value="Login" /><a href="#">Forgotten Password?</a></p>
 					</form>
 				</div>
 			</div>
 			
-			POSSIBLY DO SOMETHING WITH THESE THINGS BELOW FOR ERRORS ETC!!!!
+			<!--POSSIBLY DO SOMETHING WITH THESE THINGS BELOW FOR ERRORS ETC!!!!
             
             <p class="alert">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
             <p class="add">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
@@ -89,7 +89,7 @@
             <p class="star">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
             <p class="warning">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
             <p class="check">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-     	
+     		-->
 		</div><!-- Section -->
 	
 	
