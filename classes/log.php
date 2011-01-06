@@ -21,12 +21,12 @@ class Log
 				$page = basename($_SERVER['PHP_SELF']); 
 				$pageid = isset($_GET['page']) ? $_GET['page'] : '0';
 				$referrer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '0';
-				$details = $ip . "," . $host . "," . $page . "," . $pageid . "," . $referrer;
+				//$details = $ip . "," . $host . "," . $page . "," . $pageid . "," . $referrer;
 
 				//$db->insert(tbl_logs, $data); -- we need a bit more configurability in our query
 				$sql = "INSERT DELAYED INTO " . tbl_logs . " 
-						(event_type, details, log_date) 
-						VALUES ('" . $event . "', '" . $details . "', '" . $time . "')";
+						(event_type, ipaddr, hostname, pageid, page, referer, log_date) 
+						VALUES ('" . $event . "', '" . $ip . "', '" . $host . "', '" . $pageid . "', '" . $page . "', '" . $referrer . "', '" . $time . "')";
 				$db->query($sql);
 		}  
 
