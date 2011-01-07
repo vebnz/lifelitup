@@ -1,5 +1,5 @@
 <?php
-die('Admin stuff disabled.. let\'s get basic functionality added before moving on to \'behind the scenes\' stuff');
+//die('Admin stuff disabled.. let\'s get basic functionality added before moving on to \'behind the scenes\' stuff');
 chdir('../');
 require_once('includes/config.php');
 require_once('database/db.php');
@@ -22,7 +22,7 @@ $table = new TableGear($options);
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script type="text/javascript" src="../includes/TableGear1.6.1-jQuery.js"></script>
 <link type="text/css" rel="stylesheet" href="../includes/tablegear.css" />
-<?
+<?php
 echo $table->getTable();
 echo $table->getJavascript("jquery");
 
