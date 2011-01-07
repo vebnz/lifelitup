@@ -9,8 +9,8 @@
 		if(jQuery.browser.safari) { $('label').css('font-weight', '600'); }
 		/* Some multi-use functions. */
 		$.fn.error = function(_e) {
-			return $('<span class="err" />')
-					.html('<span class="error"><strong>Error</strong>: ' + _e + '</span>')
+			return $('<p class="warning" />')
+					.html('<p class="warning"><strong>Error</strong>: ' + _e + '</p>')
 					.insertAfter(this);
 		};
 		$.fn.checkForm = function() {
@@ -24,9 +24,9 @@
 
 		/* Clear any error message when the user begins typing. */
 		$('input.required').keypress(function(event) {
-			if($('span.err').length > 0) {
+			if($('p.warning').length > 0) {
 				if($(this).checkForm()) {
-					$('span.err').fadeOut(750, function(){
+					$('p.warning').fadeOut(750, function(){
 						$(this).remove();
 					})
 				}
@@ -36,11 +36,11 @@
 		/* Validate that forms are filled before submitting them.. */
 		$('form[name=login]').submit(function(){
 			if(!$(this).checkForm()) {
-				if($('span.err').length == 0) {
+				if($('p.warning').length == 0) {
 					$('input[type=submit]').error('Username and password required.');
 					return false;
 				} else {
-					$('span.error').html('<strong>Error</strong>: ' + 'Username and password required.' + '</span>');
+					$('p.warning').html('<strong>Error</strong>: ' + 'Username and password required.' + '<p>');
 					return false;
 				}
 			}
