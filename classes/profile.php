@@ -23,6 +23,15 @@ class Profile {
 		return $pid;
 	}
 
+	function update($arr, $userid) {
+		if (count($arr) > 0) {
+			$db = Database::obtain();
+			foreach ($arr as $k => $v) {
+				$data[$k] = $v;
+			}
+			$db->update(tbl_profile, $data, "id=" . (int)$userid);
+		}
+	}
 }
 
 ?>
