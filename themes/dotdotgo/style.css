@@ -605,7 +605,7 @@ Tags: business, enterprise, product, application
 	.signup-login-text-alt { float: left; width: 97%; margin-bottom: 10px; }
 	.signup-login h3 { color: #f7f7f7; font-size: 1.2em; text-align: left; text-shadow: #222 0 -1px; }
 	.signup-login p { text-align: left; }
-	.signup-login p.lab { width: 300px; }
+	.signup-login p.lab { margin-bottom: -20px; width: 300px; }
 	.signup-login form { float: left; width: auto; }	
 	.signup-login form input { border: 1px solid #018ede;  margin: 0 0 0px; padding: 5px; width: 300px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 	.signup-login form .yourname { background: #fff url(images/user.png) no-repeat 5px; padding-left: 25px; }
