@@ -71,7 +71,7 @@
 						<input type="hidden" name="op" value="login" />
 						<p><input type="text" name="username" placeholder="Your name" class="yourname" />
 						<input type="password" name="password" placeholder="Your password" class="yourpassword" /></p>
-						{% if msg %}<p class="wrong">{{ msg|e }}.</p>{% endif %}
+						{% if msg %}<p class="warning">{{ msg|e }}.</p>{% endif %}
 						<p><input type="submit" name="login" value="Login" /><a href="#">Forgotten Password?</a></p>
 					</form>
 				</div>
