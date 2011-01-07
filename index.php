@@ -15,6 +15,6 @@ $template = $twig->loadTemplate('content.html');
 $username = isset($username) ? $username : '';
 echo $template->render(array('posts' => $show, 'username' => $username));
 
-require_once('footer.php');
+//require_once('footer.php');
 $db->close();
 ?>
