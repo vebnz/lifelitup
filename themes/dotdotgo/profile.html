@@ -48,13 +48,10 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
                             <li><a href="#"><img src="themes/dotdotgo/images/facebook.png" alt="Facebook" title="Facebook" /> My Facebook page: facebook</a></li>
                         </ul>
                	</li>
-            	<li>
-                	<h3>Newsletter</h3>
-    					<div class="textwidget">
-                        	<p>We will send you information about news, events and other features. Just enter your email address below, you can unregister anytime.</p>
-                            <input type="text" onblur="if (this.value == '') {this.value = 'enter your email here';}"  onfocus="if (this.value == 'enter your email here') {this.value = '';}" /> <input type="button" value="submit" />
-                        </div>
-             	</li>
         	</ul>
 		</div><!-- Sidebar Ends -->
+
+{% include "footer.html" %}
+{% include "bottom.html" %}
+
 {% endblock %}	

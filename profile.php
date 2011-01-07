@@ -17,7 +17,6 @@ if (!$auth->isLoggedIn()) {
 $template = $twig->loadTemplate('profile.html');
 echo $template->render(array('title' => 'Lifelitup', 'username' => $username));
 
-require_once('footer.php');
 $db->close();
 
 ?>
