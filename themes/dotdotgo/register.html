@@ -76,16 +76,22 @@
 		<div>
 			<div class="signup-login">
 				<div class="signup-login-text-alt">
-					<h4>Why Sign Up with LifeLitUp?</h4>
-						<p><img src="themes/dotdotgo/images/info-icon.png" alt="image" class="alignleft" />Sign up for dot.dot.go web products, and get special access to all of our products and new releases. Just enter your name and email address on the right hand side &rarr;</p>
 				</div>
 				<form name="register" action="" method="POST">
 					<input type="hidden" name="op" value="new" />
-					<p><input title="Username" class="required" placeholder="john.doe" id="usrName" type="text" name="username" maxlength="30" /><label for="usrName" accesskey="n">Username: </label></p>
+					<p><input title="Username" class="required" placeholder="Your username" id="usrName" type="text" name="username" maxlength="30" /><label for="usrName" accesskey="n">Username: </label></p>
 					<p><input title="Password" class="required" id="usrPassA"  type="password" name="pass1" /><label for="usrPassA" accesskey="p">Password: </label></p>
 					<p><input title="Password Repeated" class="required" id="usrPassB"  type="password" name="pass2" /><label for="usrPassB" accesskey="a">Password Again: </label></p>
 					<p><input class="empty" id="usrSeed" value="{{ seed|e }}" type="text" name="remove" /><label for="usrSeed" accesskey="r">Remove text: </label></p>
-					<p><input type="submit" name="register" value="Register" />{% if msg %}{% if msg == 'You have registered' %}<span class="msg"><span class="messg"><strong>Success</strong>: {{ msg|e }}.</span></span>{% else %}<span class="err"><span class="error"><strong>Error</strong>: {{ msg|e }}.</span></span>{% endif %}{% endif %}</p>
+					<p><input type="submit" name="register" value="Register" />
+						{% if msg %}
+							{% if msg == 'You have registered' %}
+								<p class="alert">{{ msg|e }}.</p>
+							{% else %}
+								<p class="alert">{{ msg|e }}.</p>
+							{% endif %}
+						{% endif %}
+					</p>
 				</form>
 			</div>
 		</div><!-- Signup Box, hidden from view -->
