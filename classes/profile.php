@@ -23,6 +23,7 @@ class Profile {
 		return $pid;
 	}
 
+	// untested
 	function update($arr, $userid) {
 		if (count($arr) > 0) {
 			$db = Database::obtain();
