@@ -62,91 +62,11 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
 	<div class="header text">
 		<a href="index.php"><img style="margin-bottom: -40px;" src="themes/dotdotgo/images/lifelitup.png" /></a>
 	</div><!-- Header Ends -->
-	
-	<div id="nav" class="nav">
-		<ul>
-			<li class="activelink"><a href="index.php">Home</a>
-				<ul>
-					<li><a href="index-nivo.htm">Home + Nivo</a></li>
-					<li><a href="index-app.htm">Home + App</a></li>
-                    <li><a href="index-alt.htm">Home Alternate</a></li>
-                    <li><a href="index-extended.htm">Home Extended</a>
-						<ul>
-							<li><a href="#">Third Level</a></li>
-                            <li><a href="#">Third Level</a></li>
-							<li><a href="#">Third Level</a>
-								<ul>
-									<li><a href="#">Fourth Level</a></li>
-                                    <li><a href="#">Fourth Level</a></li>
-                                    <li><a href="#">Fourth Level</a></li>
-									<li><a href="#">Fourth Level</a>
-										<ul>
-											<li><a href="#">Fifth Level</a></li>
-                                            <li><a href="#">Fifth Level</a></li>
-                                            <li><a href="#">Fifth Level</a></li>
-                                            <li><a href="#">Fifth Level</a></li>
-											<li><a href="#">Fifth Level</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-            <li><a href="tour.htm">Tour</a></li>
-            <li><a href="#">Styles</a>
-            	<ul>
-                	<li><a href="#">Colors</a>
-                    	<ul>
-                        	<li><a href="index-gray.htm">Gray</a></li>
-                            <li><a href="index-dark.htm">Dark</a></li>
-                            <li><a href="index-rouge.htm">Rouge</a></li>
-                            <li><a href="index-citrus.htm">Citrus</a></li>
-                            <li><a href="index-royal.htm">Royal</a></li>
-                            <li><a href="index-turq.htm">Turq</a></li>
-                            <li><a href="index-style.htm">style</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">Backgrounds</a>
-                    	<ul>
-                        	<li><a href="index-wood.htm">Wood</a></li>
-                            <li><a href="index-darkwood.htm">Dark Wood</a></li>
-                            <li><a href="index-dots.htm">Dots</a></li>
-                            <li><a href="index-diagonal.htm">Diagonal</a></li>
-                            <li><a href="index-stripes.htm">Stripes</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-			<li><a href="page.htm">Pages</a>
-				<ul>
-					<li><a href="right-sidebar.htm">Right Sidebar</a></li>
-                    <li><a href="full-width.htm">Full Width</a></li>
-                    <li><a href="bio.htm">Bio Template</a></li>
-				</ul>
-			</li>
-			<li><a href="gallery.htm">Gallery</a>
-				<ul>
-					<li><a href="gallery-alternate.htm">Gallery Alternate</a></li>
-				</ul>
-			</li>
-			<li><a href="portfolio.htm">Portfolio</a>
-				<ul>
-					<li><a href="portfolio-alternate.htm">Portfolio Alternate</a></li>
-				</ul>
-			</li>
-			<li><a href="contact.htm">Contact</a>
-				<ul>
-					<li><a href="#">Example</a></li>
-					<li><a href="#">Drop Down</a></li>
-                    <li><a href="#">Links</a></li>
-                    <li><a href="#">For Demo</a></li>
-				</ul>
-			</li>
-		</ul>
-	</div><!-- Navigation Ends -->
+
+	{% include "nav.html" %}	
 	
 	{% block content %}
      
     {% endblock %}
+
+	{% include "bottom.html" %}
