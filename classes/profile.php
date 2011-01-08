@@ -11,8 +11,8 @@ class Profile {
 
         if (!empty($row)) {
             return $this->create($userid);	
+		}
 	}
-
 	function create($userid) {
 		$db = Database::obtain();
 
