@@ -10,8 +10,7 @@ class Profile {
 		$row = $db->query_first($sql);
 
         if (!empty($row)) {
-            return $this->create($userid);
-        }  		
+            return $this->create($userid);	
 	}
 
 	function create($userid) {
