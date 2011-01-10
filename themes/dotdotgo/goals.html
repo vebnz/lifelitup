@@ -6,57 +6,24 @@
 {% block content %}	
 		<div class="section full">
 			
-			<h1>The Headline Of The Post</h1>
-            
-           	<ul class="meta">
-                <li class="meta-category"><a href="#">Business</a></li>
-                <li class="meta-tag"><a href="#">Starting a Business</a></li>
-          	</ul>
-			
-            <p>This is an example of a full width page, it has no sidebars. Your content area can contain anything you like, below is an example of the various uses. Best usage practices are landing pages, promotional product items etc...</p>
-           	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante. Sed id est sed erat semper bibendum sed ut quam. Integer convallis, nisi malesuada ullamcorper cursus, sapien quam rutrum lectus, scelerisque convallis enim lectus non libero. Mauris tincidunt sem quis felis aliquam commodo. Nunc sem velit, consequat et volutpat et, viverra eget massa. Phasellus dui nisl, scelerisque eu placerat ac, laoreet ac lorem. Aenean in massa sit amet nisl rhoncus ornare id id velit.</p>
-            <p>Aliquam erat volutpat. Mauris convallis, nisl nec placerat semper, diam turpis aliquam ipsum, nec suscipit nisi lacus vitae lectus. Mauris dui tellus, vulputate ut malesuada eu, eleifend eget leo. Mauris eros felis, placerat quis blandit in, semper vitae velit. Duis enim sem, varius non euismod ac, accumsan eu erat.</p>
-					
-			<h3>This is a H3 Heading</h3>
-			<h4>This is a H4 Heading</h4>
-			<h5>This is a H5 Heading</h5>
-			<h6>This is a H6 Heading</h6>
-					
-			<p>Now let us preview how a blockquote will look. It will have two paragraphs in it just to make sure it ends up looking as we intend it too.</p>
-				
-			<blockquote>
-			  <p>This is the first paragraph in the blockquote, nothing special about it. It's just a paragraph.</p>
-			  <p>This is the second paragraph in the blockquote. Here is <strong>something bold</strong>, some <em>italic</em>, something <del>struck</del> and <a href="#">a link</a>. I guess that covers most normal uses.</p>
-			</blockquote>
-			  
-			<p>Now let us look at an un-ordered list, followed by an ordered list. Two points only, to keep it short.</p>
-				
+			<h1>Goals - what should you do?</h1>
+		
+			<!-- example -->
+			<h3><a href="#">Water-based</a></h3>
 			<ul>
-				<li>First point in the un-ordered list.</li>
-				<li>Second point in the un-ordered list. A <a href="#">link</a> to make it different.</li>
+    		{% for goal in goals %}
+        		<li><a href="goal_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+    		{% endfor %}
 			</ul>
-				
-			<ol>
-				<li>First point in the uordered list.</li>
-				<li>Second point in the ordered list. Something <strong>bold</strong> to diversify?</li>
-			</ol>
-				
-			<pre>This is some code - &lt;a href=&quot;&quot;&gt;Weborithm&lt;/a&gt;</pre>
-				
-			<p>Ut viverra ornare justo sed aliquet. Nulla augue ligula, laoreet nec auctor sit amet, varius fermentum massa. Aliquam pharetra porta malesuada. Cras dictum nunc non quam iaculis mattis. Nunc semper enim sed metus adipiscing commodo. Nulla facilisis, felis facilisis cursus consequat, dui eros auctor sapien, quis varius magna purus id ante. Curabitur venenatis elementum nunc, posuere consequat nulla cursus bibendum. Aliquam ut aliquet mauris. Nunc id magna urna, sed interdum diam. Praesent in dui id mi blandit dictum eget id dolor.</p>
-            <p>In non ipsum dolor. Ut tellus enim, vestibulum nec placerat vitae, luctus vitae ante. Integer sit amet dolor tellus, id lacinia ligula. In ut nibh at nisl tempus feugiat eleifend in ligula. Proin fermentum, arcu sit amet congue interdum, neque lectus mollis mi, in tempor orci felis vitae ante. Etiam viverra vehicula tellus, ut pretium erat egestas quis. Fusce fermentum, est cursus ornare ultrices, eros urna mollis nibh, at fringilla lacus nunc ut mauris. Quisque fermentum ullamcorper mauris, eu vehicula nunc tristique nec.</p>
-            
-            <p class="alert">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="add">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="download">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="wrong">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="heart">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="note">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="star">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="warning">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-            <p class="check">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec massa ante, varius viverra ante.</p>
-     	
+
+			<!-- example 2 -->
+            <h3><a href="#">Water-based</a></h3>
+            <ul>
+            {% for goal in goals %}
+                <li><a href="goals.php?action=addGoal&id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+            {% endfor %}
+            </ul>			
+
 		</div><!-- Section -->
 
 {% endblock %} 	
