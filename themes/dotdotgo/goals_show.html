@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Goals {% endblock %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block content %}	
+		<div class="section full">
+			
+			<h1>Browsing goal: {{ goal.name }}</h1>
+
+			{% if msg %}
+				<p class="alert">{{ msg|e }}</p>
+			{% endif %}		
+			
+			<ul>
+				<img src="{{ goal.icon|e }}" /> 
+				<br />
+				{{ goal.name|e }} 
+				<br />
+				{{ goal.info|e }}
+			</ul>
+		        
+			{% for comment in comments %}
+            	{{ comment.username|e }} <br /> {{ comment.content|e }} <br /> <br />
+        	{% endfor %}
+
+        	<br /> <br />
+
+        	<form name="post_comment" action="" method="POST">
+                <input type="hidden" name="page_id" value="{{ page_id|e }}" />
+        	<input type="hidden" name="module_id" value="2" />
+                <textarea name="content" placeholder="..."></textarea> <br/>
+                <input type="submit" name="post_comment"  value="comment" />
+        	</form>
+
+		</div><!-- Section -->
+
+{% endblock %} 	
