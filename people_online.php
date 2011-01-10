@@ -17,4 +17,5 @@ $ucount = $people->user_count() + 200;
 $online = $people->online() + 100;
 
 $twig->addGlobal('people_online', $online);
+$twig->addGlobal('user_count', $ucount);
 ?>
