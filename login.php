@@ -26,9 +26,11 @@ if ($auth->isLoggedIn()) {
 	die;
 }
 
+$_SESSION['destination'] = $_SERVER['HTTP_REFERER'];
+
 $template = $twig->loadTemplate('login.html');
 $msg = isset($msg) ? $msg : '';
-echo $template->render(array('msg' => $msg));
+echo $template->render(array('msg' => $msg, 'dest' => $dest));
 
 //require_once('footer.php');
 $db->close();

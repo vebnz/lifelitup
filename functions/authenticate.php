@@ -36,7 +36,14 @@ if (isset($_POST['login'])) {
 	if ($login > 0) {
 		$auth->validateUser($login);
 		event::fire('USER_LOGIN');
-		header("Location: profile.php");
+		$_SESSION['destination'] = $_SERVER['REQUEST_URI'];
+		if(isset($_SESSION['destination'])) {
+			header('Location: ' . $_SESSION['destination']);
+		}
+		else
+		{
+			header("Location: profile.php");
+		}
 		die;
 	}
 	
