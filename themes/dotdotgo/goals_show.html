@@ -12,6 +12,7 @@
 				<p class="alert">{{ msg|e }}</p>
 			{% endif %}		
 			
+			{% if goal %}
 			<ul>
 				<img src="{{ goal.icon|e }}" /> 
 				<p></p>
@@ -35,6 +36,10 @@
                 	<input type="submit" name="post_comment"  value="comment" />
         		</form>
 			</div>
+			{% else %}
+				<!-- fire an event here... -->
+				<h4>No such goal to display</h4>
+			{% endif %}
 
 		</div><!-- Section -->
 
