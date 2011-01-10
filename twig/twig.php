@@ -5,4 +5,6 @@ Twig_Autoloader::register();
 $loader = new Twig_Loader_Filesystem(current_theme);
 $twig = new Twig_Environment($loader);
 
+// twig globals
+require_once('people_online.php');
 ?>
