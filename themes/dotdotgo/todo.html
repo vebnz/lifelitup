@@ -12,7 +12,7 @@
 			<h3><a href="#">Water-based</a></h3>
 			<ul>
     		{% for goal in goals %}
-        		<li><a href="goal_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+        		<li><a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
     		{% endfor %}
 			</ul>
 
@@ -20,7 +20,7 @@
             <h3><a href="#">Water-based</a></h3>
             <ul>
             {% for goal in goals %}
-                <li><a href="goal_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+                <li><a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
             {% endfor %}
             </ul>			
 

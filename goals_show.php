@@ -24,7 +24,6 @@ $show_comments = $comments->show(tbl_goals, $_GET['id']);
 $template = $twig->loadTemplate('goals_show.html');
 echo $template->render(array('page_id' => $_GET['id'], 'goal' => $show, 'comments' => $show_comments, 'username' => $_SESSION['username'], 'msg' => $msg));
 
-require_once('footer.php');
 $db->close();
 
 ?>
