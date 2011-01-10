@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Goals {% endblock %}
+{% block head %}
+{% parent %}
+{% endblock %}
+
+{% block content %}	
+		<div class="section full">
+			
+			<h1>Your todo list</h1>
+		
+			<!-- example -->
+			<ul class="meta">
+				<li class="meta-category"><a href="#">Water-based</a></li>
+    			{% for goal in goals %}
+        			<li class="meta-tag"><a href="goals.php?action=addGoal&id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+    			{% endfor %}
+			</ul>
+
+		</div><!-- Section -->
+
+{% endblock %} 	
