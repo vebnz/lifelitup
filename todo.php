@@ -28,6 +28,5 @@ $goals = $todo->show($userid);
 $template = $twig->loadTemplate('todo.html');
 echo $template->render(array('not_me' => $not_me, 'goals' => $goals, 'username' => $auth->getUsername($userid)));
 
-require_once('footer.php');
 $db->close();
 ?>

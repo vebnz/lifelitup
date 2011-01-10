@@ -2,27 +2,9 @@
 {% block title %} Register {% endblock %}
 {% block head %}
 {% parent %}
-
-<script type="text/javascript"><!--//--><![CDATA[//><!-- Nav will work if JS is turned off
-sfHover = function() {
-	var sfEls = document.getElementById("nav").getElementsByTagName("LI");
-	for (var i=0; i<sfEls.length; i++) {
-		sfEls[i].onmouseover=function() {
-			this.className+=" sfhover";
-		}
-		sfEls[i].onmouseout=function() {
-			this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
-		}
-	}
-}
-if (window.attachEvent) window.attachEvent("onload", sfHover);
-//--><!]]>
-</script>
 {% endblock %}
 
-{% block content %}
-	<div class="section-right wrap text clearfix">
-	
+{% block content %}	
 		<div class="section right">
 			
 			<h1>Your profile page</h1>
@@ -51,7 +33,5 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
                	</li>
         	</ul>
 		</div><!-- Sidebar Ends -->
-
-{% include "footer.html" %}
 
 {% endblock %}	
