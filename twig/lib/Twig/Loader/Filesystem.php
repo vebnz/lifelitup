@@ -60,14 +60,14 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface
                 throw new Twig_Error_Loader(sprintf('The "%s" directory does not exist.', $path));
             }
 
-            $this->paths[] = realpath($path);
+            $this->paths[] = $path;
         }
     }
 
     /**
      * Gets the source code of a template, given its name.
      *
-     * @param  string $name string The name of the template to load
+     * @param  string $name The name of the template to load
      *
      * @return string The template source code
      */
@@ -79,7 +79,7 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface
     /**
      * Gets the cache key to use for the cache for a given template name.
      *
-     * @param  string $name string The name of the template to load
+     * @param  string $name The name of the template to load
      *
      * @return string The cache key
      */
@@ -101,23 +101,31 @@ class Twig_Loader_Filesystem implements Twig_LoaderInterface
 
     protected function findTemplate($name)
     {
+        // normalize name
+        $name = preg_replace('#/{2,}#', '/', strtr($name, '\\', '/'));
+
         if (isset($this->cache[$name])) {
             return $this->cache[$name];
         }
 
-        foreach ($this->paths as $path) {
-            if (!file_exists($path.DIRECTORY_SEPARATOR.$name) || is_dir($path.DIRECTORY_SEPARATOR.$name)) {
-                continue;
+        $parts = explode('/', $name);
+        $level = 0;
+        foreach ($parts as $part) {
+            if ('..' === $part) {
+                --$level;
+            } elseif ('.' !== $part) {
+                ++$level;
             }
 
-            $file = realpath($path.DIRECTORY_SEPARATOR.$name);
-
-            // simple security check
-            if (0 !== strpos($file, $path)) {
+            if ($level < 0) {
                 throw new Twig_Error_Loader('Looks like you try to load a template outside configured directories.');
             }
+        }
 
-            return $this->cache[$name] = $file;
+        foreach ($this->paths as $path) {
+            if (file_exists($path.'/'.$name) && !is_dir($path.'/'.$name)) {
+                return $this->cache[$name] = $path.'/'.$name;
+            }
         }
 
         throw new Twig_Error_Loader(sprintf('Unable to find template "%s" (looked into: %s).', $name, implode(', ', $this->paths)));

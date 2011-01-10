@@ -50,11 +50,20 @@ class Twig_NodeVisitor_SafeAnalysis implements Twig_NodeVisitorInterface
             $this->setSafe($node, $safe);
         } elseif ($node instanceof Twig_Node_Expression_Filter) {
             // filter expression is safe when the filter is safe
-            $filterMap = $env->getFilters();
             $name = $node->getNode('filter')->getAttribute('value');
             $args = $node->getNode('arguments');
-            if (isset($filterMap[$name])) {
-                $this->setSafe($node, $filterMap[$name]->getSafe($args));
+            if (false !== $filter = $env->getFilter($name)) {
+                $this->setSafe($node, $filter->getSafe($args));
+            } else {
+                $this->setSafe($node, array());
+            }
+        } elseif ($node instanceof Twig_Node_Expression_Function) {
+            // function expression is safe when the function is safe
+            $name = $node->getNode('name')->getAttribute('name');
+            $args = $node->getNode('arguments');
+            $function = $env->getFunction($name);
+            if (false !== $function) {
+                $this->setSafe($node, $function->getSafe($args));
             } else {
                 $this->setSafe($node, array());
             }
@@ -80,5 +89,13 @@ class Twig_NodeVisitor_SafeAnalysis implements Twig_NodeVisitorInterface
         }
 
         return array_intersect($a, $b);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPriority()
+    {
+        return 0;
     }
 }

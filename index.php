@@ -1,8 +1,13 @@
 <?php
 require_once('includes/config.php');
 require_once('database/db.php');
-require_once('twig/twig.php');
+// twig 
+require_once('twig/lib/Twig/Autoloader.php');
+Twig_Autoloader::register();
 
+$loader = new Twig_Loader_Filesystem(current_theme);
+$twig = new Twig_Environment($loader);
+// end twig
 $db = Database::obtain(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
 $db->connect();
 
