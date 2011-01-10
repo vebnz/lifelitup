@@ -37,26 +37,8 @@ if (window.attachEvent) window.attachEvent("onload", sfHover);
 {% endblock %}
 <body id="top" class="">
 
-	<div class="header-top">
-    	<div class="header-center clearfix">
-    	<div class="search">
-        	<form method="get" id="searchform" action="" >
-				<div>
-					<input type="text" value="search" onblur="if (this.value == '') {this.value = 'search';}"  onfocus="if (this.value == 'search') {this.value = '';}" name="s" id="s" />
-					<input type="submit" id="searchsubmit" value="Search" />
-				</div>
-			</form>
-	   	</div>
-        
-      	<div class="login">
-                <ul>
-                    <li class="user-signup"><a href="register.php">User Signup</a></li>
-                    <li class="user-login"><a href="login.php">User Login</a></li>
-                </ul>
-            </div>
-        </div><!-- Header Center -->
-    </div><!-- Header Top -->
-            
+{% include "top.html" %}
+           
 <div id="body">
 
 	<div class="header text">
