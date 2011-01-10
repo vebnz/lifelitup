@@ -1,0 +1,17 @@
+{% block top %} 
+	<div class="header-top">
+        <div class="header-center clearfix">
+    
+        <div class="login">
+                <ul>
+    				{% if username %}
+						<li class="user-login"><a href="login.php?action=logout">Logout</a></li>
+					{% else %}
+	                	<li class="user-signup"><a href="register.php">User Signup</a></li>
+                    	<li class="user-login"><a href="login.php">User Login</a></li>
+                	{% endif %}
+				</ul>
+            </div>
+        </div><!-- Header Center -->
+    </div><!-- Header Top -->
+{% endblock %}
