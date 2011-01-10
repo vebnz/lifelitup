@@ -14,24 +14,27 @@
 			
 			<ul>
 				<img src="{{ goal.icon|e }}" /> 
-				<br />
-				{{ goal.name|e }} 
-				<br />
-				{{ goal.info|e }}
+				<p></p>
+				<h4>{{ goal.name|e }}</h4> 
+				<p>{{ goal.info|e }}</p>
 			</ul>
-		        
+
 			{% for comment in comments %}
-            	{{ comment.username|e }} <br /> {{ comment.content|e }} <br /> <br />
+				<blockquote>		        
+            		<p>{{ comment.username|e }} <br /> {{ comment.content|e }}</p>
+				</blockquote>
         	{% endfor %}
 
         	<br /> <br />
 
-        	<form name="post_comment" action="" method="POST">
-                <input type="hidden" name="page_id" value="{{ page_id|e }}" />
-        	<input type="hidden" name="module_id" value="2" />
-                <textarea name="content" placeholder="..."></textarea> <br/>
-                <input type="submit" name="post_comment"  value="comment" />
-        	</form>
+			<div class="signup-login"> <!-- CSS needed for this... -->
+        		<form name="post_comment" action="" method="POST">
+                	<input type="hidden" name="page_id" value="{{ page_id|e }}" />
+        			<input type="hidden" name="module_id" value="2" />
+                	<textarea name="content" placeholder="..."></textarea> <br/>
+                	<input type="submit" name="post_comment"  value="comment" />
+        		</form>
+			</div>
 
 		</div><!-- Section -->
 
