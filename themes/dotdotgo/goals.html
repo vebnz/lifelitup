@@ -7,22 +7,17 @@
 		<div class="section full">
 			
 			<h1>Goals - what should you do?</h1>
-		
-			<!-- example -->
+
+			{% if msg %}
+				<p class="alert">{{ msg|e }}</p>
+			{% endif %}		
+
 			<h3><a href="#">Water-based</a></h3>
 			<ul>
     		{% for goal in goals %}
-        		<li><a href="goal_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+        		<li><img src="{{ goal.icon|e }}" /> <a href="goal_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a> [<a href="goals.php?action=addGoal&id={{ goal.id|e}}">add</a>]</li>
     		{% endfor %}
 			</ul>
-
-			<!-- example 2 -->
-            <h3><a href="#">Water-based</a></h3>
-            <ul>
-            {% for goal in goals %}
-                <li><a href="goals.php?action=addGoal&id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
-            {% endfor %}
-            </ul>			
 
 		</div><!-- Section -->
 
