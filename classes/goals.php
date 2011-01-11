@@ -5,7 +5,7 @@ class Goals {
 	function showAll() {
 		$db = Database::obtain();
 
-		$sql = "SELECT id, name, icon
+		$sql = "SELECT id, name, icon, categoryid
 				FROM " . tbl_goals;
 		return $db->fetch_array($sql);
 
