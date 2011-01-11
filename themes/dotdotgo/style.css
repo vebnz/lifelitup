@@ -649,4 +649,6 @@ Tags: business, enterprise, product, application
     .textbox form input:focus { background-color: #ffffb8 !important; }
     .textbox form input[type=submit] { background: #fff url(images/button-gradient.png) repeat-x left bottom; border: 1px solid #CCC; color: #575757; float: left; margin: 0 5px 10px 0px; width: 148px; }
     .textbox form input[type=submit]:hover { background: #e7e7e7; color: #000; cursor: pointer; }
-	
+
+	/* Goals */
+	.goals li { list-style-type: none }	
