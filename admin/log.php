@@ -1,5 +1,4 @@
 <?php
-die('Admin stuff disabled.. let\'s get basic functionality added before moving on to \'behind the scenes\' stuff');
 chdir('../');
 require_once('includes/config.php');
 require_once('database/db.php');
@@ -15,7 +14,7 @@ if (!$auth->isLoggedIn()) {
 	die;
 }
 
-$options["database"]["table"] = "tbl_logs";
+$options["database"]["table"] = tbl_logs;
 $options["formatting"]["log_date"] = "eDate";
 
 $table = new TableGear($options);

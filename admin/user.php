@@ -16,7 +16,7 @@ if (!$auth->isLoggedIn()) {
 	die;
 }
 
-$options["database"]["table"] = "tbl_users";
+$options["database"]["table"] = tbl_users;
 $table = new TableGear($options);
 ?>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>

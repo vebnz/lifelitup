@@ -13,11 +13,11 @@ if (isset($_POST['login'])) {
 		die('Unknown request');
 	}
 
-	$username = $_POST['username']; 
+	$email = $_POST['email']; 
 	$password = $_POST['password']; 
 	
-	if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $username)) {
-		$msg = 'Invalid username';
+	if (!preg_match('/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i', $email)) {
+		$msg = 'Invalid email address';
 		return;
 	}
 	
@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
 		return;
 	}
 
-	$login = $auth->login($username, $password);
+	$login = $auth->login($email, $password);
 	
 	if ($login > 0) {
 		$auth->validateUser($login);
@@ -57,13 +57,13 @@ if (isset($_POST['register'])) {
 	    die('Unknown request');
     }   
 
-	$username = $_POST['username'];
+	$email = $_POST['email'];
 	$pass1 = $_POST['pass1']; 
 	$pass2 = $_POST['pass2'];
 	$remove = $_POST['remove'];
 
-    if (!preg_match('/^[a-zA-Z0-9_]{1,60}$/', $username)) {
-	    $msg = 'Invalid username';
+    if (!preg_match('/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i', $email)) {
+	    $msg = 'Invalid email address';
         return;
     }
 
@@ -87,8 +87,8 @@ if (isset($_POST['register'])) {
 		return;
 	}
 
-	if (strlen($username) > 30) {
-		$msg = 'Username must be under 30 characters';
+	if (strlen($email) > 250) {
+		$msg = 'Email address must be under 250 characters';
 		return;
 	}
 
@@ -99,7 +99,7 @@ if (isset($_POST['register'])) {
 		// give person a badge for registering etc
 	});
 	
-	$register = $auth->register($username, $pass1);
+	$register = $auth->register($email, $pass1);
 	
 	if ($register == true) {
 		$msg = 'You have registered';

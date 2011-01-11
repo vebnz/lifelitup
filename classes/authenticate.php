@@ -21,12 +21,10 @@ class Authenticate {
 		if(key_exists('valid', $_SESSION)) {
 			$_SESSION['valid'] = 1;
 			$_SESSION['userid'] = $row['id'];
-			$_SESSION['username'] = $row['username'];
 		} else {
 			$_SESSION = array(
 				'valid' => 1,
 				'userid' => $row['id'],
-				'username' => $row['username'],
 			);
 		}
 	}
@@ -44,13 +42,13 @@ class Authenticate {
 		session_destroy();
 	}
 
-	function login($username, $password) {
+	function login($email, $password) {
 		global $hasher;
-	        $db = Database::obtain();
+	    $db = Database::obtain();
 
 		$sql = "SELECT id, password
 			FROM " . tbl_users . "
-			WHERE username = '" . $username . "'
+			WHERE email = '" . $email . "'
 			";
 		$row = $db->query_first($sql);
 		
@@ -68,11 +66,11 @@ class Authenticate {
 		return $row;
 	}	
 
-	function register($username, $password) {
+	function register($email, $password) {
 		global $hasher;
 		$db = Database::obtain();
 
-		$data['username'] = $username;
+		$data['email'] = $email;
 		$data['password'] = $hasher->HashPassword($password);
 
 		if (strlen($data['password']) < 20) {
