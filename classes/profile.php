@@ -22,6 +22,15 @@ class Profile {
 		return $pid;
 	}
 
+	function get($userid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT user_id, first_name, last_name, twitter, facebook 
+				FROM " . tbl_profile . "
+				WHERE user_id = " . (int)$userid;
+		return $record = $db->fetch($db->query($sql));
+	}
+
 	// untested
 	function update($arr, $userid) {
 		if (count($arr) > 0) {

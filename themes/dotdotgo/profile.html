@@ -10,10 +10,22 @@
 			
             <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
 
-			<p>Welcome to your profile page</p>           
+			<p>Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>           
 			<p></p>
 			<p></p> 
 
+			<h3>Edit your details</h3>
+			<div class="textbox">
+				<form method="POST" action="profile.php">
+					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" /></p>
+					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" /></p>
+					<p>Facebook: <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" /></p>
+					<p>Twitter: <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" /></p>
+					<input type="submit" name="submit" value="Update Details" />
+				</form>
+			</div>
+
+			<h3>Achievements</h3>
             <blockquote><p>Nunc ipsum libero, blandit eget placerat ut, euismod a elit. Cras vel ipsum ut odio rhoncus accumsan vitae sit amet dui. Nulla facilisi. Phasellus et arcu lacus. Vivamus consequat placerat odio ac euismod. Duis velit odio, pharetra vel pellentesque in, commodo vitae turpis.</p></blockquote>
 
 			<p>Phasellus pulvinar porta metus, in euismod ante feugiat vel. Duis in nisl tortor, non semper libero. Pellentesque convallis vestibulum libero non porta. Praesent elit lectus, feugiat vitae mattis vitae, luctus nec orci. Phasellus eu est scelerisque sapien fermentum blandit ac a quam. Nulla facilisi. Phasellus gravida porttitor nisl, nec egestas augue venenatis sed. Vivamus vulputate sodales libero, dapibus sodales metus dictum non. Pellentesque in placerat nisl. Suspendisse ut tellus hendrerit est sodales viverra.</p>
@@ -25,7 +37,7 @@
                 <li>
                     <h3>Connect with me</h3>
     					<ul class="thumbnail-list">
-                        	<li><a href="#"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: tim@dotdotgo.com</a></li>
+                        	<li><a href="#"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: {{ email|e }}</a></li>
                             <li><a href="#"><img src="themes/dotdotgo/images/twitter.png" alt="Twitter" title="Twitter" /> Follow on twitter: @timdotdotgo</a></li>
                             <li><a href="#"><img src="themes/dotdotgo/images/facebook.png" alt="Facebook" title="Facebook" /> My Facebook page: facebook</a></li>
                         </ul>

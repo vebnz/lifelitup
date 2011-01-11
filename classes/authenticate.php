@@ -4,6 +4,17 @@ $hasher = new PasswordHash(8, TRUE);
 
 class Authenticate {
 
+	function getEmail($userid) {
+		$db = Database::obtain();
+
+		$sql = "SELECT email
+			FROM " . tbl_users . "
+			WHERE id = " . (int)$userid;
+		$row = $db->query_first($sql);
+
+		return $row['email'];
+	}
+
 	function validateUser($row) {
 		session_regenerate_id();
 

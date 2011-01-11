@@ -17,7 +17,7 @@ if (!$auth->isLoggedIn()) {
 require_once('functions/profile.php');
 
 $template = $twig->loadTemplate('profile.html');
-echo $template->render(array('msg' => $msg));
+echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'email' => $auth->getEmail($_SESSION['userid'])));
 
 $db->close();
 
