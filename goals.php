@@ -16,9 +16,10 @@ if (!$auth->isLoggedIn()) {
 }
 
 $showGoals = $goals->showAll();
+$showCategories = $goals->showCategories();
 
 $template = $twig->loadTemplate('goals.html');
-echo $template->render(array('goals' => $showGoals, 'msg' => $msg));
+echo $template->render(array('goals' => $showGoals, 'categories' => $showCategories, 'msg' => $msg));
 
 $db->close();
 
