@@ -6,17 +6,17 @@ class Profile {
 		// if profile doesn't exist.. create it
 		$db = Database::obtain();
 
-		$sql = "SELECT 1 FROM " . tbl_profile . " WHERE userid = " . (int)$userid;
+		$sql = "SELECT 1 FROM " . tbl_profile . " WHERE user_id = " . (int)$userid;
 		$row = $db->query_first($sql);
-
-        if (!empty($row)) {
+        
+		if (empty($row)) {
             return $this->create($userid);	
 		}
 	}
 	function create($userid) {
 		$db = Database::obtain();
 
-		$data['userid'] = (int)$userid;
+		$data['user_id'] = (int)$userid;
 		$pid = $db->insert(tbl_profile, $data);
 
 		return $pid;

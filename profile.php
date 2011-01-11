@@ -14,6 +14,8 @@ if (!$auth->isLoggedIn()) {
 	die;
 }
 
+require_once('functions/profile.php');
+
 $template = $twig->loadTemplate('profile.html');
 echo $template->render(array('msg' => $msg));
 
