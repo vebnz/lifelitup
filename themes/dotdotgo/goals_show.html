@@ -22,7 +22,8 @@
 
 			{% for comment in comments %}
 				<blockquote>		        
-            		<p>{{ comment.first_name|e }} {{ comment.last_name|e }}  <br /> {{ comment.content|e }}</p>
+            		<p><a href="#">{{ comment.first_name|e }} {{ comment.last_name|e }}</a></p>
+					<p>{{ comment.content|nl2br }}</p>
 				</blockquote>
         	{% endfor %}
 
