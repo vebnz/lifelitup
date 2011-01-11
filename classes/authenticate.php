@@ -1,6 +1,9 @@
 <?php
 require_once('includes/PasswordHash.php');
+require once('classes/profile.php');
 $hasher = new PasswordHash(8, TRUE);
+
+$prof = new Profile;
 
 class Authenticate {
 
@@ -81,6 +84,7 @@ class Authenticate {
 		$pid = $db->insert(tbl_users, $data);
 	
 		if ($pid > 0) {
+			$prof->create($pid);
 			return true;
 		}
 		else {
