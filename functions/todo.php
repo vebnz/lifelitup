@@ -17,7 +17,7 @@ if ($_GET['action'] == 'addGoal') {
 
 	if (empty($add)) {
 		event::fire('USER_NEW_GOAL');
-		$msg = 'Added successfully';
+		$msg = 'Added successfully. <a href="todo.php">View your list</a>';
 	}
 	else {
 		$msg = $add;

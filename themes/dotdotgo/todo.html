@@ -13,16 +13,10 @@
 			<ul>
     		{% for goal in goals %}
         		<li><a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
+			{% else %}
+				<p>No goal found. <a href="goals.php">Add some?</a></p>
     		{% endfor %}
 			</ul>
-
-			<!-- example 2 -->
-            <h3><a href="#">Water-based</a></h3>
-            <ul>
-            {% for goal in goals %}
-                <li><a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
-            {% endfor %}
-            </ul>			
 
 			<p></p>
 			<p class="note"><a href="goals.php">Add some more goals here</a></p>
