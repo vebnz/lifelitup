@@ -613,3 +613,23 @@ Tags: business, enterprise, product, application
 	.signup-login form input:focus { background-color: #ffffb8 !important; }
 	.signup-login form input[type=submit] { background: #fff url(images/button-gradient.png) repeat-x left bottom; border: 1px solid #018ede; color: #575757; float: left; margin: 0 5px 10px 0px; width: 148px; }
 	.signup-login form input[type=submit]:hover { background: #e7e7e7; color: #000; cursor: pointer; }
+
+	/* Comment Box */
+    .comment-post { font-size: 1.2em; color: #fff; line-height: 18px; margin: 0 auto; padding: 0; text-align: left; width: 930px; }
+    .comment-post a { color: #fff; font-size: 0.9em; }
+    .comment-post form a { color: #000; display: block; float: left; font-size: 0.9em; padding: 3px 0 0; text-align: left; }
+    .comment-post form a:hover, .signup-login a:hover { background: none; color: #e7e7e7; text-decoration: none; }
+    .comment-post:after { clear: both; content: " "; display: block; line-height: 0; height: 0; visibility: hidden; }
+    .comment-post-text { float: left; width: 100px; }
+    .comment-post-text-alt { float: left; width: 97%; margin-bottom: 10px; }
+    .comment-post h3 { color: #f7f7f7; font-size: 1.2em; text-align: left; text-shadow: #222 0 -1px; }
+    .comment-post p { text-align: left; }
+    .comment-post p.lab { margin-bottom: -20px; width: 300px; }
+    .comment-post form { float: left; width: auto; }    
+    .comment-post form input { border: 1px solid #018ede;  margin: 0 0 0px; padding: 5px; width: 300px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+    .comment-post form .yourname { background: #fff url(images/user.png) no-repeat 5px; padding-left: 25px; }
+    .comment-post form .youremail, .signup-login form .yourpassword { background: #fff url(images/email.png) no-repeat 5px; padding-left: 25px; }
+    .comment-post form input:focus { background-color: #ffffb8 !important; }
+    .comment-post form input[type=submit] { background: #fff url(images/button-gradient.png) repeat-x left bottom; border: 1px solid #CCC; color: #575757; float: left; margin: 0 5px 10px 0px; width: 148px; }
+    .comment-post form input[type=submit]:hover { background: #e7e7e7; color: #000; cursor: pointer; }
+	
