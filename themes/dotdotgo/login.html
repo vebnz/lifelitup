@@ -37,10 +37,10 @@
 		$('form[name=login]').submit(function(){
 			if(!$(this).checkForm()) {
 				if($('p.warning').length == 0) {
-					$('input[type=submit]').error('Username and password required.');
+					$('input[type=submit]').error('Email and password required.');
 					return false;
 				} else {
-					$('p.warning').html('<strong>Error</strong>: ' + 'Username and password required.' + '<p>');
+					$('p.warning').html('<strong>Error</strong>: ' + 'Email and password required.' + '<p>');
 					return false;
 				}
 			}
@@ -62,7 +62,7 @@
 					</div>
 					<form method="POST" name="login" id="loginform" action="login.php" autocomplete="off">
 						<input type="hidden" name="op" value="login" />
-						<p><input type="text" name="username" placeholder="Your name" class="yourname" /></p>
+						<p><input type="text" name="email" placeholder="Your email address" class="yourname" /></p>
 						<p><input type="password" name="password" placeholder="Your password" class="yourpassword" /></p>
 						{% if msg %}<p class="warning">{{ msg|e }}.</p>{% endif %}
 						<p><input type="submit" name="login" value="Login" /><a href="#">Forgotten Password?</a></p>
