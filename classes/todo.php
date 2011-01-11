@@ -5,7 +5,7 @@ class Todo {
 	function show($userid) {
 		$db = Database::obtain();
 
-		$sql = "SELECT " . tbl_goals . ".id, name, icon, username
+		$sql = "SELECT " . tbl_goals . ".id, name, icon
 		        FROM " . tbl_todo . "
         		JOIN " . tbl_goals ." ON " . tbl_todo . ".goal_id = " . tbl_goals . ".id
        			JOIN " . tbl_users . " ON " . tbl_todo . ".user_id = " . tbl_users . ".id

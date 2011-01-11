@@ -4,17 +4,6 @@ $hasher = new PasswordHash(8, TRUE);
 
 class Authenticate {
 
-	function getUsername($userid) {
-		$db = Database::obtain();
-
-		$sql = "SELECT username
-			FROM " . tbl_users . "
-			WHERE id = " . (int)$userid;
-		$row = $db->query_first($sql);
-
-		return $row['username'];
-	}
-
 	function validateUser($row) {
 		session_regenerate_id();
 
