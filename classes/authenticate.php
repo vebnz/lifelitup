@@ -1,6 +1,6 @@
 <?php
 require_once('includes/PasswordHash.php');
-require once('classes/profile.php');
+require_once('classes/profile.php');
 $hasher = new PasswordHash(8, TRUE);
 
 $prof = new Profile;
