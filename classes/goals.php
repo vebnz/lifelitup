@@ -2,15 +2,22 @@
 
 class Goals {
 
-	function showAll($category = 1) {
+	function showAll() {
+		$db = Database::obtain();
+
+		$sql = "SELECT id, name, icon
+				FROM " . tbl_goals;
+		return $db->fetch_array($sql);
+
+	}
+
+	function showByCategory($category = 1) {
 		$db = Database::obtain();
 
 		$sql = "SELECT id, name, icon 
 			FROM " . tbl_goals . "
 			WHERE categoryid = " . (int)$category;
-		$rows = $db->fetch_array($sql);
-		
-		return $rows;
+		return $db->fetch_array($sql);
 	}
 
 	function show($id) {
@@ -19,9 +26,7 @@ class Goals {
 		$sql = "SELECT id, name, icon, info
 			FROM " . tbl_goals . "
 			WHERE id = " . (int)$id;
-		$rows = $db->query_first($sql);
-
-		return $rows;
+		return $db->query_first($sql);
 	}
 
 	function showCategories() {
@@ -29,7 +34,7 @@ class Goals {
 
 		$sql = "SELECT id, name
 				FROM " . tbl_category;
-		return $db->fetch($db->query($sql));
+		return $db->fetch_array($sql);
 	}
 }
 
