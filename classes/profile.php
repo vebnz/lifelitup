@@ -31,15 +31,9 @@ class Profile {
 		return $record = $db->fetch($db->query($sql));
 	}
 
-	// untested
-	function update($arr, $userid) {
-		if (count($arr) > 0) {
+	function update($data, $userid) {
 			$db = Database::obtain();
-			foreach ($arr as $k => $v) {
-				$data[$k] = $v;
-			}
-			$db->update(tbl_profile, $data, "id=" . (int)$userid);
-		}
+			$db->update(tbl_profile, $data, "user_id=" . (int)$userid);
 	}
 }
 

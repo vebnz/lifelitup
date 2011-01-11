@@ -15,13 +15,16 @@
 			<p></p> 
 
 			<h3>Edit your details</h3>
+			{% if msg %}
+				<p class="check">{{ msg|e }}</p>
+			{% endif %}
 			<div class="textbox">
 				<form method="POST" action="profile.php">
 					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
 					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
 					<p>Facebook: <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" placeholder="What's your Facebook?" /></p>
 					<p>Twitter: <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" placeholder="What's your Twitter?" /></p>
-					<input type="submit" name="submit" value="Update Details" />
+					<input type="submit" name="profile_edit" value="Update Details" />
 				</form>
 			</div>
 
