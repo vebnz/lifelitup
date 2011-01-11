@@ -7,4 +7,5 @@ $twig = new Twig_Environment($loader);
 
 // twig globals
 require_once('people_online.php');
+$twig->addGlobal('userid', $_SESSION['userid']);
 ?>

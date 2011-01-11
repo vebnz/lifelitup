@@ -18,7 +18,7 @@ if (!$auth->isLoggedIn()) {
 $showGoals = $goals->showAll();
 
 $template = $twig->loadTemplate('goals.html');
-echo $template->render(array('title' => 'Lifelitup', 'goals' => $showGoals, 'username' => $_SESSION['username'], 'msg' => $msg));
+echo $template->render(array('goals' => $showGoals, 'msg' => $msg));
 
 $db->close();
 

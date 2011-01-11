@@ -15,7 +15,7 @@ if (!$auth->isLoggedIn()) {
 }
 
 $template = $twig->loadTemplate('profile.html');
-echo $template->render(array('title' => 'Lifelitup', 'username' => $username));
+echo $template->render(array('msg' => $msg));
 
 $db->close();
 

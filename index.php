@@ -9,11 +9,11 @@ require_once('twig/twig.php');
 require_once('header.php');
 require_once('functions/blog.php');
 
-$show = $blog->showAll();
+//$show = $blog->showAll();
 
 $template = $twig->loadTemplate('content.html');
 $username = isset($username) ? $username : '';
-echo $template->render(array('posts' => $show, 'username' => $username));
+echo $template->render(array('posts' => $show));
 
 $db->close();
 ?>

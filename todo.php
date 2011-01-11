@@ -26,7 +26,7 @@ else {
 $goals = $todo->show($userid);
 
 $template = $twig->loadTemplate('todo.html');
-echo $template->render(array('not_me' => $not_me, 'goals' => $goals, 'username' => $auth->getUsername($userid)));
+echo $template->render(array('not_me' => $not_me, 'goals' => $goals));
 
 $db->close();
 ?>

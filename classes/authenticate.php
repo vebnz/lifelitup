@@ -24,7 +24,7 @@ class Authenticate {
 		} else {
 			$_SESSION = array(
 				'valid' => 1,
-				'userid' => $row['id'],
+				'userid' => $row['id']
 			);
 		}
 	}
@@ -47,9 +47,9 @@ class Authenticate {
 	    $db = Database::obtain();
 
 		$sql = "SELECT id, password
-			FROM " . tbl_users . "
-			WHERE email = '" . $email . "'
-			";
+				FROM " . tbl_users . "
+				WHERE email = '" . $email . "'
+				";
 		$row = $db->query_first($sql);
 		
 		if (empty($row)) {
