@@ -28,8 +28,8 @@ class Profile {
 		$sql = "SELECT user_id, first_name, last_name, twitter, facebook, email 
 				FROM " . tbl_profile . "
 				JOIN " . tbl_users . " ON " . tbl_profile . ".user_id = " . tbl_profile . ".id				
-				WHERE user_id = " . (int)$userid;
-		return $record = $db->fetch($db->query($sql));
+				WHERE " . tbl_users . ".id = " . (int)$userid;
+		return $db->query_first($sql);
 	}
 
 	function update($data, $userid) {
