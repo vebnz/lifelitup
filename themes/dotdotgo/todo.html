@@ -15,7 +15,8 @@
                 {% for goal in goals %}
                     {% if goal.category_id == category.id %}
                         <li>
-                            <img src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a> 
+                            <img src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a>
+							<a href="#"><img src="themes/dotdotgo/images/remove.png" /></a> 
                         </li>
                     {% endif %}
                 {% endfor %}
