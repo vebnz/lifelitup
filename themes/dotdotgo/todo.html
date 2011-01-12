@@ -8,15 +8,20 @@
 			
 			<h1>Your todo list</h1>
 		
-			<!-- example -->
-			<h3><a href="#">Water-based</a></h3>
-			<ul>
-    		{% for goal in goals %}
-        		<li><a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a></li>
-			{% else %}
-				<p>No goal found. <a href="goals.php">Add some?</a></p>
-    		{% endfor %}
-			</ul>
+            <div class="goals">
+            {% for category in categories %}
+                <h3><a href="#">{{ category.name|e }}</a></h3>
+                <ul>
+                {% for goal in goals %}
+                    {% if goal.category_id == category.id %}
+                        <li>
+                            <img src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a> 
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endfor %}
+            </div>
 
 			<p></p>
 			<p class="note"><a href="goals.php">Add some more goals here</a></p>

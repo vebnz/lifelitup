@@ -9,6 +9,7 @@ require_once('twig/twig.php');
 require_once('header.php');
 require_once('functions/authenticate.php');
 require_once('functions/todo.php');
+require_once('functions/goals.php');
 
 if (!$auth->isLoggedIn()) {
 	header("Location: login.php");
@@ -23,10 +24,11 @@ else {
 	$userid = $_SESSION['userid'];
 }
 
-$goals = $todo->show($userid);
+$showGoals = $todo->show($userid);
+$showCategories = $goals->showCategories();
 
 $template = $twig->loadTemplate('todo.html');
-echo $template->render(array('not_me' => $not_me, 'goals' => $goals));
+echo $template->render(array('not_me' => $not_me, 'goals' => $showGoals, 'categories' => $showCategories));
 
 $db->close();
 ?>

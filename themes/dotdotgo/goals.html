@@ -17,7 +17,7 @@
 				<h3><a href="#">{{ category.name|e }}</a></h3>
 				<ul>
 	    		{% for goal in goals %}
-					{% if goal.categoryid == category.id %}
+					{% if goal.category_id == category.id %}
 	        			<li>
 							<img src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a> 
 							<a href="goals.php?action=addGoal&id={{ goal.id|e}}"><img src="themes/dotdotgo/images/add.png" /></a>
