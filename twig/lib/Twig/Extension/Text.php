@@ -25,7 +25,7 @@ class Twig_Extension_Text extends Twig_Extension
             'truncate' => new Twig_Filter_Function('twig_truncate_filter', array('needs_environment' => true)),
             'wordwrap' => new Twig_Filter_Function('twig_wordwrap_filter', array('needs_environment' => true)),
             'nl2br'    => new Twig_Filter_Function('twig_nl2br_filter', array('needs_environment' => true, 'is_safe' => array('html'))),
-			'hdecode'  => new Twig_Filter_Function('twig_hdecode_filter', array('needs environment' => true)),
+			'stripslashes'  => new Twig_Filter_Function('twig_stripslashes_filter', array('needs environment' => true)),
         );
     }
 
@@ -45,9 +45,9 @@ function twig_nl2br_filter($env, $value, $sep = '<br />')
     return str_replace("\n", $sep."\n", twig_escape_filter($env, $value, 'html'));
 }
 
-function twig_hdecode_filter($value)
+function twig_stripslashes_filter($value)
 {
-	return html_entity_decode($value);
+	return stripslashes($value);
 }
 
 

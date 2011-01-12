@@ -27,7 +27,7 @@
 					{% else %}
 						<p><a href="#">{{ comment.email|e }}</a></p>
 					{% endif %}
-					<p>{{ comment.content|nl2br }}</p>
+					<p>{{ comment.content|stripslashes|nl2br }}</p>
 				</blockquote>
         	{% endfor %}
 
