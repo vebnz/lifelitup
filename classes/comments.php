@@ -10,7 +10,8 @@ class Comments {
 			JOIN " . tbl_profile . " ON " . tbl_comments . ".user_id = " . tbl_profile . ".user_id
 			JOIN " . tbl_users . " ON " . tbl_profile .".user_id = " . tbl_users . ".id
 			WHERE page_id = " . (int)$page_id . "
-			AND tbl = '" . $table. "'";
+			AND tbl = '" . $table. "'
+			ORDER BY date_posted DESC";
 		$rows = $db->fetch_array($sql);
 
 		return $rows;	
