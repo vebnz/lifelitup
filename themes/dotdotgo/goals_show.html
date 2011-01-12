@@ -22,7 +22,11 @@
 
 			{% for comment in comments %}
 				<blockquote>		        
-            		<p><a href="#">{{ comment.first_name|e }} {{ comment.last_name|e }}</a></p>
+					{% if comment.first_name %}
+            			<p><a href="#">{{ comment.first_name|e }} {{ comment.last_name|e }}</a></p>
+					{% else %}
+						<p><a href="#">{{ comment.email|e }}</a></p>
+					{% endif %}
 					<p>{{ comment.content|nl2br }}</p>
 				</blockquote>
         	{% endfor %}

@@ -5,9 +5,10 @@ class Comments {
 	function show($table, $page_id) {
 		$db = Database::obtain();
 
-		$sql = "SELECT " . tbl_comments .".user_id, content, date_posted, first_name, last_name
+		$sql = "SELECT " . tbl_comments .".user_id, content, date_posted, first_name, last_name, email
 			FROM " . tbl_comments . "
 			JOIN " . tbl_profile . " ON " . tbl_comments . ".user_id = " . tbl_profile . ".user_id
+			JOIN " . tbl_users . " ON " . tbl_profile .".user_id = " . tbl_users . ".id
 			WHERE page_id = " . (int)$page_id . "
 			AND tbl = '" . $table. "'";
 		$rows = $db->fetch_array($sql);

@@ -25,8 +25,9 @@ class Profile {
 	function get($userid) {
 		$db = Database::obtain();
 		
-		$sql = "SELECT user_id, first_name, last_name, twitter, facebook 
+		$sql = "SELECT user_id, first_name, last_name, twitter, facebook, email 
 				FROM " . tbl_profile . "
+				JOIN " . tbl_users . " ON " . tbl_profile . ".user_id = " . tbl_profile . ".id				
 				WHERE user_id = " . (int)$userid;
 		return $record = $db->fetch($db->query($sql));
 	}
