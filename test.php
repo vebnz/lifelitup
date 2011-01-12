@@ -1,18 +1,25 @@
 <?php
-include 'includes/PasswordHash.php';
-$pass = 'fuck';
-$hasher = new PasswordHash(8, FALSE);
-$hash = $hasher->HashPassword($pass);
-if (strlen($hash) < 20)
-	die('Failed to hash new password');
-unset($hasher);
+function getCategory($id) {
 
-$hasher = new PasswordHash(8, FALSE);
-	if ($hasher->CheckPassword($pass, $hash)) {
-		$what = 'Authentication succeeded';
-	} else {
-		$what = 'Authentication failed';
+	if ($id == 1) {
+		return 'Water';
 	}
-	unset($hasher);
-echo $what;
+
+	if ($id == 2) {
+		return 'Land';
+	}
+
+}
+
+$arr = array(array('sailing', 'icon', '1'), array('land surfing', 'icon', '2'), array('motorbiking', 'icon', '2'));
+
+Water -> array()
+		 array()
+		 array()
+
+Land -> array()
+		array()
+		array()
+
+
 ?>
