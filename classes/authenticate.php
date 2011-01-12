@@ -54,7 +54,7 @@ class Authenticate {
 				WHERE email = '" . $email . "'
 				";
 		$row = $db->query_first($sql);
-		
+			
 		if (empty($row)) {
 			$msg = 'No such user exists';
 			return $msg;
@@ -72,6 +72,16 @@ class Authenticate {
 	function register($email, $password) {
 		global $hasher;
 		$db = Database::obtain();
+
+		$sql = "SELECT 1
+			FROM " . tbl_users . "
+			WHERE email = '" . $email;
+		$row = $db->query_first($sql);
+		echo $row; die;	
+		if ($row) {
+			$msg = 'Email address already exists.';
+			return $msg;
+		}
 
 		$data['email'] = $email;
 		$data['password'] = $hasher->HashPassword($password);
