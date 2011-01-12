@@ -27,7 +27,7 @@ class Profile {
 		
 		$sql = "SELECT user_id, first_name, last_name, twitter, facebook, email 
 				FROM " . tbl_profile . "
-				JOIN " . tbl_users . " ON " . tbl_profile . ".user_id = " . tbl_profile . ".id				
+				JOIN " . tbl_users . " ON " . tbl_profile . ".user_id = " . tbl_users . ".id				
 				WHERE " . tbl_users . ".id = " . (int)$userid;
 		return $db->query_first($sql);
 	}
