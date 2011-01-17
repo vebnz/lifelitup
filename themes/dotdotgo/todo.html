@@ -8,6 +8,10 @@
 			
 			<h1>Your todo list</h1>
 		
+			{% if msg %}
+				<p class="alert">{{ msg }}</p>
+			{% endif %}	
+		
             <div class="goals">
             {% for category in categories %}
                 <h3><a href="#">{{ category.name|e }}</a></h3>
@@ -16,7 +20,7 @@
                     {% if goal.category_id == category.id %}
                         <li>
                             <img src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a>
-							<a href="#"><img src="themes/dotdotgo/images/remove.png" /></a> 
+							<a href="todo.php?action=remGoal&id={{ goal.id|e}}"><img src="themes/dotdotgo/images/remove.png" /></a> 
                         </li>
                     {% endif %}
                 {% endfor %}

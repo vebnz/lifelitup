@@ -17,12 +17,28 @@ if ($_GET['action'] == 'addGoal') {
 
 	if (empty($add)) {
 		event::fire('USER_NEW_GOAL');
-		$msg = 'Added successfully. <a href="todo.php">View your list</a>';
+		$msg = "Added successfully. <a href='todo.php'>View your list</a>";
 	}
 	else {
 		$msg = $add;
 	}
 	return $msg;
 }
+else if ($_GET['action'] == 'remGoal') {
+	$id = (int)$_GET['id'];
+	$userid = $_SESSION['userid'];
+	
+	$remove = $todo->remove($id, $userid);
+	if (!empty($remove)) {
+		$msg = 'Failed to remove goal from your TODO list';
+		return;
+	}
+	
+	if (empty($add)) {
+		event::fire('USER_REMOVE_GOAL');
+		$msg = 'Goal removed successfully.';
+	}
+}
+
 
 ?>

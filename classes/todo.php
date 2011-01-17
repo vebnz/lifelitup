@@ -66,6 +66,23 @@ class Todo {
 		$pid = $db->insert(tbl_todo, $data);
 	}
 
+	function remove($goalid, $userid) {
+		$db = Database::obtain();
+		
+		if ($this->checkHaveAlready($goalid, $userid) == false) {
+			$msg = 'This goal does not exist on your TODO list';
+			return $msg;
+		}
+		
+		if ($this->checkGoalExists($goalid) == false) {
+			$msg = 'This goal does not exist';
+			return $msg;
+		}
+		
+		$sql = "DELETE FROM `tbl_todo` WHERE `user_id`=$userid AND `goal_id`=$goalid";
+		$q = $db->query($sql);
+	}
+	
 }
 
 ?>
