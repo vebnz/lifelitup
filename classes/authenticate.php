@@ -72,13 +72,14 @@ class Authenticate {
 	function register($email, $password) {
 		global $hasher;
 		$db = Database::obtain();
-
+		
+		// 
 		$sql = "SELECT 1
 			FROM " . tbl_users . "
-			WHERE email = '" . $email;
+			WHERE email = '" . $email . "'";
 		$row = $db->query_first($sql);
-		echo $row; die;	
-		if ($row) {
+		
+		if (!empty($row)) {
 			$msg = 'Email address already exists.';
 			return $msg;
 		}
