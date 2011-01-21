@@ -47,7 +47,7 @@ class Authenticate {
 
 	function login($email, $password) {
 		global $hasher;
-	    $db = Database::obtain();
+	    	$db = Database::obtain();
 
 		$sql = "SELECT id, password
 				FROM " . tbl_users . "
@@ -71,6 +71,8 @@ class Authenticate {
 
 	function register($email, $password) {
 		global $hasher;
+		global $prof;
+
 		$db = Database::obtain();
 		
 		// 
