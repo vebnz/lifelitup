@@ -11,6 +11,11 @@ class Achievements {
 
 	}
 	
+	function image_file_extension($filename)
+	{
+		return end(explode(".", $filename));
+	}
+	
 }
 
 ?>

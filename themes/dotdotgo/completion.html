@@ -6,6 +6,7 @@
 <script type="text/javascript" src="themes/dotdotgo/js/ajaxupload.3.5.js" ></script>
 <script type="text/javascript" >
 	$(function(){
+		var i = 0;
 		$('#files').hide();
 		var btnUpload=$('#upload');
 		var status=$('#status');
@@ -13,9 +14,14 @@
 			action: 'functions/complete_upload.php',
 			name: 'uploadfile',
 			onSubmit: function(file, ext){
-				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+				if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
                     // extension is not allowed 
 					status.text('Only JPG, PNG or GIF files are allowed');
+					return false;
+				}
+				else if (i == 1)
+				{
+					status.text('Only 1 image upload allowed');
 					return false;
 				}
 				status.html('<img src="images/loading.gif" alt="" />');
@@ -25,6 +31,7 @@
 				status.text('');
 				//Add uploaded file to list
 				if(response!="error"){
+					i = 1;
 					status.text(response);
 					$('#imageName').val(file);
 					$('<li></li>').appendTo('#files').text(file).addClass('success');
