@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %} Achievement Completed! {% endblock %}
+{% block head %}
+{{ parent() }}
+<script type="text/javascript" src="themes/dotdotgo/js/jquery-1.3.2.js" ></script>
+<script type="text/javascript" src="themes/dotdotgo/js/ajaxupload.3.5.js" ></script>
+<script type="text/javascript" >
+	$(function(){
+		$('#files').hide();
+		var btnUpload=$('#upload');
+		var status=$('#status');
+		new AjaxUpload(btnUpload, {
+			action: 'functions/complete_upload.php',
+			name: 'uploadfile',
+			onSubmit: function(file, ext){
+				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
+                    // extension is not allowed 
+					status.text('Only JPG, PNG or GIF files are allowed');
+					return false;
+				}
+				status.html('<img src="images/loading.gif" alt="" />');
+			},
+			onComplete: function(file, response){
+				//On completion clear the status
+				status.text('');
+				//Add uploaded file to list
+				if(response!="error"){
+					status.text(response);
+					$('#imageName').val(file);
+					$('<li></li>').appendTo('#files').text(file).addClass('success');
+					$('#files').show();
+					
+				} else{
+				
+					$('<li></li>').appendTo('#files').text(file).addClass('error');
+				}
+			}
+		});
+		
+	});
+</script>
+{% endblock %}
+{% block content %}	
+		<div class="section full">			
+			<h1>Achievement Completed!</h1>
+			{% if msg %}
+				<p class="alert">{{ msg }}</p>
+			{% endif %}		
+			<div>
+				<div class="signup-login">
+					<div class="signup-login-text">
+						<p><img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" /></p>
+					</div>
+					<form action="completion.php?id=1" method="POST" class="comp_form">
+						<p><input type="text" name="location" id="location" value="Picture Location" /></p>
+						<p><textarea id="comments" name="comments">Comments</textarea></p>
+						<p><input type="button" id="upload" name="upload" value="Upload Proof..." /><span id="status" ></span></p>
+						<input type="hidden" name="imageName" id="imageName" />
+						<input type="hidden" name="goalID" id="goalID" value="{{ goal.id|e }}" />
+						<ul id="files"></ul>
+						<p><input type="submit" name="submit" value="Submit" id="submit" /></p>
+					</form>
+				</div>
+			</div>	
+		</div><!-- Section -->
+
+{% endblock %} 	

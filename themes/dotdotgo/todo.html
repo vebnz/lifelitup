@@ -19,8 +19,8 @@
                 {% for goal in goals %}
                     {% if goal.category_id == category.id %}
                         <li>
-                            <img src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a>
-							<a href="todo.php?action=remGoal&id={{ goal.id|e}}"><img src="themes/dotdotgo/images/remove.png" /></a> 
+                            <img style="vertical-align: middle" src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a>
+							<a href="todo.php?action=remGoal&id={{ goal.id|e}}"><img style="vertical-align: middle;" src="themes/dotdotgo/images/remove.png" alt="Remove Goal" /></a><a href="completion.php?id={{ goal.id|e}}"><img style="vertical-align: middle;" src="themes/dotdotgo/images/complete.png" alt="Goal Completed" /></a> 
                         </li>
                     {% endif %}
                 {% endfor %}
