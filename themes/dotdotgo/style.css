@@ -666,3 +666,10 @@ Tags: business, enterprise, product, application
 
 	/* Goals */
 	.goals li { list-style-type: none }	
+	
+	.section .right .achievements li { 
+		list-style: none;
+		list-style-type: none; 
+		display: inline;
+		padding-right: 20px;
+	}	

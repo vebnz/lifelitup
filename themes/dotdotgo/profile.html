@@ -2,6 +2,34 @@
 {% block title %} Your profile {% endblock %}
 {% block head %}
 {{ parent() }}
+<script type="text/javascript" src="themes/dotdotgo/js/jquery-1.3.2.js" ></script>
+<script type="text/javascript" src="themes/dotdotgo/js/jquery.qtip-1.0.0-rc3.min.js" ></script>
+<script type="text/javascript">
+
+$(document).ready(function() 
+{
+
+	$('.achievements a[href][title]').qtip({
+		content: {
+			text: false // Use each elements title attribute
+		},
+		style: { 
+			width: 130,
+			padding: 5,
+			background: '#ffffff',
+			color: 'black',
+			textAlign: 'center',
+			border: {
+				width: 1,
+				radius: 3,
+				color: '#018ede'
+			},
+		}
+   });
+   
+
+});
+</script>
 {% endblock %}
 {% block content %}	
 		<div class="section right">
@@ -29,6 +57,11 @@
 			</div>
 
 			<h3>Achievements</h3>
+			<ul class="achievements">
+				{% for achievement in achievements %}
+					<li><a href="goals_show.php?id={{achievement.id}}" title="{{achievement.name}}"><img style="vertical-align: middle" src="{{ achievement.icon|e }}" /></a></li>
+				{% endfor %}
+			</ul>
 			<p class="add">This section is not done yet.</p>
 			
 		</div><!-- Content Ends -->
