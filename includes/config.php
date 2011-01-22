@@ -18,6 +18,7 @@ define('tbl_blog', "tbl_blog");
 define('tbl_people', "tbl_people");
 define('tbl_logs', "tbl_logs");
 define('tbl_profile', "tbl_profile");
+define('tbl_achievements', "tbl_achievements");
 
 // twig
 define('current_theme', "themes/dotdotgo");

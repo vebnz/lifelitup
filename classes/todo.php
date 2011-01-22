@@ -46,6 +46,23 @@ class Todo {
 
 		return false;
 	}
+	
+	function checkAlreadyCompleted($goalid, $userid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT id
+			FROM " . tbl_achievements . "
+			WHERE user_id = " . (int)$userid . "
+			AND goal_id = " . (int)$goalid;
+			
+		$row = $db->query_first($sql);
+		
+		if ($row > 0) {
+			return true;
+		}
+		
+		return false;
+	}
 
 	function add($goalid, $userid) {
 		$db = Database::obtain();
@@ -57,6 +74,11 @@ class Todo {
 
 		if ($this->checkGoalExists($goalid) == false) {
 			$msg = 'This goal does not exist';
+			return $msg;
+		}
+		
+		if ($this->checkAlreadyCompleted($goalid, $userid) == true) {
+			$msg = 'You have already completed this goal silly.';
 			return $msg;
 		}
 
