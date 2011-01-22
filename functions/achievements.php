@@ -25,6 +25,7 @@ if (isset($_POST['submit']))
 	$todo->remove($data["goal_id"], $_SESSION["userid"]);
 	
 	$msg = "Achievement Successfully Achieved!";
+	event::fire('USER_GOAL_COMPLETION');
 	header("Location: todo.php");
 }
 

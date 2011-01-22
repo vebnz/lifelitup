@@ -32,7 +32,6 @@
 				//Add uploaded file to list
 				if(response!="error"){
 					i = 1;
-					status.text(response);
 					$('#imageName').val(file);
 					$('<li></li>').appendTo('#files').text(file).addClass('success');
 					$('#files').show();
