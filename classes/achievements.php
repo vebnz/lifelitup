@@ -18,7 +18,8 @@ class Achievements {
 			FROM " . tbl_achievements . "
 			JOIN " . tbl_goals . " ON " . tbl_achievements . ".goal_id = " . tbl_goals . ".id
 			JOIN " . tbl_users . " ON " . tbl_achievements . ".user_id = " . tbl_users . ".id
-			WHERE " . tbl_users . ".id = " . (int)$userid;
+			WHERE " . tbl_users . ".id = " . (int)$userid . "
+			ORDER BY " . tbl_achievements . ".date DESC";
 			
 		$achievements = $db->fetch_array($sql);
 		
