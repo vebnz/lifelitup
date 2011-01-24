@@ -45,10 +45,16 @@ $(document).ready(function()
 			
             <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
 
-			<p>Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>           
+			<p>
+			{% if viewing %}
+				You're currently viewing {{ profile.first_name|e }} {{ profile.last_name|e }} profile page
+			{% else %}
+				Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>          
+			{% endif %} 
 			<p></p>
 			<p></p> 
 
+			{% if viewing == 0 %}
 			<h3>Edit your details</h3>
 			{% if msg %}
 				<p class="check">{{ msg|e }}</p>
@@ -62,6 +68,7 @@ $(document).ready(function()
 					<input type="submit" name="profile_edit" value="Update Details" />
 				</form>
 			</div>
+			{% endif %}
 
 			<h3>Achievements</h3>
 			<ul class="achievements">
@@ -69,7 +76,6 @@ $(document).ready(function()
 					<li><a href="goals_show.php?id={{achievement.id}}" title="{{achievement.name}}"><img style="vertical-align: middle" src="{{ achievement.icon|e }}" /></a></li>
 				{% endfor %}
 			</ul>
-			<p class="add">This section is not done yet.</p>
 			
 		</div><!-- Content Ends -->
 		
@@ -85,7 +91,7 @@ $(document).ready(function()
 					<h3>Friends</h3>
 						<ul>
 							{% for friend in friends %}
-								<li><a href="view_profile.php?id={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a></li>
+								<li><a href="profile.php?userid={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a></li>
 							{% endfor %}
 						</ul>
                	</li>
