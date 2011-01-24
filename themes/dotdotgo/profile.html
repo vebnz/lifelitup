@@ -40,14 +40,18 @@ $(document).ready(function()
 {% endblock %}
 {% block content %}	
 		<div class="section right">
-			
-			<h1>Your profile page</h1>
-			
+		
+			{% if viewing %}
+				{{ profile.first_name|e }} profile page
+			{% else %}
+				<h1>Your profile page</h1>
+			{% endif %}
+
             <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
 
 			<p>
 			{% if viewing %}
-				You're currently viewing {{ profile.first_name|e }} {{ profile.last_name|e }} profile page
+				You're currently viewing {{ profile.first_name|e }} profile page
 			{% else %}
 				Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>          
 			{% endif %} 
