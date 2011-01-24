@@ -82,6 +82,12 @@ $(document).ready(function()
                             <li><a href="http://twitter.com/#!/{{ profile.twitter|e }}"><img src="themes/dotdotgo/images/twitter.png" alt="Twitter" title="Twitter" /> Follow on twitter: @{{ profile.twitter|e }}</a></li>
                             <li><a href="http://www.facebook.com/profile.php?id={{ profile.facebook|e }}"><img src="themes/dotdotgo/images/facebook.png" alt="Facebook" title="Facebook" /> My Facebook page: {{ profile.first_name|e }} {{ profile.last_name|e }}</a></li>
                         </ul>
+					<h3>Friends</h3>
+						<ul>
+							{% for friend in friends %}
+								<li>{{friend.first_name}} {{friend.last_name}}</li>
+							{% endfor %}
+						</ul>
                	</li>
         	</ul>
 		</div><!-- Sidebar Ends -->

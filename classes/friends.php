@@ -69,8 +69,17 @@ class Friends {
 		return false;
 	}
 		
-	function get($userid) {
+	function getFriends($userid) {
 		$db = Database::obtain();
+		
+		$sql = "SELECT " . tbl_friends . ".user_id, " . tbl_users . ".email, " . tbl_profile . ".first_name, " . tbl_profile . ".last_name, " . tbl_profile . ".twitter, " . tbl_profile . ".facebook
+		        FROM " . tbl_friends . "
+        		JOIN " . tbl_users ." ON " . tbl_friends . ".friend_id = " . tbl_users . ".id
+       			JOIN " . tbl_profile . " ON " . tbl_friends . ".friend_id = " . tbl_profile . ".user_id
+        		WHERE " . tbl_friends . ".user_id =  " . $userid;
+		$friends = $db->fetch_array($sql);
+
+		return $friends;
 		
 	}
 }
