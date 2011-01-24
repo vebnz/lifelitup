@@ -85,7 +85,7 @@ $(document).ready(function()
 					<h3>Friends</h3>
 						<ul>
 							{% for friend in friends %}
-								<li>{{friend.first_name}} {{friend.last_name}}</li>
+								<li><a href="view_profile.php?id={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a></li>
 							{% endfor %}
 						</ul>
                	</li>
