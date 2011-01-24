@@ -96,12 +96,12 @@ class Todo {
 			return $msg;
 		}
 		
-		if ($this->checkGoalExists($goalid) == false) {
+		if ($this->checkGoalExists($goalid) == true) {
 			$msg = 'This goal does not exist';
 			return $msg;
 		}
 		
-		$sql = "DELETE FROM `tbl_todo` WHERE `user_id`=$userid AND `goal_id`=$goalid";
+		$sql = "DELETE FROM " . tbl_todo . " WHERE user_id = " . $userid . " AND goal_id = " . $goalid;
 		$q = $db->query($sql);
 	}
 	
