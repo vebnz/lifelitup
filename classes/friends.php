@@ -82,5 +82,23 @@ class Friends {
 		return $friends;
 		
 	}
+	
+	function checkIsFriend($userid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT friend_id
+				FROM " . tbl_friends . "
+				WHERE friend_id = " . (int)$userid . " AND user_id = " . $_SESSION['userid'];
+		
+		$pid = $db->query_first($sql);
+		
+		if ($pid > 0)
+		{
+			return true;
+		}
+		
+		return false;
+		
+	}
 }
 ?>
