@@ -12,6 +12,7 @@ require_once('functions/achievements.php');
 require_once('functions/friends.php');
 require_once('functions/profile.php');
 
+
 if (!$auth->isLoggedIn()) {
 	header("Location: login.php");
 	die;
@@ -31,9 +32,14 @@ if ($userid != $_SESSION['userid']) {
 $achievements = $achievement->getAchievements($userid);
 $friends = $friends->getFriends($userid);
 $profileArr = $profile->get($userid);
+$activities = $profile->getActivities($userid);
 
 $template = $twig->loadTemplate('profile.html');
-echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'viewing' => $viewing));
+echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'activities' => $activities, 'viewing' => $viewing));
+
+echo "<pre>";
+print_r($activities);
+echo "</pre>";
 
 $db->close();
 

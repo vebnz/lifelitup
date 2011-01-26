@@ -42,7 +42,7 @@ $(document).ready(function()
 		<div class="section right">
 		
 			{% if viewing %}
-				{{ profile.first_name|e }} profile page
+				<h1>{{ profile.first_name|e }}'s profile page</h1>
 			{% else %}
 				<h1>Your profile page</h1>
 			{% endif %}
@@ -51,10 +51,39 @@ $(document).ready(function()
 
 			<p>
 			{% if viewing %}
-				You're currently viewing {{ profile.first_name|e }} profile page
+				You're currently viewing {{ profile.first_name|e }}'s profile page
 			{% else %}
 				Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>          
 			{% endif %} 
+			<p></p>
+			<p></p> 
+			
+			<h3>Recent Activities</h3>
+			<!--<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid=2">Jamie Gracie</a> are now friends.</p>
+			<p style="margin-top: -16px; font-size: 80%; color:#777777;">6 hours ago.</p>
+			<p>{{ profile.first_name|e }} {{ profile.last_name|e }} completed the achievement <a href="goals_show.php?id=4">Get a Degree</a>.</p>
+			<p style="margin-top: -16px; font-size: 80%; color:#777777;">2 days ago.</p>
+			<p>{{ profile.first_name|e }} {{ profile.last_name|e }} added the achievement <a href="goals_show.php?id=4">Get a Degree</a> to their todo list.</p>
+			<p style="margin-top: -16px; font-size: 80%; color:#777777;">17 days ago.</p>-->
+			{% for activity in activities %}
+				{% if activity.act_type == "achievement" %}
+					<p>{{ profile.first_name|e }} {{ profile.last_name|e }} completed the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}.</a></p>
+					<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+				{% endif %}
+				{% if activity.act_type == "todo" %}
+					<p>{{ profile.first_name|e }} {{ profile.last_name|e }} added the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}</a> to their TODO list.</p>
+					<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+				{% endif %}
+				{% if activity.act_type == "comment" %}
+					<p>{{ profile.first_name|e }} {{ profile.last_name|e }} commented on the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}</a>.</p>
+					<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+				{% endif %}
+				{% if activity.act_type == "friend" %}
+					<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid={{activity.id}}">{{ activity.name }}</a> are now friends.</p>
+					<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+				{% endif %}
+			{% endfor %}
+			</ul>
 			<p></p>
 			<p></p> 
 

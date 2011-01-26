@@ -84,6 +84,7 @@ class Todo {
 
 		$data['goal_id'] = $goalid;
 		$data['user_id'] = $userid;
+		$data['date'] = time();
 
 		$pid = $db->insert(tbl_todo, $data);
 	}

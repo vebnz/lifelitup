@@ -31,6 +31,30 @@ class Profile {
 				WHERE " . tbl_users . ".id = " . (int)$userid;
 		return $db->query_first($sql);
 	}
+	
+	function getActivities($userid) {
+		$db = Database::obtain();
+		
+		$sql = "(SELECT " . tbl_achievements . ".user_id, " . tbl_achievements . ".date, " . tbl_goals . ".id, " . tbl_goals . ".name, 'achievement' AS act_type
+			FROM " . tbl_achievements . "
+			JOIN " . tbl_goals . " ON " . tbl_achievements . ".goal_id = " . tbl_goals . ".id
+			WHERE " . tbl_achievements . ".user_id = " . $userid . ")
+			UNION (SELECT " . tbl_todo . ".user_id, " . tbl_todo . ".date, " . tbl_goals . ".id, " . tbl_goals . ".name, 'todo' AS act_type 
+			FROM " . tbl_todo . " 
+			JOIN " . tbl_goals . " ON " . tbl_todo . ".goal_id = " . tbl_goals . ".id
+			WHERE " . tbl_todo . ".user_id = " . $userid . ")
+			UNION (SELECT " . tbl_comments . ".user_id, " . tbl_comments . ".date, " . tbl_goals . ".id, " . tbl_goals . ".name, 'comment' AS act_type 
+			FROM " . tbl_comments . " 
+			JOIN " . tbl_goals . " ON " . tbl_comments . ".page_id = " . tbl_goals . ".id
+			WHERE " . tbl_comments . ".user_id = " . $userid . ")
+			UNION (SELECT " . tbl_friends . ".user_id, " . tbl_friends . ".date, " . tbl_profile . ".user_id, CONCAT_WS(' ', " . tbl_profile . ".first_name,  " . tbl_profile . ".last_name), 'friend' AS act_type 
+			FROM " . tbl_friends . " 
+			JOIN " . tbl_profile . " ON " . tbl_friends . ".friend_id = " . tbl_profile . ".user_id
+			WHERE " . tbl_friends . ".user_id = " . $userid . ")
+			ORDER BY date DESC";
+			
+		return $db->fetch_array($sql);
+	}
 
 	function update($data, $userid) {
 			$db = Database::obtain();
