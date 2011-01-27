@@ -41,22 +41,20 @@ $(document).ready(function()
 {% block content %}	
 		<div class="section right">
 		
-			{% if viewing %}
+			{% if isViewing %}
 				<h1>{{ profile.first_name|e }}'s profile page</h1>
 			{% else %}
-				<h1>Your profile page</h1>
+				<h1>Your page</h1>
 			{% endif %}
 
             <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
 
-			<p>
-			{% if viewing %}
-				You're currently viewing {{ profile.first_name|e }}'s profile page
+			{% if isViewing %}
+				<p>You're currently viewing {{ profile.first_name|e }}'s profile page</p>
 			{% else %}
-				Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>          
+				<p>Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>        
+				<p>To modify your account, <a href="?action=modify">click here</a></p>				 
 			{% endif %} 
-			<p></p>
-			<p></p> 
 			
 			{% if isFriend != null %}
 				<h3>Recent Activities</h3>
@@ -87,7 +85,7 @@ $(document).ready(function()
 			{% endif %}
 			<p></p>
 
-			{% if viewing == 0 %}
+			{% if isViewing == 0 and isEditing == 1 %}
 			<h3>Edit your details</h3>
 			{% if msg %}
 				<p class="check">{{ msg|e }}</p>
@@ -98,7 +96,7 @@ $(document).ready(function()
 					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
 					<p>Facebook: <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" placeholder="What's your Facebook?" /></p>
 					<p>Twitter: <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" placeholder="What's your Twitter?" /></p>
-					<input type="submit" name="profile_edit" value="Update Details" />
+					<input type="submit" name="profile_edit" value="Update Details" /> <input type="submit" onClick="window.location = 'profile.php'" name="cancel" value="Cancel" />
 				</form>
 			</div>
 			{% endif %}
@@ -116,7 +114,7 @@ $(document).ready(function()
 			<ul>              
                 <li>
                     <h3>Connect with me</h3>
-					{% if isFriend or viewing == 0 %} 
+					{% if isFriend or isViewing == 0 %} 
     					<ul class="thumbnail-list">
                         	<li><a href="mailto:{{ profile.email|e }}"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: {{ profile.email|e }}</a></li>
                             <li><a href="http://twitter.com/#!/{{ profile.twitter|e }}"><img src="themes/dotdotgo/images/twitter.png" alt="Twitter" title="Twitter" /> Follow on twitter: @{{ profile.twitter|e }}</a></li>
