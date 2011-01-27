@@ -1,4 +1,5 @@
 <?php
+header("Location: ../register.php");
 /**
  * Allows the creation of new user accounts.
  *
