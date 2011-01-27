@@ -58,7 +58,7 @@ $(document).ready(function()
 			<p></p>
 			<p></p> 
 			
-			{% if isFriend != null %}
+			{% if isFriend != null or viewing == 0 %}
 				<h3>Recent Activities</h3>
 				<!--<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid=2">Jamie Gracie</a> are now friends.</p>
 				<p style="margin-top: -16px; font-size: 80%; color:#777777;">6 hours ago.</p>
@@ -69,19 +69,19 @@ $(document).ready(function()
 				{% for activity in activities %}
 					{% if activity.act_type == "achievement" %}
 						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} completed the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}.</a></p>
-						<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
 					{% endif %}
 					{% if activity.act_type == "todo" %}
 						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} added the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}</a> to their TODO list.</p>
-						<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
 					{% endif %}
 					{% if activity.act_type == "comment" %}
 						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} commented on the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}</a>.</p>
-						<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
 					{% endif %}
 					{% if activity.act_type == "friend" %}
 						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid={{activity.id}}">{{ activity.name }}</a> are now friends.</p>
-						<p style="margin-top: -16px; font-size: 80%; color:#777777;">activity happend at {{ activity.date|date("m/d/Y") }}.</p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
 					{% endif %}
 				{% endfor %}
 			{% endif %}
@@ -129,7 +129,7 @@ $(document).ready(function()
 							{% endfor %}
 						</ul>
 					{% else %}
-							<p>Add Friend</p>
+							<p><a href="profile.php?action=add&friendid={{profile.user_id}}">Add Friend</a></p>
 
 					{% endif %}
                	</li>

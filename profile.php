@@ -41,6 +41,4 @@ echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achieveme
 
 $db->close();
 
-print_r($isFriend);
-
 ?>
