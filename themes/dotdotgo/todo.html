@@ -5,9 +5,13 @@
 {% endblock %}
 {% block content %}	
 		<div class="section right">
-			
-			<h1>Your todo list</h1>
 		
+			{% if categoryName %}
+			<h1>{{ categoryName.name|e }}</h1>
+			{% else %}	
+			<h1>Your todo list</h1>
+			{% endif %}
+
 			{% if msg %}
 				<p class="alert">{{ msg }}</p>
 			{% endif %}	

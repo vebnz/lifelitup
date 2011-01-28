@@ -122,7 +122,11 @@ class Todo {
 	function getCategoryName($categoryid) {
 		$db = Database::obtain();
 
-		
+		$sql = "SELECT name 
+				FROM " . tbl_category . "
+				WHERE id = " . intval($categoryid);
+
+		return $db->query_first($sql);	
 	}
 	
 }

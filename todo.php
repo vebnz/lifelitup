@@ -25,14 +25,15 @@ else {
 }
 
 if ($_GET['catid'] > 0) {
-	$categoryid = $_GET['catid'];
+	$categoryid = intval($_GET['catid']);
 	$showGoals = $todo->show($userid, $categoryid);
+	$categoryName = $todo->getCategoryName($categoryid);
 }	
 
 $showCategories = $todo->showTodoCategories($userid);
 
 $template = $twig->loadTemplate('todo.html');
-echo $template->render(array('not_me' => $not_me, 'goals' => $showGoals, 'categories' => $showCategories));
+echo $template->render(array('not_me' => $not_me, 'goals' => $showGoals, 'categories' => $showCategories, 'categoryName' => $categoryName));
 
 $db->close();
 ?>
