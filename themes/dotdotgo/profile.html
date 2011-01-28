@@ -41,7 +41,7 @@ $(document).ready(function()
 {% block content %}	
 		<div class="section right">
 		
-			{% if viewing %}
+			{% if isViewing %}
 				<h1>{{ profile.first_name|e }}'s profile page</h1>
 			{% else %}
 				<h1>Your profile page</h1>
@@ -53,7 +53,7 @@ $(document).ready(function()
             <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
 
 			<p>
-			{% if viewing %}
+			{% if isViewing %}
 				You're currently viewing {{ profile.first_name|e }}'s profile page
 			{% else %}
 				Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>          
@@ -61,7 +61,7 @@ $(document).ready(function()
 			<p></p>
 			<p></p> 
 			
-			{% if isFriend != null or viewing == 0 %}
+			{% if isFriend != null or isViewing == 0 %}
 				<h3>Recent Activities</h3>
 				<!--<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid=2">Jamie Gracie</a> are now friends.</p>
 				<p style="margin-top: -16px; font-size: 80%; color:#777777;">6 hours ago.</p>
@@ -90,7 +90,7 @@ $(document).ready(function()
 			{% endif %}
 			<p></p>
 
-			{% if viewing == 0 %}
+			{% if isViewing == 0 and isEditing == 1 %}
 			<h3>Edit your details</h3>			
 			<div class="textbox">
 				<form method="POST" action="profile.php">
@@ -116,7 +116,7 @@ $(document).ready(function()
 			<ul>              
                 <li>
                     <h3>Connect with me</h3>
-					{% if isFriend or viewing == 0 %} 
+					{% if isFriend or isViewing == 0 %} 
     					<ul class="thumbnail-list">
                         	<li><a href="mailto:{{ profile.email|e }}"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: {{ profile.email|e }}</a></li>
                             <li><a href="http://twitter.com/#!/{{ profile.twitter|e }}"><img src="themes/dotdotgo/images/twitter.png" alt="Twitter" title="Twitter" /> Follow on twitter: @{{ profile.twitter|e }}</a></li>

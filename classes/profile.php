@@ -25,7 +25,7 @@ class Profile {
 	function get($userid) {
 		$db = Database::obtain();
 		
-		$sql = "SELECT user_id, first_name, last_name, twitter, facebook, email 
+		$sql = "SELECT user_id, first_name, last_name, twitter, facebook, email, code
 				FROM " . tbl_profile . "
 				JOIN " . tbl_users . " ON " . tbl_profile . ".user_id = " . tbl_users . ".id				
 				WHERE " . tbl_users . ".id = " . (int)$userid;
@@ -60,7 +60,26 @@ class Profile {
 			$db = Database::obtain();
 			$db->update(tbl_profile, $data, "user_id=" . (int)$userid);
 	}
-		
+
+	function sendVerificationEmail($userid) {
+			$user = $this->get($userid);	
+
+            $subject = "Confirm your email for LifeLitUp.com";
+            $emailMsg = "Thank you for registering for LifeLitUp.\n
+                         To confirm your email address, please click on the following: 
+                            <a href=\"http://localhost/llu/register.php?confirm=" . $user['code'] . "\">http://localhost/llu/register.php?confirm=" . $user['code'] . "</a>
+                         Once your email is confirmed, you'll be able to use all the features LifeLitUp offers.\n\n
+                         Regards,\n
+                         The LLU Team!\n\n
+                         -----------------------------\n\n
+                         If you didn't register, you can ignore this email.";
+                
+            $headers = 'From: no-reply@lifelitup.com' . "\r\n" .
+                       'Reply-To: no-reply@lifelitup.com' . "\r\n" .
+                       'X-Mailer: PHP/' . phpversion();
+                
+            mail($user['email'], $subject, $emailMsg, $headers);
+	}
 }
 
 ?>

@@ -14,4 +14,8 @@ if (isset($_POST['profile_edit'])) {
 	$msg = 'You have updated your profile.';
 }
 
+if ($_GET['action'] == 'confirm_email') {
+	// do something
+}
+
 ?>

@@ -26,8 +26,12 @@ else {
 }
 
 if ($userid != $_SESSION['userid']) {
-	$viewing = true;
+	$isViewing = true;
 	$isFriend = $friends->checkIsFriend($userid);
+}
+
+if ($_GET['action'] == 'modify') {
+	$isEditing = true;
 }
 
 $achievements = $achievement->getAchievements($userid);
@@ -37,7 +41,8 @@ $activities = $profile->getActivities($userid);
 
 
 $template = $twig->loadTemplate('profile.html');
-echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'isFriend' => $isFriend, 'activities' => $activities, 'viewing' => $viewing));
+echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'isFriend' => $isFriend, 
+							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing));
 
 $db->close();
 

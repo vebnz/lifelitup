@@ -75,7 +75,6 @@ class Authenticate {
 
 		$db = Database::obtain();
 		
-		// 
 		$sql = "SELECT 1
 			FROM " . tbl_users . "
 			WHERE email = '" . $email . "'";
@@ -86,6 +85,7 @@ class Authenticate {
 			return $msg;
 		}
 
+		$data['code'] = $hasher->HashPassword(rand(1,rand(1,500)));
 		$data['email'] = $email;
 		$data['password'] = $hasher->HashPassword($password);
 
