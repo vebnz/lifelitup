@@ -60,7 +60,6 @@ class Profile {
 			$db = Database::obtain();
 			$db->update(tbl_profile, $data, "user_id=" . (int)$userid);
 	}
-<<<<<<< HEAD
 
 	function sendVerificationEmail($userid) {
 			$user = $this->get($userid);	
@@ -81,9 +80,6 @@ class Profile {
                 
             mail($user['email'], $subject, $emailMsg, $headers);
 	}
-=======
-		
->>>>>>> 414fa6f7b0606a5b6e72c30d5bdf76decb89f462
 }
 
 ?>
