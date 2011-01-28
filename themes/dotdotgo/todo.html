@@ -4,33 +4,38 @@
 {{ parent() }}
 {% endblock %}
 {% block content %}	
-		<div class="section full">
+		<div class="section right">
 			
 			<h1>Your todo list</h1>
 		
 			{% if msg %}
 				<p class="alert">{{ msg }}</p>
 			{% endif %}	
-		
-            <div class="goals">
-            {% for category in categories %}
-                <h3><a href="#">{{ category.name|e }}</a></h3>
-                <ul>
-                {% for goal in goals %}
-                    {% if goal.category_id == category.id %}
-                        <li>
-                            <img style="vertical-align: middle" src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a>
-							<a href="todo.php?action=remGoal&id={{ goal.id|e}}"><img style="vertical-align: middle;" src="themes/dotdotgo/images/delete-icon.png" alt="Remove Goal" /></a> <a href="completion.php?id={{ goal.id|e}}"><img style="vertical-align: middle;" src="themes/dotdotgo/images/complete.png" alt="Goal Completed" /></a> 
-                        </li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
-            {% endfor %}
-            </div>
 
+			<p>This is your todo list dashboard. You can view your progress on what goals you've added, you can see your statistics and eat bacon in Zimbabwe!</p>
+			<p><img src="images/bacon.jpg" /></p>
+			<p></p>	
 			<p></p>
+			<!--	
+            <div class="goals">
+			<ul>
+           	{% for goal in goals %}
+            	<li><img style="vertical-align: middle" src="{{ goal.icon|e }}" /> <a href="goals_show.php?id={{ goal.id|e }}">{{ goal.name|e }}</a>
+				<a href="todo.php?action=remGoal&id={{ goal.id|e}}"><img style="vertical-align: middle;" src="themes/dotdotgo/images/delete-icon.png" alt="Remove Goal" /></a> <a href="completion.php?id={{ goal.id|e}}"><img style="vertical-align: middle;" src="themes/dotdotgo/images/complete.png" alt="Goal Completed" /></a></li> 
+            {% endfor %}
+            </ul>
+            </div>
+			-->
 			<p class="note"><a href="goals.php">Add some more goals here</a></p>
 
 		</div><!-- Section -->
+
+        <div class="aside aside-left clearfix">
+            <ul>    
+                {% for category in categories %}
+					<li><h3>> <a href="#">{{ category.name|e }}</a> (0)</h3></li>
+				{% endfor %}
+            </ul>
+        </div><!-- Sidebar Ends -->
 
 {% endblock %} 	
