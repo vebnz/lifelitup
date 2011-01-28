@@ -43,9 +43,12 @@ if ($_GET['action'] == 'modify') {
 	}
 	$template = $twig->loadTemplate('profile_edit.html');
 }
-else {
+elseif (empty($profileArr['real_name'])) {
+	header("Location: profile.php?action=modify");
+} else {
 	$template = $twig->loadTemplate('profile.html');
 }
+
 echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'isFriend' => $isFriend, 
 							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing, 'latestStatus' => $latestStatus,
 							 'avatar' => get_gravatar($profileArr['email'])));
