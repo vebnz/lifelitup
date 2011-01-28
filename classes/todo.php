@@ -119,6 +119,11 @@ class Todo {
         return $db->fetch_array($sql);
     }
 
+	function getCategoryName($categoryid) {
+		$db = Database::obtain();
+
+		
+	}
 	
 }
 
