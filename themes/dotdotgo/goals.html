@@ -9,7 +9,7 @@
 			<h1>Goals - what should you do?</h1>
 
 			{% if msg %}
-				<p class="alert">{{ msg }}</p>
+				<p class="alert">{{ msg|raw }}</p>
 			{% endif %}		
 
 			<div class="goals">

@@ -37,6 +37,10 @@ $activities = $profile->getActivities($userid);
 $latestStatus = $profile->getLatestStatus($userid);
 
 if ($_GET['action'] == 'modify') {
+	if ($isViewing) {
+		event::fire('HACK_PROFILE_EDIT');
+		header("Location: profile.php");
+	}
 	$template = $twig->loadTemplate('profile_edit.html');
 }
 else {

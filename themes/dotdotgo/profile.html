@@ -113,8 +113,10 @@ $(document).ready(function()
 		
 		<div class="aside aside-left clearfix">
 			<ul>
+				{% if isViewing == false %}
 				<li><h3><a href="profile.php?action=modify">> Modify Profile</a></h3></li>
-				<li><h3><a href="#">> Notifications (0)</a></li>              
+				<li><h3><a href="#">> Notifications (0)</a></li>
+				{% endif %}              
                 <li>
                     <h3>Connect with me</h3>
 					{% if isFriend or isViewing == 0 %} 

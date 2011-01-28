@@ -22,6 +22,7 @@ if ($_GET['action'] == 'addGoal') {
 	else {
 		$msg = $add;
 	}
+
 	return $msg;
 }
 else if ($_GET['action'] == 'remGoal') {
