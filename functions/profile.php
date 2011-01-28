@@ -9,6 +9,9 @@ if (isset($_POST['profile_edit'])) {
 	$data['last_name'] = $_POST['last_name']; // secure
 	$data['facebook'] = $_POST['facebook']; // secure
 	$data['twitter'] = $_POST['twitter']; // secure
+	$data['location'] = $_POST['location']; // secure
+	$data['homepage'] = $_POST['homepage']; // secure
+	$data['biography'] = $_POST['biography']; // secure
 
 	$profile->update($data, $_SESSION['userid']);
 	$msg = 'You have updated your profile.';

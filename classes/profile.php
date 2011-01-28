@@ -58,7 +58,6 @@ class Profile {
 	
 	function update($data, $userid) {
 			$db = Database::obtain();
-			print_r($data); die;
 			$db->update(tbl_profile, $data, "user_id=" . (int)$userid);
 	}
 

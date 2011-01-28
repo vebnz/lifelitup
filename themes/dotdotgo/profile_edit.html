@@ -18,7 +18,7 @@
 			<p></p>
 
 			<div class="textbox">
-				<form method="POST" action="profile.php">
+				<form method="POST" action="profile.php?action=modify">
 				<h3>Your details</h3>			
 					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
 					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
@@ -34,7 +34,7 @@
 				<p></p>
 	            
 				<h3>Biography</h3>
-					<textarea cols="60" rows="10" name="biography" placeholder="Your biography here! Example: I'm a mountaineer, and I fly all over the world on a kite."></textarea>
+					<textarea cols="60" rows="10" name="biography" placeholder="Your biography here! Example: I'm a mountaineer, and I fly all over the world on a kite.">{{ profile.biography|stripslashes }}</textarea>
 
 				<p></p>
 
