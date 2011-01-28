@@ -3,7 +3,9 @@ require_once('classes/friends.php');
 	
 $friends = new Friends;
 
-if (isset($_GET['action']) == "add") {
+$action = isset($_GET['action']) ? $_GET['action'] : '';
+
+if ($action == "add") {
 	$id = (int)$_GET['friendid'];
 	$userid = $_SESSION['userid'];
 	
@@ -23,12 +25,11 @@ if (isset($_GET['action']) == "add") {
 	return $msg;
 }	
 
-if (isset($_GET['action']) == "remove") {
-	die();
+if ($action == "remove") {
 	$id = (int)$_GET['friendid'];
 	$userid = $_SESSION['userid'];
 	
-	$remove = $friends->removeFriend($id, $userid);        
+	$msg = $friends->removeFriend($id, $userid);        
 	if ($remove < 0) {
 		$msg = 'Failed to remove this friend from your friends list.';
 		return;

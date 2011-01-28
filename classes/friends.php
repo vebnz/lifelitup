@@ -24,7 +24,7 @@ class Friends {
 	function removeFriend($friendid, $userid) {
 		$db = Database::obtain();
 		
-		if ($this->checkHaveAlready($id, $userid) == false) {
+		if ($this->checkHaveAlready($friendid, $userid) == false) {
 			$msg = 'You are not currently friends with this person silly';
 			return $msg;
 		}
@@ -34,11 +34,12 @@ class Friends {
 			return $msg;
 		}		
 		
-		$sql = "DELETE FROM " . tbl_friends . " WHERE user_id = " . (int)$userid . " AND friend_id = " . (int)$friendid . " WHERE verified = '1'";
+		$sql = "DELETE FROM " . tbl_friends . " WHERE user_id = " . (int)$userid . " AND friend_id = " . (int)$friendid . " AND verified = 1";
 		$q = $db->query($sql);
+
 		if ($q > 0)
 		{
-			$sqlRemFriend = "DELETE FROM " . tbl_friends . " WHRER friend_id = " . (int)$userid . " AND user_id = " . (int)$friendid;
+			$sqlRemFriend = "DELETE FROM " . tbl_friends . " WHERE friend_id = " . (int)$userid . " AND user_id = " . (int)$friendid;
 			$q = $db->query($sqlRemFriend);
 		}
 		else
