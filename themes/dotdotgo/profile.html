@@ -50,8 +50,8 @@ $(document).ready(function()
 				<p class="check">{{ msg|e }}</p>
 			{% endif %}
 
-            <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
-
+            <img src="{{ avatar }}" alt="image" class="alignleft" />
+			<p><p>
 			<p>
 			{% if isViewing %}
 				You're currently viewing {{ profile.first_name|e }}'s profile page
@@ -61,6 +61,7 @@ $(document).ready(function()
 			<p></p>
 			<p></p> 
 
+			{% if disabled %}
 			<h3>What's happening?</h3>
 			{% if isViewing == false %}
 				<input type="text" name="new_status" placeholder="The sky is falling, let's go surfing!" class="whats_happening" />
@@ -69,6 +70,7 @@ $(document).ready(function()
 			{% endif %}
 			{% if latestStatus %}
 				<blockquote><p>{{ latestStatus.status }}<p></blockquote>
+			{% endif %}
 			{% endif %}
 			
 			{% if isFriend != null or isViewing == 0 %}

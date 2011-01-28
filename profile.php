@@ -11,7 +11,7 @@ require_once('functions/authenticate.php');
 require_once('functions/achievements.php');
 require_once('functions/friends.php');
 require_once('functions/profile.php');
-
+require_once('functions/gravatar.php');
 
 if (!$auth->isLoggedIn()) {
 	header("Location: login.php");
@@ -42,7 +42,8 @@ $latestStatus = $profile->getLatestStatus($userid);
 
 $template = $twig->loadTemplate('profile.html');
 echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'isFriend' => $isFriend, 
-							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing, 'latestStatus' => $latestStatus));
+							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing, 'latestStatus' => $latestStatus,
+							 'avatar' => get_gravatar($profileArr['email'])));
 
 $db->close();
 
