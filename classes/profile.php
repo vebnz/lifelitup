@@ -32,58 +32,6 @@ class Profile {
 		return $db->query_first($sql);
 	}
 	
-	function checkFriendExists($id) {
-		$db = Database::obtain();
-
-		$sql = "SELECT user_id
-			FROM " . tbl_profile . "
-			WHERE user_id = " . (int)$id;
-		$row = $db->query_first($sql);
-
-		if (!empty($row)) {
-			return true;
-		}
-	
-		return false;
-	}
-
-	function checkHaveAlready($id, $userid) {
-		$db = Database::obtain();
-
-		$sql = "SELECT friend_id
-			FROM " . tbl_friends . "
-			WHERE friend_id = " . (int)$id . "
-			AND user_id = " . (int)$userid;
-		$row = $db->query_first($sql);
-		
-		if ($row > 0) {
-			return true;
-		}
-
-		return false;
-	}
-	
-	function addFriend($id, $userid) {
-		$db = Database::obtain();
-		
-		if ($this->checkHaveAlready($id, $userid) == true) {
-			$msg = 'You are already friends with this person!';
-			return $msg;
-		}
-
-		if ($this->checkFriendExists($id) == false) {
-			$msg = 'This memeber does not exist.';
-			return $msg;
-		}
-		
-		$data['user_id'] = $userid;
-		$data['friend_id'] = $id;
-		$data['date'] = time();
-		$data['verified'] = 0;
-
-		$pid = $db->insert(tbl_friends, $data);
-	}
-	
 	function getActivities($userid) {
 		$db = Database::obtain();
 		

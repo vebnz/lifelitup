@@ -1,30 +1,31 @@
 <?php
 class Friends {
-	function add($friendid) {
+	function addFriend($id, $userid) {
 		$db = Database::obtain();
 		
-		$data["user_id"] = (int)$_SESSION['userid'];
-		$data["friend_id"] = (int)$friendid;
-		
-		if ($this->checkHaveFriendAlready($friendid) == true) {
-			$msg = 'This person is your friend already';
+		if ($this->checkHaveAlready($id, $userid) == true) {
+			$msg = 'You are already friends with this person!';
+			return $msg;
+		}
+
+		if ($this->checkFriendExists($id) == false) {
+			$msg = 'This memeber does not exist.';
 			return $msg;
 		}
 		
-		if ($this->checkFriendExists($friendid) == false) {
-			$msg = 'This user doesn\'t exist in our system';
-			return $msg;
-		}
-		
+		$data['user_id'] = $userid;
+		$data['friend_id'] = $id;
+		$data['date'] = time();
+		$data['verified'] = 0;
+
 		$pid = $db->insert(tbl_friends, $data);
-		return $pid;
 	}
 	
-	function remove($friendid) {
+	function removeFriend($friendid, $userid) {
 		$db = Database::obtain();
 		
-		if ($this->checkHaveFriendAlready($friendid) == false) {
-			$msg = 'You are not friends with this person already silly';
+		if ($this->checkHaveAlready($id, $userid) == false) {
+			$msg = 'You are not currently friends with this person silly';
 			return $msg;
 		}
 		
@@ -33,33 +34,43 @@ class Friends {
 			return $msg;
 		}		
 		
-		$sql = "DELETE FROM " . tbl_friends . " WHERE user_id = " . (int)$_SESSION['userid'] . " AND friend_id = " . (int)$friendid;
+		$sql = "DELETE FROM " . tbl_friends . " WHERE user_id = " . (int)$userid . " AND friend_id = " . (int)$friendid . " WHERE verified = '1'";
 		$q = $db->query($sql);
+		if ($q > 0)
+		{
+			$sqlRemFriend = "DELETE FROM " . tbl_friends . " WHRER friend_id = " . (int)$userid . " AND user_id = " . (int)$friendid;
+			$q = $db->query($sqlRemFriend);
+		}
+		else
+		{
+			$sqlIndFriend = "DELETE FROM " . tbl_friends . " WHERE user_id = " . (int)$userid . " AND friend_id = " . (int)$friendid;
+			$q = $db->query($sqlIndFriend);
+		}
+		
 	}
 	
-	function checkFriendExists($friendid) {
+	function checkFriendExists($id) {
 		$db = Database::obtain();
 
 		$sql = "SELECT user_id
-			FROM " . tbl_users . "
-			WHERE user_id = " . (int)$friendid;
-
+			FROM " . tbl_profile . "
+			WHERE user_id = " . (int)$id;
 		$row = $db->query_first($sql);
-		
-		if ($row > 0) {
+
+		if (!empty($row)) {
 			return true;
 		}
-
-		return false;		
-	}
 	
-	function checkHaveFriendAlready($friendid) {
-		$db = Database::obtain();	
-		
+		return false;
+	}
+
+	function checkHaveAlready($id, $userid) {
+		$db = Database::obtain();
+
 		$sql = "SELECT friend_id
 			FROM " . tbl_friends . "
-			WHERE user_id = " . (int)$_SESSION['userid'] . "
-			AND friend_id = " . (int)$friendid;
+			WHERE friend_id = " . (int)$id . "
+			AND user_id = " . (int)$userid;
 		$row = $db->query_first($sql);
 		
 		if ($row > 0) {

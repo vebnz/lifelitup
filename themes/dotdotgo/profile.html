@@ -46,6 +46,9 @@ $(document).ready(function()
 			{% else %}
 				<h1>Your profile page</h1>
 			{% endif %}
+			{% if msg %}
+				<p class="check">{{ msg|e }}</p>
+			{% endif %}
 
             <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
 
@@ -88,10 +91,7 @@ $(document).ready(function()
 			<p></p>
 
 			{% if viewing == 0 %}
-			<h3>Edit your details</h3>
-			{% if msg %}
-				<p class="check">{{ msg|e }}</p>
-			{% endif %}
+			<h3>Edit your details</h3>			
 			<div class="textbox">
 				<form method="POST" action="profile.php">
 					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
@@ -125,7 +125,7 @@ $(document).ready(function()
 					<h3>Friends</h3>
 						<ul>
 							{% for friend in friends %}
-								<li><a href="profile.php?userid={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a></li>
+								<li><a href="profile.php?userid={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a><a href="profile.php?action=remove&friendid={{friend.id}}"><img style="margin-top: 6px; float: right;" src="themes/dotdotgo/images/delete-icon.png" /></a></li>
 							{% endfor %}
 						</ul>
 					{% else %}
