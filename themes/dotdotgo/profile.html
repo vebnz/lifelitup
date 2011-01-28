@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% block title %} Your profile {% endblock %}
+{% block head %}
+{{ parent() }}
+<script type="text/javascript" src="themes/dotdotgo/js/jquery-1.3.2.js" ></script>
+<script type="text/javascript" src="themes/dotdotgo/js/jquery.qtip-1.0.0-rc3.min.js" ></script>
+<script type="text/javascript">
+
+$(document).ready(function() 
+{
+
+	$('.achievements a[href][title]').qtip({
+		content: {
+			text: false // Use each elements title attribute
+		},
+		style: { 
+			width: 130,
+			padding: 5,
+			background: '#ffffff',
+			color: 'black',
+			textAlign: 'center',
+			border: {
+				width: 1,
+				radius: 3,
+				color: '#018ede'
+			},
+			tip: true
+		},
+		position: {
+            corner: {
+                tooltip: 'topMiddle', // Use the corner...
+                target: 'bottomMiddle' // ...and opposite corner
+            }
+        }
+   });
+   
+
+});
+</script>
+{% endblock %}
+{% block content %}	
+		<div class="section right">
+		
+			{% if isViewing %}
+				<h1>{{ profile.first_name|e }}'s profile page</h1>
+			{% else %}
+				<h1>Your profile page</h1>
+			{% endif %}
+			{% if msg %}
+				<p class="check">{{ msg|e }}</p>
+			{% endif %}
+
+            <img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" />
+
+			<p>
+			{% if isViewing %}
+				You're currently viewing {{ profile.first_name|e }}'s profile page
+			{% else %}
+				Welcome to your profile page, {{ profile.first_name|e }} {{ profile.last_name|e }}.</p>          
+			{% endif %} 
+			<p></p>
+			<p></p> 
+			
+			{% if isFriend != null or isViewing == 0 %}
+				<h3>Recent Activities</h3>
+				<!--<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid=2">Jamie Gracie</a> are now friends.</p>
+				<p style="margin-top: -16px; font-size: 80%; color:#777777;">6 hours ago.</p>
+				<p>{{ profile.first_name|e }} {{ profile.last_name|e }} completed the achievement <a href="goals_show.php?id=4">Get a Degree</a>.</p>
+				<p style="margin-top: -16px; font-size: 80%; color:#777777;">2 days ago.</p>
+				<p>{{ profile.first_name|e }} {{ profile.last_name|e }} added the achievement <a href="goals_show.php?id=4">Get a Degree</a> to their todo list.</p>
+				<p style="margin-top: -16px; font-size: 80%; color:#777777;">17 days ago.</p>-->
+				{% for activity in activities %}
+					{% if activity.act_type == "achievement" %}
+						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} completed the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}.</a></p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
+					{% endif %}
+					{% if activity.act_type == "todo" %}
+						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} added the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}</a> to their TODO list.</p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
+					{% endif %}
+					{% if activity.act_type == "comment" %}
+						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} commented on the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}</a>.</p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
+					{% endif %}
+					{% if activity.act_type == "friend" %}
+						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid={{activity.id}}">{{ activity.name }}</a> are now friends.</p>
+						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+			<p></p>
+
+			{% if isViewing == 0 and isEditing == 1 %}
+			<h3>Edit your details</h3>			
+			<div class="textbox">
+				<form method="POST" action="profile.php">
+					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
+					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
+					<p>Facebook: <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" placeholder="What's your Facebook?" /></p>
+					<p>Twitter: <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" placeholder="What's your Twitter?" /></p>
+					<input type="submit" name="profile_edit" value="Update Details" />
+				</form>
+			</div>
+			{% endif %}
+
+			<h3>Achievements</h3>
+			<ul class="achievements">
+				{% for achievement in achievements %}
+					<li><a href="goals_show.php?id={{achievement.id}}" title="{{achievement.name}}"><img style="vertical-align: middle" src="{{ achievement.icon|e }}" /></a></li>
+				{% endfor %}
+			</ul>
+			
+		</div><!-- Content Ends -->
+		
+		<div class="aside aside-left clearfix">
+			<ul>              
+                <li>
+                    <h3>Connect with me</h3>
+					{% if isFriend or isViewing == 0 %} 
+    					<ul class="thumbnail-list">
+                        	<li><a href="mailto:{{ profile.email|e }}"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: {{ profile.email|e }}</a></li>
+                            <li><a href="http://twitter.com/#!/{{ profile.twitter|e }}"><img src="themes/dotdotgo/images/twitter.png" alt="Twitter" title="Twitter" /> Follow on twitter: @{{ profile.twitter|e }}</a></li>
+                            <li><a href="http://www.facebook.com/profile.php?id={{ profile.facebook|e }}"><img src="themes/dotdotgo/images/facebook.png" alt="Facebook" title="Facebook" /> My Facebook page: {{ profile.first_name|e }} {{ profile.last_name|e }}</a></li>
+                        </ul>
+					<h3>Friends</h3>
+						<ul>
+							{% for friend in friends %}
+								<li><a href="profile.php?userid={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a><a href="profile.php?action=remove&friendid={{friend.id}}"><img style="margin-top: 6px; float: right;" src="themes/dotdotgo/images/delete-icon.png" /></a></li>
+							{% endfor %}
+						</ul>
+					{% else %}
+							<p><a href="profile.php?action=add&friendid={{profile.user_id}}">Add Friend</a></p>
+
+					{% endif %}
+               	</li>
+        	</ul>
+		</div><!-- Sidebar Ends -->
+
+{% endblock %}	
