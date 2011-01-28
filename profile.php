@@ -38,11 +38,11 @@ $achievements = $achievement->getAchievements($userid);
 $friends = $friends->getFriends($userid);
 $profileArr = $profile->get($userid);
 $activities = $profile->getActivities($userid);
-
+$latestStatus = $profile->getLatestStatus($userid);
 
 $template = $twig->loadTemplate('profile.html');
 echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'isFriend' => $isFriend, 
-							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing));
+							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing, 'latestStatus' => $latestStatus));
 
 $db->close();
 
