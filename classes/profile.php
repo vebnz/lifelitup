@@ -73,9 +73,8 @@ class Profile {
 	function getLatestStatus($userid) {
 		$db = Database::obtain();
 
-		$sql = "SELECT username, status, posted
+		$sql = "SELECT status, posted
 				FROM " . tbl_status . "
-				JOIN " . tbl_users . " ON " . tbl_status . ".userid = " . tbl_users . ".id
 				WHERE userid = " . intval($userid) . "
 				ORDER BY id DESC";
 
