@@ -8,6 +8,10 @@
             {% if msg %}
                 <p class="check">{{ msg|e }}</p>
             {% endif %}
+			
+			{% if profile.first_name == false %}
+			<p class="star">This your first time viewing your profile. Simply update the details below to get started with LifeLitUp.</p>
+			{% endif %}
 			<h3>Your avatar</h3>
 			<img alt="image" class="alignleft avatar" src="{{ avatar|e }}" />
 			<p>Change your avatar at <a href="http://gravatar.com/site/signup/">gravatar.com</a></p> 

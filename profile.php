@@ -43,7 +43,7 @@ if ($_GET['action'] == 'modify') {
 	}
 	$template = $twig->loadTemplate('profile_edit.html');
 }
-elseif (empty($profileArr['real_name'])) {
+elseif (empty($profileArr['first_name'])) {
 	header("Location: profile.php?action=modify");
 } else {
 	$template = $twig->loadTemplate('profile.html');
