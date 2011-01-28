@@ -70,6 +70,18 @@ class Profile {
 		$pid = $db->insert(TBL_STATUS, $data);
 	}
 
+	function getLatestStatus($userid) {
+		$db = Database::obtain();
+
+		$sql = "SELECT username, status, posted
+				FROM " . tbl_status . "
+				JOIN " . tbl_users . " ON " . tbl_status . ".userid = " . tbl_users . ".id
+				WHERE userid = " . intval($userid) . "
+				ORDER BY id DESC";
+
+		return $db->query_first($sql);
+	}
+
 	function sendVerificationEmail($userid) {
 			$user = $this->get($userid);	
 
