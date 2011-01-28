@@ -75,12 +75,6 @@ $(document).ready(function()
 			
 			{% if isFriend != null or isViewing == 0 %}
 				<h3>Recent Activities</h3>
-				<!--<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid=2">Jamie Gracie</a> are now friends.</p>
-				<p style="margin-top: -16px; font-size: 80%; color:#777777;">6 hours ago.</p>
-				<p>{{ profile.first_name|e }} {{ profile.last_name|e }} completed the achievement <a href="goals_show.php?id=4">Get a Degree</a>.</p>
-				<p style="margin-top: -16px; font-size: 80%; color:#777777;">2 days ago.</p>
-				<p>{{ profile.first_name|e }} {{ profile.last_name|e }} added the achievement <a href="goals_show.php?id=4">Get a Degree</a> to their todo list.</p>
-				<p style="margin-top: -16px; font-size: 80%; color:#777777;">17 days ago.</p>-->
 				{% for activity in activities %}
 					{% if activity.act_type == "achievement" %}
 						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} completed the achievement <a href="goals_show.php?id={{activity.id}}">{{ activity.name }}.</a></p>
@@ -98,6 +92,8 @@ $(document).ready(function()
 						<p>{{ profile.first_name|e }} {{ profile.last_name|e }} and <a href="profile.php?userid={{activity.id}}">{{ activity.name }}</a> are now friends.</p>
 						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
 					{% endif %}
+				{% else %}
+					<ul><p>You've got no history! We can solve that by adding a goal... <a href="goals.php">find a goal and add it</a></p></ul>
 				{% endfor %}
 			{% endif %}
 			<p></p>
@@ -106,6 +102,8 @@ $(document).ready(function()
 			<ul class="achievements">
 				{% for achievement in achievements %}
 					<li><a href="goals_show.php?id={{achievement.id}}" title="{{achievement.name}}"><img style="vertical-align: middle" src="{{ achievement.icon|e }}" /></a></li>
+				{% else %}
+					<p>You haven't been awarded any achievements yet. Complete a goal, and be on your way to fortune and glory!</p>
 				{% endfor %}
 			</ul>
 			
