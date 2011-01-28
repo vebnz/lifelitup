@@ -23,7 +23,7 @@ class Todo {
 			FROM " . tbl_goals . "
 			WHERE id = " . (int)$goalid;
 		$row = $db->query_first($sql);
-
+		
 		if (!empty($row)) {
 			return true;
 		}
@@ -97,13 +97,13 @@ class Todo {
 			return $msg;
 		}
 		
-		if ($this->checkGoalExists($goalid) == true) {
+		if ($this->checkGoalExists($goalid) <= 0) {
 			$msg = 'This goal does not exist';
 			return $msg;
 		}
 		
 		$sql = "DELETE FROM " . tbl_todo . " WHERE user_id = " . $userid . " AND goal_id = " . $goalid;
-		$q = $db->query($sql);
+		$db->query($sql);
 	}
 	
 }
