@@ -50,7 +50,7 @@ $(document).ready(function()
 				<p class="check">{{ msg|e }}</p>
 			{% endif %}
 
-            <img src="{{ avatar }}" alt="image" class="alignleft" />
+            <img src="{{ avatar }}" alt="image" class="alignleft avatar" />
 			<p><p>
 			<p>
 			{% if isViewing %}
@@ -102,19 +102,6 @@ $(document).ready(function()
 			{% endif %}
 			<p></p>
 
-			{% if isViewing == 0 and isEditing == 1 %}
-			<h3>Edit your details</h3>			
-			<div class="textbox">
-				<form method="POST" action="profile.php">
-					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
-					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
-					<p>Facebook: <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" placeholder="What's your Facebook?" /></p>
-					<p>Twitter: <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" placeholder="What's your Twitter?" /></p>
-					<input type="submit" name="profile_edit" value="Update Details" />
-				</form>
-			</div>
-			{% endif %}
-
 			<h3>Achievements</h3>
 			<ul class="achievements">
 				{% for achievement in achievements %}
@@ -125,7 +112,9 @@ $(document).ready(function()
 		</div><!-- Content Ends -->
 		
 		<div class="aside aside-left clearfix">
-			<ul>              
+			<ul>
+				<li><h3><a href="profile.php?action=modify">> Modify Profile</a></h3></li>
+				<li><h3><a href="#">> Notifications (0)</a></li>              
                 <li>
                     <h3>Connect with me</h3>
 					{% if isFriend or isViewing == 0 %} 

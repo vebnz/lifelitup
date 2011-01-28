@@ -30,17 +30,18 @@ if ($userid != $_SESSION['userid']) {
 	$isFriend = $friends->checkIsFriend($userid);
 }
 
-if ($_GET['action'] == 'modify') {
-	$isEditing = true;
-}
-
 $achievements = $achievement->getAchievements($userid);
 $friends = $friends->getFriends($userid);
 $profileArr = $profile->get($userid);
 $activities = $profile->getActivities($userid);
 $latestStatus = $profile->getLatestStatus($userid);
 
-$template = $twig->loadTemplate('profile.html');
+if ($_GET['action'] == 'modify') {
+	$template = $twig->loadTemplate('profile_edit.html');
+}
+else {
+	$template = $twig->loadTemplate('profile.html');
+}
 echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'isFriend' => $isFriend, 
 							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing, 'latestStatus' => $latestStatus,
 							 'avatar' => get_gravatar($profileArr['email'])));
