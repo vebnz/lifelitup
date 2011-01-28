@@ -129,6 +129,8 @@ $(document).ready(function()
 						<ul>
 							{% for friend in friends %}
 								<li><a href="profile.php?userid={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a><a href="profile.php?action=remove&friendid={{friend.id}}"><img style="margin-top: 6px; float: right;" src="themes/dotdotgo/images/delete-icon.png" /></a></li>
+							{% else %}
+								<li>You've got no friends yet...</li>
 							{% endfor %}
 						</ul>
 					{% else %}
