@@ -12,11 +12,13 @@
 				<p class="alert">{{ msg }}</p>
 			{% endif %}	
 
+			{% if goals == false %}
 			<p>This is your todo list dashboard. You can view your progress on what goals you've added, you can see your statistics and eat bacon in Zimbabwe!</p>
 			<p><img src="images/bacon.jpg" /></p>
 			<p></p>	
 			<p></p>
-			<!--	
+			{% endif %}
+
             <div class="goals">
 			<ul>
            	{% for goal in goals %}
@@ -25,7 +27,6 @@
             {% endfor %}
             </ul>
             </div>
-			-->
 			<p class="note"><a href="goals.php">Add some more goals here</a></p>
 
 		</div><!-- Section -->
@@ -33,7 +34,7 @@
         <div class="aside aside-left clearfix">
             <ul>    
                 {% for category in categories %}
-					<li><h3>> <a href="#">{{ category.name|e }}</a> ({{ category.count|e }})</h3></li>
+					<li><h3>> <a href="todo.php?catid={{ category.id|e }}">{{ category.name|e }}</a> ({{ category.count|e }})</h3></li>
 				{% endfor %}
             </ul>
         </div><!-- Sidebar Ends -->

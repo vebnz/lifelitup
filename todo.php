@@ -24,7 +24,11 @@ else {
 	$userid = $_SESSION['userid'];
 }
 
-$showGoals = $todo->show($userid);
+if ($_GET['catid'] > 0) {
+	$categoryid = $_GET['catid'];
+	$showGoals = $todo->show($userid, $categoryid);
+}	
+
 $showCategories = $todo->showTodoCategories($userid);
 
 $template = $twig->loadTemplate('todo.html');

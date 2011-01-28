@@ -2,7 +2,7 @@
 
 class Todo {
 
-	function show($userid) {
+	function show($userid, $categoryid) {
 		$db = Database::obtain();
 
 		$sql = "SELECT " . tbl_goals . ".id, " . tbl_goals . ".name AS name, icon, " . tbl_category . ".name as category_name, " . tbl_category . ".id as category_id
@@ -10,7 +10,8 @@ class Todo {
         		JOIN " . tbl_goals ." ON " . tbl_todo . ".goal_id = " . tbl_goals . ".id
        			JOIN " . tbl_users . " ON " . tbl_todo . ".user_id = " . tbl_users . ".id
 				JOIN " . tbl_category . " on " . tbl_goals . " . category_id = " . tbl_category . ".id
-        		WHERE " . tbl_users . ".id =  " . $userid;
+        		WHERE " . tbl_users . ".id =  " . intval($userid) ."
+				AND " . tbl_category . ".id = " . intval($categoryid);
 		$goals = $db->fetch_array($sql);
 
 		return $goals;
