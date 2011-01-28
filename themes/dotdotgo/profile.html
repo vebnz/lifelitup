@@ -60,6 +60,11 @@ $(document).ready(function()
 			{% endif %} 
 			<p></p>
 			<p></p> 
+
+			<h3>What's happening?</h3>
+			{% if latestStatus %}
+				<blockquote><p>{{ latestStatus.status }}<p></blockquote>
+			{% endif %}
 			
 			{% if isFriend != null or isViewing == 0 %}
 				<h3>Recent Activities</h3>
