@@ -20,6 +20,7 @@ define('tbl_logs', "tbl_logs");
 define('tbl_profile', "tbl_profile");
 define('tbl_achievements', "tbl_achievements");
 define('tbl_friends', "tbl_friends");
+define('tbl_status', "tbl_status");
 
 // twig
 define('current_theme', "themes/dotdotgo");
