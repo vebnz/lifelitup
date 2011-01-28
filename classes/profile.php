@@ -61,6 +61,15 @@ class Profile {
 			$db->update(tbl_profile, $data, "user_id=" . (int)$userid);
 	}
 
+	function newStatus($userid, $status) {
+		$db = Database::obtain();
+		
+		$data['userid'] = $userid;
+		$data['status'] = $status;
+
+		$pid = $db->insert(TBL_STATUS, $data);
+	}
+
 	function sendVerificationEmail($userid) {
 			$user = $this->get($userid);	
 
