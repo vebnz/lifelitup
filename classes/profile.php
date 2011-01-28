@@ -25,7 +25,7 @@ class Profile {
 	function get($userid) {
 		$db = Database::obtain();
 		
-		$sql = "SELECT user_id, first_name, last_name, twitter, facebook, email, code
+		$sql = "SELECT user_id, first_name, last_name, twitter, facebook, email, code, location, homepage, biography
 				FROM " . tbl_profile . "
 				JOIN " . tbl_users . " ON " . tbl_profile . ".user_id = " . tbl_users . ".id				
 				WHERE " . tbl_users . ".id = " . (int)$userid;
@@ -58,6 +58,7 @@ class Profile {
 	
 	function update($data, $userid) {
 			$db = Database::obtain();
+			print_r($data); die;
 			$db->update(tbl_profile, $data, "user_id=" . (int)$userid);
 	}
 

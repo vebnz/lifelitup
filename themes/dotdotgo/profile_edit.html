@@ -17,33 +17,30 @@
 			<p></p>
 			<p></p>
 
-			<h3>Your details</h3>			
 			<div class="textbox">
-				<form method="POST" action="profile.php?action=modify">
+				<form method="POST" action="profile.php">
+				<h3>Your details</h3>			
 					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
 					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
 					<p>Location: <input type="textbox" style="new" name="location" value="{{ profile.location|e }}" placeholder="New Zealand" /></p>
-					<input type="submit" name="profile_edit" value="Update" />
-				</form>
-			</div>
 
-			<p></p>
+				<p></p>
 
-			<h3>Social Networking</h3>
-			<div class="textbox">
-				<form method="POST" action="profile.php?action=modify">
+				<h3>Social Networking</h3>
 					<p>Facebook: <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" placeholder="What's your Facebook?" /></p>
 					<p>Twitter: <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" placeholder="What's your Twitter?" /></p>
 					<p>Homepage: <input type="textbox" style="new" name="homepage" value="{{ profile.homepage|e }}" placeholder="What's your homepage?" /></p>
-					<input type="submit" name="profile_edit" value="Update" />
-				</form>
-			</div>
-
-            <h3>Biography</h3>
-            <div class="textbox">
-                <form method="POST" action="profile.php?action=modify">
+				
+				<p></p>
+	            
+				<h3>Biography</h3>
 					<textarea cols="60" rows="10" name="biography" placeholder="Your biography here! Example: I'm a mountaineer, and I fly all over the world on a kite."></textarea>
+
+				<p></p>
+
+				<h3>Save</h3>
 					<input type="submit" name="profile_edit" value="Update" />
+
 				</form>
 			</div>
 		</div><!-- Content Ends -->
