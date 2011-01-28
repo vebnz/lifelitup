@@ -33,7 +33,7 @@
         <div class="aside aside-left clearfix">
             <ul>    
                 {% for category in categories %}
-					<li><h3>> <a href="#">{{ category.name|e }}</a> (0)</h3></li>
+					<li><h3>> <a href="#">{{ category.name|e }}</a> ({{ category.count|e }})</h3></li>
 				{% endfor %}
             </ul>
         </div><!-- Sidebar Ends -->

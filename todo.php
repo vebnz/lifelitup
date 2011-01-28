@@ -25,7 +25,7 @@ else {
 }
 
 $showGoals = $todo->show($userid);
-$showCategories = $goals->showCategories();
+$showCategories = $todo->showTodoCategories($userid);
 
 $template = $twig->loadTemplate('todo.html');
 echo $template->render(array('not_me' => $not_me, 'goals' => $showGoals, 'categories' => $showCategories));

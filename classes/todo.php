@@ -105,6 +105,19 @@ class Todo {
 		$sql = "DELETE FROM " . tbl_todo . " WHERE user_id = " . $userid . " AND goal_id = " . $goalid;
 		$db->query($sql);
 	}
+
+    function showTodoCategories($userid) {
+        $db = Database::obtain();
+
+        $sql = "SELECT " . tbl_category . ".id AS id, " . tbl_category . ".name AS name, COUNT(*) AS count
+                FROM " . tbl_category . "
+				JOIN " . tbl_goals . " ON " . tbl_category . ".id = " . tbl_goals . ".category_id
+				JOIN " . tbl_todo . " ON " . tbl_goals . " .id = " . tbl_todo . ".goal_id
+				WHERE " . tbl_todo . ".user_id = " . intval($userid) . "
+				GROUP BY " . tbl_category . ".name";
+        return $db->fetch_array($sql);
+    }
+
 	
 }
 
