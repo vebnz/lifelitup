@@ -116,24 +116,28 @@ $(document).ready(function()
 				<li><h3><a href="#">> Notifications (0)</a></li>
 				{% endif %}              
                 <li>
+					{% if isFriend and isViewing %} 
                     <h3>Connect with me</h3>
-					{% if isFriend or isViewing == 0 %} 
     					<ul class="thumbnail-list">
                         	<li><a href="mailto:{{ profile.email|e }}"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: {{ profile.email|e }}</a></li>
                             {% if profile.twitter %}<li><a href="http://twitter.com/#!/{{ profile.twitter|e }}"><img src="themes/dotdotgo/images/twitter.png" alt="Twitter" title="Twitter" /> Follow on twitter: @{{ profile.twitter|e }}</a></li> {% endif %}
                            {% if profile.facebook %} <li><a href="http://www.facebook.com/profile.php?id={{ profile.facebook|e }}"><img src="themes/dotdotgo/images/facebook.png" alt="Facebook" title="Facebook" /> My Facebook page: {{ profile.first_name|e }} {{ profile.last_name|e }}</a></li> {% endif %}
                         </ul>
+					{% endif %}
 					<h3>Friends</h3>
 						<ul>
 							{% for friend in friends %}
-								<li><a href="profile.php?userid={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a><a href="profile.php?action=remove&friendid={{friend.id}}"><img style="margin-top: 6px; float: right;" src="themes/dotdotgo/images/delete-icon.png" /></a></li>
+								<li><a href="profile.php?userid={{friend.id}}">{{friend.first_name}} {{friend.last_name}}</a>{% if isViewing == false %}<a href="profile.php?action=remove&friendid={{friend.id}}"><img style="margin-top: 6px; float: right;" src="themes/dotdotgo/images/delete-icon.png" /></a>{% endif %}</li>
 							{% else %}
+								{% if isViewing == false %}
 								<li>You've got no friends yet...</li>
+								{% else %}
+								<li>None</li>
+								{% endif %}
 							{% endfor %}
 						</ul>
-					{% else %}
+					{% if isViewing and isFriend == false %}
 							<p><a href="profile.php?action=add&friendid={{profile.user_id}}">Add Friend</a></p>
-
 					{% endif %}
                	</li>
         	</ul>
