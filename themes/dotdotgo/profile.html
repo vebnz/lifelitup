@@ -93,7 +93,11 @@ $(document).ready(function()
 						<p style="margin-top: -16px; font-size: 80%; color:#777777;">{{ activity.date|actTime }}.</p>
 					{% endif %}
 				{% else %}
+					{% if isViewing %}
+					<ul><p>{{ profile.first_name|e }} has no history to show.<p></ul>
+					{% else %}
 					<ul><p>You've got no history! We can solve that by adding a goal... <a href="goals.php">find a goal and add it</a></p></ul>
+					{% endif %}
 				{% endfor %}
 			{% endif %}
 			<p></p>
@@ -103,7 +107,11 @@ $(document).ready(function()
 				{% for achievement in achievements %}
 					<li><a href="goals_show.php?id={{achievement.id}}" title="{{achievement.name}}"><img style="vertical-align: middle" src="{{ achievement.icon|e }}" /></a></li>
 				{% else %}
+					{% if isViewing %}
+					<p>{{ profile.first_name|e }} has not received any achievements.</p>
+					{% else %}	
 					<p>You haven't been awarded any achievements yet. Complete a goal, and be on your way to fortune and glory!</p>
+					{% endif %}
 				{% endfor %}
 			</ul>
 			
