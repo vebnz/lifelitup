@@ -128,17 +128,17 @@ $(document).ready(function()
 				<li><h3><a href="#">> Notifications (0)</a></li>
 				{% endif %}              
                 <li>
-					{% if isFriend != null and profile.privacy == 1 or profile.privacy == 2 and isViewing %} 
-                    <h3>Connect with me</h3>
+					<h3>Connect with me</h3>
 						{% if isViewing and isFriend == false or profile.privacy == 2 and isFriend == false %}
 							<p><a href="profile.php?action=add&friendid={{profile.user_id}}">Add as Friend</a></p>
 						{% endif %}
-    					<ul class="thumbnail-list">
+					{% if isFriend != null and profile.privacy == 1 or profile.privacy == 2 and isViewing %} 		
+					<ul class="thumbnail-list">
                         	<li><a href="mailto:{{ profile.email|e }}"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: {{ profile.email|e }}</a></li>
                             {% if profile.twitter %}<li><a href="http://twitter.com/#!/{{ profile.twitter|e }}"><img src="themes/dotdotgo/images/twitter.png" alt="Twitter" title="Twitter" /> Follow on twitter: @{{ profile.twitter|e }}</a></li> {% endif %}
                            {% if profile.facebook %} <li><a href="http://www.facebook.com/profile.php?id={{ profile.facebook|e }}"><img src="themes/dotdotgo/images/facebook.png" alt="Facebook" title="Facebook" /> My Facebook page: {{ profile.first_name|e }} {{ profile.last_name|e }}</a></li> {% endif %}
                         </ul>
-					{% endif %}
+					
 					<h3>Friends</h3>
 						<ul>
 							{% for friend in friends %}
@@ -150,7 +150,8 @@ $(document).ready(function()
 								<li>None</li>
 								{% endif %}
 							{% endfor %}
-						</ul>					
+						</ul>	
+					{% endif %}				
                	</li>
         	</ul>
 		</div><!-- Sidebar Ends -->

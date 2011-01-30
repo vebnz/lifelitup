@@ -9,22 +9,27 @@
 	$(function(){
 		/* Global error stack */
 		var _errs = [];
-
+		$('#error').hide();
 		/* Some multi-use functions. */
 		$.fn.error = function(_e) {
+			
 			return $('<p class="alert" />')
+			
 					.html('<p class="alert"><strong>Error</strong>: ' + _e + '</p>')
 					.insertAfter(this);
 		};
 		$.fn.checkForm = function() {
 			_errs = [];
 			var _c = true;
+			
 			$('input.required').each(function() {
+
 				if(!_c) {return;}
 				_c = ($(this).val().length > 0) && _c;
 				if(!_c) { _errs.push($(this).attr('title') + ' is a required field.'); }
 			});
 			$('input.empty').each(function(){
+
 				if(!_c) {return;}
 				_c = ($(this).val().length == 0) && _c;
 				if(!_c) { _errs.push('You must remove the text from the last box.'); }
@@ -35,10 +40,10 @@
 
 
 		/* Clear any error message when the user begins typing. */
-		$('input.required').add('input.empty').keypress(function(event) {
-			if($('p.alert').length > 0) {
+		$('input.required').add('input.empty').keypress(function(event) {		
+				if($('.alert').length > 0) {
 				if($(this).checkForm()) {
-					$('p.alert').fadeOut(750, function(){
+					$('.alert').fadeOut(750, function(){
 						$(this).remove();
 					})
 				}
@@ -48,11 +53,12 @@
 		/* Validate that forms are filled before submitting them.. */
 		$('form[name=register]').submit(function(){
 			if(!$(this).checkForm()) {
-				if($('p.alert').length == 0) {
+				if($('.alert').length == 0) {
 					$('input[type=submit]').error(_errs[0]);
 					return false;
 				} else {
-					$('p.alert').html('<strong>Error</strong>: ' + _errs[0] + '</p>');
+					$('#error').show();
+					$('.alert').html('<strong>Error</strong>: ' + _errs[0] + '</p>');
 					return false;
 				}
 			}
@@ -71,7 +77,19 @@
 			<div class="signup-login">
 				<div class="signup-login-text-alt">
 				</div>
+				
 				<form name="register" action="" method="POST" autocomplete="off">
+					<p>
+						<p id="error" class="alert"></p>	
+						{% if msg %}
+							{% if msg != 'You have registered' %}
+								<p class="alert">{{ msg|e }}.</p>							
+							{% endif %}
+						{% endif %}
+					</p>
+				{% if msg == 'You have registered' %}
+					<p class="check">{{ msg|e }}.</p>
+				{% endif %}
 					<input type="hidden" name="op" value="new" />
 					<p class="lab"><label for="emailAdress" accesskey="n">Email: </label></p>
 					<p><input title="Email" class="required" placeholder="Your email address" id="emailAdress" type="text" name="email" maxlength="30" /></p>
@@ -81,15 +99,7 @@
 					<p><input title="Password Repeated" class="required" id="usrPassB"  type="password" name="pass2" /></p>
 					<p class="lab"><label for="usrSeed" accesskey="r">Remove text: </label></p>
 					<p><input class="empty" id="usrSeed" value="{{ seed|e }}" type="text" name="remove" /></p>
-					<p><input type="submit" name="register" value="Register" />
-						{% if msg %}
-							{% if msg == 'You have registered' %}
-								<p class="alert">{{ msg|e }}.</p>
-							{% else %}
-								<p class="alert">{{ msg|e }}.</p>
-							{% endif %}
-						{% endif %}
-					</p>
+					<p><input type="submit" name="register" value="Register" /></p>
 				</form>
 			</div>
 		</div><!-- Signup Box, hidden from view -->
