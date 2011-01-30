@@ -148,7 +148,7 @@ class Friends {
 		$fdata["date"] = time();
 		$fdata["verified"] = 1;
 		
-		$pid = $db->insert(tbl_friends, $data);
+		$pid = $db->insert(tbl_friends, $fdata);
 		return $pid;
 	}
 }
