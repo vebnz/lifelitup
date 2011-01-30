@@ -116,26 +116,39 @@ class Friends {
 	}
 	
 	function sendFriendVerification($userid, $friendid) {
-			$profile = new Profile;
-			$user = $profile->get(intval($userid));	
-			$friend = $profile->get(intval($friendid));
+		$profile = new Profile;
+		$user = $profile->get(intval($userid));	
+		$friend = $profile->get(intval($friendid));
 			
-            $subject = "You have a new friend request over at LifeLitUp.com";
-            $emailMsg = "Hi " . $friend["first_name"] . ",\n"
-                        ."" . $user["first_name"] . " " . $user["last_name"] . " wants to become your friend on LifeLitUp\n\n"
-                        ."If you know this person and want to confirm this friendship, then please click here:\n"
-						."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&friendid=" . $user["user_id"] . "\n\n"
-                        ."If you do not know this person or want to ignore this friend request, then ignore the request here:\n"
-						."<<url for ignore>>\n\n"
-                        ."Regards,\n"
-                        ."The LLU Team!";
-                        
+        $subject = "You have a new friend request over at LifeLitUp.com";
+        $emailMsg = "Hi " . $friend["first_name"] . ",\n"
+                ."" . $user["first_name"] . " " . $user["last_name"] . " wants to become your friend on LifeLitUp\n\n"
+                ."If you know this person and want to confirm this friendship, then please click here:\n"
+				."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&friendid=" . $user["user_id"] . "\n\n"
+                ."If you do not know this person or want to ignore this friend request, then ignore the request here:\n"
+				."<<url for ignore>>\n\n"
+                ."Regards,\n"
+                ."The LLU Team!";
+                   
+        $headers = 'From: no-reply@lifelitup.com' . "\r\n" .
+                'Reply-To: no-reply@lifelitup.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
                 
-            $headers = 'From: no-reply@lifelitup.com' . "\r\n" .
-                       'Reply-To: no-reply@lifelitup.com' . "\r\n" .
-                       'X-Mailer: PHP/' . phpversion();
-                
-            mail($friend['email'], $subject, $emailMsg, $headers);
+        mail($friend['email'], $subject, $emailMsg, $headers);
+	}
+	
+	function verifyFriend($userid, $friendid) {
+		
+		$udata["verified"] = 1;
+		$db->update(tbl_friends, $udata, "user_id=" . $userid ."");
+		
+		$fdata["user_id"] = $friendid;
+		$fdata["friend_id"] = $userid;
+		$fdata["date"] = time();
+		$fdata["verified"] = 1;
+		
+		$pid = $db->insert(tbl_friends, $data);
+		return $pid;
 	}
 }
 ?>
