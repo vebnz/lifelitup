@@ -115,6 +115,23 @@ class Friends {
 		
 	}
 	
+	function checkAlreadyVerified($userid, $friendid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT userid, friend_id
+				FROM " . tbl_friends . "
+				WHERE friend_id = " . (int)$friendid . " AND user_id = " . $userid . " AND verified='1'";
+		
+		$pid = $db->query_first($sql);
+		
+		if ($pid > 0)
+		{
+			return true;
+		}
+		
+		return false;	
+	}
+	
 	function sendFriendVerification($userid, $friendid) {
 		$profile = new Profile;
 		$user = $profile->get(intval($userid));	
@@ -125,7 +142,7 @@ class Friends {
                 ."" . $user["first_name"] . " " . $user["last_name"] . " wants to become your friend on LifeLitUp\n\n"
                 ."If you know this person and want to confirm this friendship, then please click here:\n"
 				."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&friendid=" . $user["user_id"] . "\n\n"
-                ."If you do not know this person or want to ignore this friend request, then ignore the request here:\n"
+                ."If you do not know this person or want to ignore this friend request, then click the link below:\n"
 				."<<url for ignore>>\n\n"
                 ."Regards,\n"
                 ."The LLU Team!";
@@ -139,6 +156,16 @@ class Friends {
 	
 	function verifyFriend($userid, $friendid) {
 		$db = Database::obtain();
+		
+		if ($this->checkIsFriend($friendid) == false) {
+			$msg = 'This person hasn\'t previously added you as friend.';
+			return $msg;
+		}
+		
+		if ($this->checkAlreadyVerified($userid, $friendid) == true) {
+			$msg = 'This friendship has already been verified.';
+			return $msg;
+		}		
 		
 		$udata["verified"] = 1;
 		$db->update(tbl_friends, $udata, "user_id=" . $userid ."");
