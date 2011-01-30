@@ -85,14 +85,14 @@ class Profile {
 			$user = $this->get($userid);	
 
             $subject = "Confirm your email for LifeLitUp.com";
-            $emailMsg = "Thank you for registering for LifeLitUp.\n
-                         To confirm your email address, please click on the following: 
-                            <a href=\"http://localhost/llu/register.php?confirm=" . $user['code'] . "\">http://localhost/llu/register.php?confirm=" . $user['code'] . "</a>
-                         Once your email is confirmed, you'll be able to use all the features LifeLitUp offers.\n\n
-                         Regards,\n
-                         The LLU Team!\n\n
-                         -----------------------------\n\n
-                         If you didn't register, you can ignore this email.";
+            $emailMsg = "Thank you for registering for LifeLitUp.\n"
+                        ." To confirm your email address, please click on the following: "
+                        ." http://www.lifelitup.com/alpha/register.php?confirm=" . $user['code']
+                        ." Once your email is confirmed, you'll be able to use all the features LifeLitUp offers.\n\n"
+                        ." Regards,\n"
+                        ." The LLU Team!\n\n"
+                        ." -----------------------------\n\n"
+                        ." If you didn't register, you can ignore this email.";
                 
             $headers = 'From: no-reply@lifelitup.com' . "\r\n" .
                        'Reply-To: no-reply@lifelitup.com' . "\r\n" .
