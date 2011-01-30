@@ -121,10 +121,10 @@ class Friends {
 			$friend = $profile->get(intval($friendid));
 			
             $subject = "You have a new friend request over at LifeLitUp.com";
-            $emailMsg = "Hi " . $user["first_name"] . ",\n"
-                        ."" . $friend["first_name"] . " " . $friend["last_name"] . " wants to become your friend on LifeLitUp\n\n"
+            $emailMsg = "Hi " . $friend["first_name"] . ",\n"
+                        ."" . $user["first_name"] . " " . $user["last_name"] . " wants to become your friend on LifeLitUp\n\n"
                         ."If you know this person and want to confirm this friendship, then please click here:\n"
-						."<<url for confirm>>\n\n"
+						."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&friendid=" . $user["user_id"] . "\n\n"
                         ."If you do not know this person or want to ignore this friend request, then ignore the request here:\n"
 						."<<url for ignore>>\n\n"
                         ."Regards,\n"
@@ -135,7 +135,7 @@ class Friends {
                        'Reply-To: no-reply@lifelitup.com' . "\r\n" .
                        'X-Mailer: PHP/' . phpversion();
                 
-            mail($user['email'], $subject, $emailMsg, $headers);
+            mail($friend['email'], $subject, $emailMsg, $headers);
 	}
 }
 ?>
