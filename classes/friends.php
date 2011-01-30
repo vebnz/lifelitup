@@ -138,6 +138,7 @@ class Friends {
 	}
 	
 	function verifyFriend($userid, $friendid) {
+		$db = Database::obtain();
 		
 		$udata["verified"] = 1;
 		$db->update(tbl_friends, $udata, "user_id=" . $userid ."");
