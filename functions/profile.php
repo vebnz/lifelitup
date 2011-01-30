@@ -12,6 +12,7 @@ if (isset($_POST['profile_edit'])) {
 	$data['location'] = $_POST['location']; // secure
 	$data['homepage'] = $_POST['homepage']; // secure
 	$data['biography'] = $_POST['biography']; // secure
+	$data['privacy'] = $_POST['privacy'];
 
 	$profile->update($data, $_SESSION['userid']);
 	$msg = 'You have updated your profile.';

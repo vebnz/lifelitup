@@ -41,7 +41,14 @@
 					<textarea cols="60" rows="10" name="biography" placeholder="Your biography here! Example: I'm a mountaineer, and I fly all over the world on a kite.">{{ profile.biography|stripslashes }}</textarea>
 
 				<p></p>
+				
+				<h3>Privacy Settings</h3>
+					<p><input style="width: 10px" type="radio" value="0" name="privacy" {% if profile.privacy == 0 %} checked {% endif %}> Don't allow anybody to view my profile and contact details.</p>
+					<p><input style="width: 10px" type="radio" value="1" name="privacy" {% if profile.privacy == 1 %} checked {% endif %}> Restrict my profile and contact details to my friends and family only.</p>
+					<p><input style="width: 10px" type="radio" value="2" name="privacy" {% if profile.privacy == 2 %} checked {% endif %}> Allow everybody to view my profile and contact details.</p>
 
+				<p></p>
+				
 				<h3>Save</h3>
 					<input type="submit" name="profile_edit" value="Update" />
 
