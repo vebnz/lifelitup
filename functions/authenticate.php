@@ -6,6 +6,44 @@ require_once('classes/event.php');
 
 $auth = new Authenticate;
 
+if ($_GET['action'] == 'confirm') {
+		$code = $_GET['code']; 
+		$userid = intval($_GET['userid']);
+	
+		if (empty($code)) {
+			event::fire('HAX_CONFIRMATION_CODE');
+			$msg = 'The confirmation code is empty, did you tamper with the URL?';
+			return;
+		}
+
+		if (empty($userid)) {
+			event::fire('HAX_CONFIRMATION_USERID');
+			$msg= 'The User Identifcation code is empty, did you tamper with the URL?';
+			return;
+		}
+
+		if (!preg_match('/^[a-fA-F0-9]+$/', $code)) {
+			event::fire('HAX_CONFIRMATION_CODE');
+			$msg = 'The confirmation code is borked, did you tamper with the URL?';
+			return;
+		}
+
+		if (strlen($code) < 32) {
+			event::fire('HAX_CONFIRMATION_CODE');
+			$msg = 'The confirmation code is borked, did you tamper with the URL?';
+			return;
+		}
+
+		if ($auth->checkCode($userid, $code)) {
+			$isConfirmed = 1;
+			$auth->verifyUser($userid);
+		}
+		else {
+			$msg = 'Confirmation code is wrong. <a href=\"#\">Click here to recieve another one.</a>';
+			return;
+		}
+}
+
 if (isset($_POST['login'])) {
 
 	$op = $_POST['op'];
@@ -32,10 +70,16 @@ if (isset($_POST['login'])) {
 	}
 
 	$login = $auth->login($email, $password);
-	
 	if ($login > 0) {
+		$verified = $auth->isVerified($login['id']);
+		if (empty($verified)) {
+			$msg = 'You have not confirmed your email address';
+			return;
+		}
+
 		$auth->validateUser($login);
 		event::fire('USER_LOGIN');
+
 		$_SESSION['destination'] = $_SERVER['REQUEST_URI'];
 		if(isset($_SESSION['destination'])) {
 			header('Location: ' . $_SESSION['destination']);

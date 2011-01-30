@@ -12,8 +12,8 @@
 
 		/* Some multi-use functions. */
 		$.fn.error = function(_e) {
-			return $('<p class="warning" />')
-					.html('<p class="warning"><strong>Error</strong>: ' + _e + '</p>')
+			return $('<p class="alert" />')
+					.html('<p class="alert"><strong>Error</strong>: ' + _e + '</p>')
 					.insertAfter(this);
 		};
 		$.fn.checkForm = function() {
@@ -36,9 +36,9 @@
 
 		/* Clear any error message when the user begins typing. */
 		$('input.required').add('input.empty').keypress(function(event) {
-			if($('p.warning').length > 0) {
+			if($('p.alert').length > 0) {
 				if($(this).checkForm()) {
-					$('p.warning').fadeOut(750, function(){
+					$('p.alert').fadeOut(750, function(){
 						$(this).remove();
 					})
 				}
@@ -48,11 +48,11 @@
 		/* Validate that forms are filled before submitting them.. */
 		$('form[name=register]').submit(function(){
 			if(!$(this).checkForm()) {
-				if($('p.warning').length == 0) {
+				if($('p.alert').length == 0) {
 					$('input[type=submit]').error(_errs[0]);
 					return false;
 				} else {
-					$('p.warning').html('<strong>Error</strong>: ' + _errs[0] + '</p>');
+					$('p.alert').html('<strong>Error</strong>: ' + _errs[0] + '</p>');
 					return false;
 				}
 			}

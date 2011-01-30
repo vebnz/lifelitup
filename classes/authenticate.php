@@ -105,6 +105,34 @@ class Authenticate {
 			return false;
 		}
 	}
+
+	function checkCode($userid, $code) {
+		$db = Database::obtain();
+
+		$sql = "SELECT 1 FROM " . tbl_users . "
+				WHERE id = " . intval($userid) . "
+				AND code = '" . $code . "'";
+		return $db->query_first($sql);
+	}
+
+	function verifyUser($userid) {
+		$db = Database::obtain();
+
+		$data['verified'] = 1;
+		$data['last_update'] = time();
+
+		$db->update(tbl_users, $data, "id='" . intval($userid) . "'");
+	}
+
+	function isVerified($userid) {
+		$db = Database::obtain();
+
+		$sql = "SELECT 1 FROM " . tbl_users . "
+				WHERE verified = 1
+				AND id = " . intval($userid);
+		return $db->query_first($sql);
+	}
+
 }
 
 ?>

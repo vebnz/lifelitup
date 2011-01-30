@@ -24,7 +24,7 @@ else {
 	$template = $twig->loadTemplate('register.html');
 }
 
-echo $template->render(array('title' => 'Lifelitup', 'msg' => $msg, 'seed' => $seed));
+echo $template->render(array('title' => 'Lifelitup', 'msg' => $msg, 'seed' => $seed, 'isConfirmed' => $isConfirmed));
 
 $db->close();
 

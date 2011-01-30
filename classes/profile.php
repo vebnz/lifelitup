@@ -82,12 +82,12 @@ class Profile {
 	}
 
 	function sendVerificationEmail($userid) {
-			$user = $this->get($userid);	
+			$user = $this->get(intval($userid));	
 
             $subject = "Confirm your email for LifeLitUp.com";
             $emailMsg = "Thank you for registering for LifeLitUp.\n"
                         ."To confirm your email address, please click on the following: \n\n"
-                        ." http://www.lifelitup.com/alpha/register.php?confirm=" . $user['code'] . "\n\n"
+                        ." http://www.lifelitup.com/alpha/register.php?action=confirm&code=" . $user['code'] . "&userid=" . intval($userid) . "\n\n"
                         ."Once your email is confirmed, you'll be able to use all the features LifeLitUp offers.\n\n"
                         ."Regards,\n"
                         ."The LLU Team!\n\n"
