@@ -15,9 +15,15 @@ if ($auth->isLoggedIn()) {
 
 // this is passed directly into an HTML text input, the text must be removed else registration will fail
 $seed = sha1(rand(456, 25000) . 'We love ponies bro' . (6*6));
-
-$template = $twig->loadTemplate('register.html');
 $msg = isset($msg) ? $msg : '';
+
+if ($_GET['action'] == 'confirm') {
+	$template = $twig->loadTemplate('confirm_email.html');
+}
+else {
+	$template = $twig->loadTemplate('register.html');
+}
+
 echo $template->render(array('title' => 'Lifelitup', 'msg' => $msg, 'seed' => $seed));
 
 $db->close();
