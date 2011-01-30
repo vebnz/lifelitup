@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Confirm Email {% endblock %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block content %}	
+		<div class="section full">
+			
+			<h1>Confirmation</h1>
+
+			{% if msg %}
+				<p class="alert">{{ msg|raw }}</p>
+			{% endif %}		
+
+			{% if isConfirmed %}
+				<p>Congratulations, your email address has been confirmed. Click <a href="login.php">here to login</a></p>
+			{% endif %}
+
+		</div><!-- Section -->
+
+{% endblock %} 	
