@@ -85,7 +85,7 @@ class Authenticate {
 			return $msg;
 		}
 
-		$data['code'] = $hasher->HashPassword(rand(1,rand(1,500)));
+		$data['code'] = shell_exec('head -c 16 < /dev/urandom');
 		$data['email'] = $email;
 		$data['password'] = $hasher->HashPassword($password);
 
@@ -98,6 +98,7 @@ class Authenticate {
 	
 		if ($pid > 0) {
 			$prof->create($pid);
+			$prof->sendVerificationEmail($pid);
 			return true;
 		}
 		else {
