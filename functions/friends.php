@@ -17,7 +17,8 @@ if ($action == "add") {
 	
 	if (empty($add)) {
 		event::fire('USER_ADD_FRIEND');
-		$msg = "Added friend successfully. <a href='profile.php?userid=" . $id . "'>View their profile</a>";
+		$msg = "An email has been sent to your friend for confirmation!";
+		$friends->sendFriendVerification($userid, $id);
 	}
 	else {
 		$msg = $add;
@@ -43,7 +44,10 @@ if ($action == "remove") {
 		$msg = $add;
 	}
 	return $msg;
+}
 
+if ($action == "confirmFriend") {
+	
 }	
 	
 ?>

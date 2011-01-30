@@ -1,4 +1,6 @@
 <?php
+require_once('classes/profile.php');
+
 class Friends {
 	function addFriend($id, $userid) {
 		$db = Database::obtain();
@@ -88,7 +90,7 @@ class Friends {
 		        FROM " . tbl_friends . "
         		JOIN " . tbl_users ." ON " . tbl_friends . ".friend_id = " . tbl_users . ".id
        			JOIN " . tbl_profile . " ON " . tbl_friends . ".friend_id = " . tbl_profile . ".user_id
-        		WHERE " . tbl_friends . ".user_id =  " . $userid;
+        		WHERE " . tbl_friends . ".user_id =  " . $userid . " AND " . tbl_friends . ".verified = '1'";
 		$friends = $db->fetch_array($sql);
 
 		return $friends;
@@ -111,6 +113,29 @@ class Friends {
 		
 		return false;
 		
+	}
+	
+	function sendFriendVerification($userid, $friendid) {
+			$profile = new Profile;
+			$user = $profile->get(intval($userid));	
+			$friend = $profile->get(intval($friendid));
+			
+            $subject = "You have a new friend request over at LifeLitUp.com";
+            $emailMsg = "Hi " . $user["first_name"] . ",\n"
+                        ."" . $friend["first_name"] . " " . $friend["last_name"] . " wants to become your friend on LifeLitUp\n\n"
+                        ."If you know this person and want to confirm this friendship, then please click here:\n"
+						."<<url for confirm>>\n\n"
+                        ."If you do not know this person or want to ignore this friend request, then ignore the request here:\n"
+						."<<url for ignore>>\n\n"
+                        ."Regards,\n"
+                        ."The LLU Team!";
+                        
+                
+            $headers = 'From: no-reply@lifelitup.com' . "\r\n" .
+                       'Reply-To: no-reply@lifelitup.com' . "\r\n" .
+                       'X-Mailer: PHP/' . phpversion();
+                
+            mail($user['email'], $subject, $emailMsg, $headers);
 	}
 }
 ?>
