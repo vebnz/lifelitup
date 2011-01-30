@@ -85,7 +85,7 @@ class Authenticate {
 			return $msg;
 		}
 
-		$data['code'] = trim(shell_exec('head -c 16 < /dev/urandom'));
+		$data['code'] = bin2hex(shell_exec('head -c 16 < /dev/urandom'));
 		$data['email'] = $email;
 		$data['password'] = $hasher->HashPassword($password);
 
