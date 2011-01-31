@@ -28,7 +28,7 @@ else {
 
 if ($userid != $_SESSION['userid']) {
 	$isViewing = true;
-	$isFriend = $friends->checkIsFriend($userid);
+	$isFriend = $friends->checkIsFriend($userid, $_SESSION['userid']);
 }
 
 $achievements = $achievement->getAchievements($userid);

@@ -47,8 +47,7 @@ if ($action == "remove") {
 }
 
 if ($action == "confirmFriend") {
-	// ID = 2 - jamie@c9d
-	// UserID = 9 - jimmy@devhour
+
 	$id = $_GET['friendid'];
 	$userid = $_GET['userid'];
 	

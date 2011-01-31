@@ -179,8 +179,7 @@ class Friends {
                 
         mail($friend['email'], $subject, $emailMsg, $headers);
 	}
-	// FriendID = 2 - jamie@c9d
-	// UserID = 9 - jimmy@devhour
+
 	function verifyFriend($friendid, $userid) {
 		$db = Database::obtain();
 		
