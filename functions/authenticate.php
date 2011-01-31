@@ -47,6 +47,7 @@ if ($_GET['action'] == 'confirm') {
 if (isset($_POST['login'])) {
 
 	$op = $_POST['op'];
+	$dest = $_POST['dest'];
 	if ($op !== 'new' && $op !== 'login') {
 		die('Unknown request');
 	}
@@ -79,10 +80,9 @@ if (isset($_POST['login'])) {
 
 		$auth->validateUser($login);
 		event::fire('USER_LOGIN');
-
-		$_SESSION['destination'] = $_SERVER['REQUEST_URI'];
-		if(isset($_SESSION['destination'])) {
-			header('Location: ' . $_SESSION['destination']);
+		
+		if(!empty($dest)) {
+			header('Location: ' . $dest);
 		}
 		else
 		{

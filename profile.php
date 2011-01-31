@@ -14,6 +14,7 @@ require_once('functions/profile.php');
 require_once('functions/gravatar.php');
 
 if (!$auth->isLoggedIn()) {
+	$_SESSION['destination'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 	die;
 }

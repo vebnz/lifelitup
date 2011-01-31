@@ -62,6 +62,7 @@
 					</div>
 					<form method="POST" name="login" id="loginform" action="login.php" autocomplete="off">
 						<input type="hidden" name="op" value="login" />
+						<input type="hidden" name="dest" value="{{ dest }}" />
 						<p><input type="text" name="email" placeholder="Your email address" class="yourname" /></p>
 						<p><input type="password" name="password" placeholder="Your password" class="yourpassword" /></p>
 						{% if msg %}<p class="alert">{{ msg|raw }}</p>{% endif %}
