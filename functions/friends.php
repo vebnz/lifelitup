@@ -47,8 +47,8 @@ if ($action == "remove") {
 }
 
 if ($action == "confirmFriend") {
-	$id = (int)$_GET['friendid'];
-	$userid = $_SESSION['userid'];
+	$id = $_GET['friendid'];
+	$userid = $_GET['userid'];
 	
 	$conf = $friends->verifyFriend($id, $userid);
 	if ($remove < 0) {

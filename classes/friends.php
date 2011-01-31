@@ -167,7 +167,7 @@ class Friends {
         $emailMsg = "Hi " . $friend["first_name"] . ",\n"
                 ."" . $user["first_name"] . " " . $user["last_name"] . " wants to become your friend on LifeLitUp\n\n"
                 ."If you know this person and want to confirm this friendship, then please click here:\n"
-				."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&friendid=" . $user["user_id"] . "\n\n"
+				."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&userid=" . $friend["user_id"] . "&friendid=" . $user["user_id"] . "\n\n"
                 ."If you do not know this person or want to ignore this friend request, then click the link below:\n"
 				."<<url for ignore>>\n\n"
                 ."Regards,\n"
