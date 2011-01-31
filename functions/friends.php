@@ -50,6 +50,10 @@ if ($action == "confirmFriend") {
 	$id = $_GET['friendid'];
 	$userid = $_GET['userid'];
 	
+	echo "MY ID: " . $userid;
+	echo "FRIEND ID: " . $id;
+	die();
+	
 	$conf = $friends->verifyFriend($id, $userid);
 	if ($remove < 0) {
 		$msg = 'Failed to verify this friendship.';
