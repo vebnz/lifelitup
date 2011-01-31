@@ -126,12 +126,14 @@ $(document).ready(function()
 				{% if isViewing == false %}
 				<li><h3><a href="profile.php?action=modify">> Modify Profile</a></h3></li>
 				<li><h3><a href="#">> Notifications (0)</a></li>
-				{% endif %}              
+				{% else %}              
                 <li>
+
 					<h3>Connect with me</h3>
 						{% if isViewing and isFriend == false or profile.privacy == 2 and isFriend == false %}
 							<p><a href="profile.php?action=add&friendid={{profile.user_id}}">Add as Friend</a></p>
 						{% endif %}
+				{% endif %}	
 					{% if isFriend != null and profile.privacy == 1 or profile.privacy == 2 and isViewing %} 		
 					<ul class="thumbnail-list">
                         	<li><a href="mailto:{{ profile.email|e }}"><img src="themes/dotdotgo/images/email.png" alt="Email" title="Email" /> Email me: {{ profile.email|e }}</a></li>

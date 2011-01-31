@@ -16,7 +16,6 @@ class People {
 
 		$sql = "SELECT 1 FROM " . tbl_people . " WHERE ip = " . ip2long($ip);
 		$row = $db->query_first($sql);
-		print_r($row);
 		if (!empty($row)) {
 			return true;
 		}

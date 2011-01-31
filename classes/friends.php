@@ -184,7 +184,7 @@ class Friends {
 		$db = Database::obtain();
 		
 		if ($this->checkIsFriend($friendid) == false) {
-			$msg = 'This person hasn\'t previously added you as friend.';
+			$msg = 'This person hasn\'t previously added you to their friends list.';
 			return $msg;
 		}
 		

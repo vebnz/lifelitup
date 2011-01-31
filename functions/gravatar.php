@@ -11,7 +11,7 @@
  * @return String containing either just a URL or a complete image tag
  * @source http://gravatar.com/site/implement/images/php/
  */
-function get_gravatar( $email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts = array() ) {
+function get_gravatar( $email, $s = 80, $d = 'identicon', $r = 'pg', $img = false, $atts = array() ) {
 	$url = 'http://www.gravatar.com/avatar/';
 	$url .= md5( strtolower( trim( $email ) ) );
 	$url .= "?s=$s&d=$d&r=$r";
