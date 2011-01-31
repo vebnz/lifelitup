@@ -17,7 +17,8 @@ if ($action == "add") {
 	
 	if (empty($add)) {
 		event::fire('USER_ADD_FRIEND');
-		$msg = "Added friend successfully. <a href='profile.php?userid=" . $id . "'>View their profile</a>";
+		$msg = "An email has been sent to your friend for confirmation!";
+		$friends->sendFriendVerification($userid, $id);
 	}
 	else {
 		$msg = $add;
@@ -29,7 +30,7 @@ if ($action == "remove") {
 	$id = (int)$_GET['friendid'];
 	$userid = $_SESSION['userid'];
 	
-	$msg = $friends->removeFriend($id, $userid);        
+	$add = $friends->removeFriend($id, $userid);        
 	if ($remove < 0) {
 		$msg = 'Failed to remove this friend from your friends list.';
 		return;
@@ -43,7 +44,27 @@ if ($action == "remove") {
 		$msg = $add;
 	}
 	return $msg;
+}
 
+if ($action == "confirmFriend") {
+	$id = (int)$_GET['friendid'];
+	$userid = $_SESSION['userid'];
+	
+	$conf = $friends->verifyFriend($id, $userid);
+	if ($remove < 0) {
+		$msg = 'Failed to verify this friendship.';
+		return;
+	}
+	
+	if (empty($remove)) {
+		event::fire('USER_CONFIRM_FRIEND');
+		$msg = "You are now friends with this person. View their <a href='profile.php?userid=" . $id . "'>profile</a>."; 
+	}
+	else
+	{
+		$msg = $conf;
+	}
+	return $msg;
 }	
 	
 ?>

@@ -1,4 +1,6 @@
 <?php
+require_once('classes/profile.php');
+
 class Friends {
 	function addFriend($id, $userid) {
 		$db = Database::obtain();
@@ -88,7 +90,7 @@ class Friends {
 		        FROM " . tbl_friends . "
         		JOIN " . tbl_users ." ON " . tbl_friends . ".friend_id = " . tbl_users . ".id
        			JOIN " . tbl_profile . " ON " . tbl_friends . ".friend_id = " . tbl_profile . ".user_id
-        		WHERE " . tbl_friends . ".user_id =  " . $userid;
+        		WHERE " . tbl_friends . ".user_id =  " . $userid . " AND " . tbl_friends . ".verified = '1'";
 		$friends = $db->fetch_array($sql);
 
 		return $friends;
@@ -111,6 +113,70 @@ class Friends {
 		
 		return false;
 		
+	}
+	
+	function checkAlreadyVerified($userid, $friendid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT userid, friend_id
+				FROM " . tbl_friends . "
+				WHERE friend_id = " . (int)$friendid . " AND user_id = " . $userid . " AND verified='1'";
+		
+		$pid = $db->query_first($sql);
+		
+		if ($pid > 0)
+		{
+			return true;
+		}
+		
+		return false;	
+	}
+	
+	function sendFriendVerification($userid, $friendid) {
+		$profile = new Profile;
+		$user = $profile->get(intval($userid));	
+		$friend = $profile->get(intval($friendid));
+			
+        $subject = "You have a new friend request over at LifeLitUp.com";
+        $emailMsg = "Hi " . $friend["first_name"] . ",\n"
+                ."" . $user["first_name"] . " " . $user["last_name"] . " wants to become your friend on LifeLitUp\n\n"
+                ."If you know this person and want to confirm this friendship, then please click here:\n"
+				."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&friendid=" . $user["user_id"] . "\n\n"
+                ."If you do not know this person or want to ignore this friend request, then click the link below:\n"
+				."<<url for ignore>>\n\n"
+                ."Regards,\n"
+                ."The LLU Team!";
+                   
+        $headers = 'From: no-reply@lifelitup.com' . "\r\n" .
+                'Reply-To: no-reply@lifelitup.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+                
+        mail($friend['email'], $subject, $emailMsg, $headers);
+	}
+	
+	function verifyFriend($userid, $friendid) {
+		$db = Database::obtain();
+		
+		if ($this->checkIsFriend($friendid) == false) {
+			$msg = 'This person hasn\'t previously added you as friend.';
+			return $msg;
+		}
+		
+		if ($this->checkAlreadyVerified($userid, $friendid) == true) {
+			$msg = 'This friendship has already been verified.';
+			return $msg;
+		}		
+		
+		$udata["verified"] = 1;
+		$db->update(tbl_friends, $udata, "user_id=" . $userid ."");
+		
+		$fdata["user_id"] = $friendid;
+		$fdata["friend_id"] = $userid;
+		$fdata["date"] = time();
+		$fdata["verified"] = 1;
+		
+		$pid = $db->insert(tbl_friends, $fdata);
+		return $pid;
 	}
 }
 ?>

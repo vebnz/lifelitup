@@ -50,7 +50,7 @@ class Profile {
 			UNION (SELECT " . tbl_friends . ".user_id, " . tbl_friends . ".date, " . tbl_profile . ".user_id, CONCAT_WS(' ', " . tbl_profile . ".first_name,  " . tbl_profile . ".last_name), 'friend' AS act_type 
 			FROM " . tbl_friends . " 
 			JOIN " . tbl_profile . " ON " . tbl_friends . ".friend_id = " . tbl_profile . ".user_id
-			WHERE " . tbl_friends . ".user_id = " . $userid . ")
+			WHERE " . tbl_friends . ".user_id = " . $userid . " AND verified='1')
 			ORDER BY date DESC";
 			
 		return $db->fetch_array($sql);

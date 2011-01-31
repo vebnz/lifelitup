@@ -607,19 +607,20 @@ Tags: business, enterprise, product, application
 	.signup-login-text { float: left; width: 100px; }
 	.signup-login-text-alt { float: left; width: 97%; margin-bottom: 10px; }
 	.signup-login h3 { color: #f7f7f7; font-size: 1.2em; text-align: left; text-shadow: #222 0 -1px; }
-	.signup-login p { text-align: left; }
+	.signup-login p { text-align: left; font-size: 0.9em; }
 	.signup-login p.lab { margin-bottom: -20px; width: 300px; }
 	.signup-login form { float: left; width: auto; }	
-	
-	.signup-login form input { border: 1px solid #018ede;  margin: 0 0 0px; padding: 5px; width: 300px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+	.signup-login form input { border: 1px solid #018ede;  margin: 0 0 0px 20px; padding: 5px; width: 301px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 	.signup-login form .yourname { background: #fff url(images/user.png) no-repeat 5px; padding-left: 25px; }
 	.signup-login form .youremail, .signup-login form .yourpassword { background: #fff url(images/email.png) no-repeat 5px; padding-left: 25px; }
 	.signup-login form input:focus { background-color: #ffffb8 !important; }
-	.signup-login form input[type=submit] { background: #fff url(images/button-gradient.png) repeat-x left bottom; border: 1px solid #018ede; color: #575757; float: left; margin: 0 5px 10px 0px; width: 148px; }
+	.signup-login form input[type=submit] { background: #fff url(images/button-gradient.png) repeat-x left bottom; border: 1px solid #018ede; color: #575757; float: left; margin: 0 5px 10px 20px; width: 148px; }
 	.signup-login form input[type=submit]:hover { background: #e7e7e7; color: #000; cursor: pointer; }
 	.signup-login form textarea { border: 1px solid #018ede;  margin: 0 0 0px; padding: 5px; height: 75px; width: 300px;  -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 	.signup-login form input[type=file] { border: 1px solid #018ede;  margin: 0 0 0px; padding: 5px; }
-
+	.signup-login label { float: left; text-align: right; width: 160px; }
+	
+	
 	#upload{
 		cursor:pointer !important;		
 	}
