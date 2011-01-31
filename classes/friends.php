@@ -180,7 +180,7 @@ class Friends {
         mail($friend['email'], $subject, $emailMsg, $headers);
 	}
 	
-	function verifyFriend($userid, $friendid) {
+	function verifyFriend($friendid, $userid) {
 		$db = Database::obtain();
 		
 		if ($this->checkIsFriend($friendid) == false) {
