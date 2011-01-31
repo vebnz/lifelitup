@@ -67,7 +67,7 @@ class Friends {
 		
 		$sql = "SELECT user_id 
 			FROM " . tbl_profile . "
-			WHERE user_id = " . (int)$id . " AND first_name != NULL";
+			WHERE user_id = " . (int)$id . " AND first_name != ''";
 			
 		$row = $db->query_first($sql);
 		
