@@ -86,7 +86,7 @@ if (isset($_POST['login'])) {
 		}
 		else
 		{
-			header("Location: profile.php");
+			header("Location: index.php");
 		}
 		die;
 	}
