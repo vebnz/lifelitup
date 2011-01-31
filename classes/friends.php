@@ -15,6 +15,16 @@ class Friends {
 			return $msg;
 		}
 		
+		if ($this->checkBlankProfile($id) == false) {
+			$msg = "This user hasn't completed his/her profile so cannot be currently added to your friends.";
+			return $msg;
+		}
+		
+		if ($this->checkBlankProfile($userid) == false) {
+			$msg = "You need to fill out your profile before being able to add friends.";
+			return $msg;
+		}
+		
 		$data['user_id'] = $userid;
 		$data['friend_id'] = $id;
 		$data['date'] = time();
@@ -50,6 +60,22 @@ class Friends {
 			$q = $db->query($sqlIndFriend);
 		}
 		
+	}
+	
+	function checkBlankProfile($id) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT user_id 
+			FROM " . tbl_profile . "
+			WHERE user_id = " . (int)$id . " AND first_name != NULL";
+			
+		$row = $db->query_first($sql);
+		
+		if (!empty($row)) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	function checkFriendExists($id) {
