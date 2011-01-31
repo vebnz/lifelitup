@@ -47,7 +47,7 @@ $(document).ready(function()
 				<h1>Your profile page</h1>
 			{% endif %}
 			{% if msg %}
-				<p class="check">{{ msg|e }}</p>
+				<p class="check">{{ msg|raw }}</p>
 			{% endif %}
 
             <img src="{{ avatar }}" alt="image" class="alignleft avatar" />
