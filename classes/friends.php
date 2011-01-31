@@ -146,7 +146,7 @@ class Friends {
 		
 		$sql = "SELECT userid, friend_id
 				FROM " . tbl_friends . "
-				WHERE friend_id = " . (int)$friendid . " AND user_id = " . $userid . " AND verified='1'";
+				WHERE friend_id = " . (int)$friendid . " AND user_id = " . (int)$userid . " AND verified='1'";
 		
 		$pid = $db->query_first($sql);
 		
