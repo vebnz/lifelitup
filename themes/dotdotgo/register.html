@@ -91,15 +91,15 @@
 					<p class="check">{{ msg|e }}.</p>
 				{% endif %}
 					<input type="hidden" name="op" value="new" />
-					<p class="lab"><label for="emailAdress" accesskey="n">Email: </label></p>
-					<p><input title="Email" class="required" placeholder="Your email address" id="emailAdress" type="text" name="email" maxlength="30" /></p>
-					<p class="lab"><label for="usrPassA" accesskey="p">Password: </label></p>
-					<p><input title="Password" class="required" id="usrPassA"  type="password" name="pass1" /></p>
-					<p class="lab"><label style="width: 200px" for="usrPassB" accesskey="a">Password Again: </label></p>
-					<p><input title="Password Repeated" class="required" id="usrPassB"  type="password" name="pass2" /></p>
-					<p class="lab"><label for="usrSeed" accesskey="r">Remove text: </label></p>
-					<p><input class="empty" id="usrSeed" value="{{ seed|e }}" type="text" name="remove" /></p>
-					<p><input type="submit" name="register" value="Register" /></p>
+					<p><label for="emailAdress" accesskey="n">Email: </label>
+					<input title="Email" class="required" placeholder="Your email address" id="emailAdress" type="text" name="email" maxlength="30" /></p>
+					<p><label for="usrPassA" accesskey="p">Password: </label>
+					<input title="Password" class="required" id="usrPassA"  type="password" name="pass1" /></p>
+					<p><label for="usrPassB" accesskey="a">Password Again: </label>
+					<input title="Password Repeated" class="required" id="usrPassB"  type="password" name="pass2" /></p>
+					<p><label for="usrSeed" accesskey="r">Remove text: </label>
+					<input class="empty" id="usrSeed" value="{{ seed|e }}" type="text" name="remove" /></p><br />
+					<input type="submit" name="register" value="Register" />
 				</form>
 			</div>
 		</div><!-- Signup Box, hidden from view -->
