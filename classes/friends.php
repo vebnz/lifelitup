@@ -123,12 +123,12 @@ class Friends {
 		
 	}
 	
-	function checkIsFriend($userid) {
+	function checkIsFriend($friendid, $userid) {
 		$db = Database::obtain();
 		
 		$sql = "SELECT friend_id
 				FROM " . tbl_friends . "
-				WHERE friend_id = " . (int)$userid . " AND user_id = " . $_SESSION['userid'];
+				WHERE friend_id = " . (int)$friendid . " AND user_id = " . (int)$userid;
 		
 		$pid = $db->query_first($sql);
 		
@@ -144,7 +144,7 @@ class Friends {
 	function checkAlreadyVerified($userid, $friendid) {
 		$db = Database::obtain();
 		
-		$sql = "SELECT userid, friend_id
+		$sql = "SELECT user_id, friend_id
 				FROM " . tbl_friends . "
 				WHERE friend_id = " . (int)$friendid . " AND user_id = " . (int)$userid . " AND verified='1'";
 		
@@ -179,11 +179,12 @@ class Friends {
                 
         mail($friend['email'], $subject, $emailMsg, $headers);
 	}
-	
+	// FriendID = 2 - jamie@c9d
+	// UserID = 9 - jimmy@devhour
 	function verifyFriend($friendid, $userid) {
 		$db = Database::obtain();
 		
-		if ($this->checkIsFriend($friendid) == false) {
+		if ($this->checkIsFriend($friendid, $userid) == false) {
 			$msg = 'This person hasn\'t previously added you to their friends list.';
 			return $msg;
 		}

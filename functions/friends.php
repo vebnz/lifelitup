@@ -47,20 +47,18 @@ if ($action == "remove") {
 }
 
 if ($action == "confirmFriend") {
+	// ID = 2 - jamie@c9d
+	// UserID = 9 - jimmy@devhour
 	$id = $_GET['friendid'];
 	$userid = $_GET['userid'];
 	
-	echo "MY ID: " . $userid;
-	echo "FRIEND ID: " . $id;
-	die();
-	
-	$conf = $friends->verifyFriend($id, $userid);
-	if ($remove < 0) {
+	$conf = $friends->verifyFriend($userid, $id);
+	if ($conf < 0) {
 		$msg = 'Failed to verify this friendship.';
 		return;
 	}
 	
-	if (empty($remove)) {
+	if (empty($conf)) {
 		event::fire('USER_CONFIRM_FRIEND');
 		$msg = "You are now friends with this person. View their <a href='profile.php?userid=" . $id . "'>profile</a>."; 
 	}
