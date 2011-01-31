@@ -12,6 +12,7 @@ require_once('functions/todo.php');
 require_once('functions/goals.php');
 
 if (!$auth->isLoggedIn()) {
+	$_SESSION['destination'] = $_SERVER['REQUEST_URI'];
 	header("Location: login.php");
 }
 
