@@ -221,7 +221,7 @@ Tags: business, enterprise, product, application
 	
 	/* Alerts */
 	
-	p.alert { background: #FFFBE7 url(images/alert.png) no-repeat 10px center; border: 1px solid #F9E257; color: #4F3F0D; font-size: 0.8em; margin: 0 0 15px; padding: 10px 10px 10px 36px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+	p.alert { background: #FFFBE7 url(images/alert.png) no-repeat 10px center; border: 1px solid #F9E257; color: #4F3F0D; font-size: 0.7em; margin: 0 0 15px; padding: 10px 10px 10px 36px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 	p.add { background: #EEFBD0 url(images/add.png) no-repeat 10px center; border: 1px solid #B6DB55; color: #566B21; font-size: 0.8em; margin: 0 0 15px; padding: 10px 10px 10px 36px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 	p.download { background: #EEFBD0 url(images/download.png) no-repeat 10px center; border: 1px solid #96BC3D; color: #323F14; font-size: 0.8em; margin: 0 0 15px; padding: 10px 10px 10px 36px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 	p.wrong { background: #FFD3D3 url(images/wrong.png) no-repeat 10px center; border: 1px solid #C04747; color: #5B1F1F; font-size: 0.8em; margin: 0 0 15px; padding: 10px 10px 10px 36px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
@@ -607,7 +607,7 @@ Tags: business, enterprise, product, application
 	.signup-login-text { float: left; width: 100px; }
 	.signup-login-text-alt { float: left; width: 97%; margin-bottom: 10px; }
 	.signup-login h3 { color: #f7f7f7; font-size: 1.2em; text-align: left; text-shadow: #222 0 -1px; }
-	.signup-login p { text-align: left; font-size: 0.9em; }
+	.signup-login p { text-align: left; font-size: 0.8em; }
 	.signup-login p.lab { margin-bottom: -20px; width: 300px; }
 	.signup-login form { float: left; width: auto; }	
 	.signup-login form input { border: 1px solid #018ede;  margin: 0 0 0px 20px; padding: 5px; width: 301px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
