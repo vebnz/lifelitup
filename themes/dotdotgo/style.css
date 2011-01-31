@@ -662,12 +662,16 @@ Tags: business, enterprise, product, application
     /*.textbox h3 { color: #f7f7f7; font-size: 1.2em; text-align: left; text-shadow: #222 0 -1px; }*/
     .textbox p { text-align: left; }
     .textbox form { float: left; width: auto; }    
-    .textbox form input { border: 1px solid #018ede;  margin: 0 0 0px; padding: 5px; width: 300px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+    .textbox form input { border: 1px solid #018ede;  margin: 0 0 0px 20px; padding: 5px; width: 300px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
     .textbox form .new { background: #fff url(images/user.png) no-repeat 5px; padding-left: 25px; }
     .textbox form input:focus { background-color: #ffffb8 !important; }
     .textbox form input[type=submit] { background: #fff url(images/button-gradient.png) repeat-x left bottom; border: 1px solid #CCC; color: #575757; float: left; margin: 0 5px 10px 0px; width: 148px; }
     .textbox form input[type=submit]:hover { background: #e7e7e7; color: #000; cursor: pointer; }
-
+	.textbox label { float: left; text-align: right; width: 100px; }
+	.textbox form input[type=radio] { width: 10px; }
+	.textbox label.priv { font-size: 0.9em; float: right; text-align: left; width: 520px; margin: -8px 0 0 5px; }
+	.textbox textarea {  border: 1px solid #018ede; width: 500px; height: 100px; padding: 5px; margin: 0 0 5px 40px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+	.textbox textarea:focus { background-color: #ffffb8 !important; }
 	/* Goals */
 	.goals li { list-style-type: none }	
 	

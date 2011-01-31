@@ -24,28 +24,28 @@
 			<div class="textbox">
 				<form method="POST" action="profile.php?action=modify">
 				<h3>Your details</h3>			
-					<p>First name: <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
-					<p>Last name: <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
-					<p>Location: <input type="textbox" style="new" name="location" value="{{ profile.location|e }}" placeholder="New Zealand" /></p>
+					<p><label for="first_name">First name:</label> <input type="textbox" style="new" name="first_name" value="{{ profile.first_name|e }}" placeholder="What's your first name?" /></p>
+					<p><label for="last_name">Last name:</label>  <input type="textbox" style="new" name="last_name" value="{{ profile.last_name|e }}" placeholder="What's your last name?" /></p>
+					<p><label for="location">Location:</label>  <input type="textbox" style="new" name="location" value="{{ profile.location|e }}" placeholder="New Zealand" /></p>
 
 				<p></p>
 
 				<h3>Social Networking</h3>
-					<p>Facebook: <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" placeholder="What's your Facebook?" /></p>
-					<p>Twitter: <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" placeholder="What's your Twitter?" /></p>
-					<p>Homepage: <input type="textbox" style="new" name="homepage" value="{{ profile.homepage|e }}" placeholder="What's your homepage?" /></p>
+					<p><label for="facebook">Facebook:</label> <input type="textbox" style="new" name="facebook" value="{{ profile.facebook|e  }}" placeholder="What's your Facebook?" /></p>
+					<p><label for="twitter">Twitter:</label> <input type="textbox" style="new" name="twitter" value="{{ profile.twitter|e }}" placeholder="What's your Twitter?" /></p>
+					<p><label for="homepage">Homepage:</label> <input type="textbox" style="new" name="homepage" value="{{ profile.homepage|e }}" placeholder="What's your homepage?" /></p>
 				
 				<p></p>
 	            
 				<h3>Biography</h3>
-					<textarea cols="60" rows="10" name="biography" placeholder="Your biography here! Example: I'm a mountaineer, and I fly all over the world on a kite.">{{ profile.biography|stripslashes }}</textarea>
+					<textarea name="biography" placeholder="Your biography here! Example: I'm a mountaineer, and I fly all over the world on a kite.">{{ profile.biography|stripslashes }}</textarea>
 
 				<p></p>
 				
 				<h3>Privacy Settings</h3>
-					<p><input style="width: 10px" type="radio" value="0" name="privacy" {% if profile.privacy == 0 %} checked {% endif %}> Don't allow anybody to view my profile and contact details.</p>
-					<p><input style="width: 10px" type="radio" value="1" name="privacy" {% if profile.privacy == 1 %} checked {% endif %}> Restrict my profile and contact details to my friends and family only.</p>
-					<p><input style="width: 10px" type="radio" value="2" name="privacy" {% if profile.privacy == 2 %} checked {% endif %}> Allow everybody to view my profile and contact details.</p>
+					<p><input style="width: 10px" type="radio" value="0" name="privacy" {% if profile.privacy == 0 %} checked {% endif %}> <label class="priv" for="privacy">Don't allow anybody to view my profile and contact details.</label></p>
+					<p><input style="width: 10px" type="radio" value="1" name="privacy" {% if profile.privacy == 1 %} checked {% endif %}> <label class="priv" for="privacy">Restrict my profile and contact details to my friends and family only.</label></p>
+					<p><input style="width: 10px" type="radio" value="2" name="privacy" {% if profile.privacy == 2 %} checked {% endif %}> <label class="priv" for="privacy">Allow everybody to view my profile and contact details.</label></p>
 
 				<p></p>
 				
