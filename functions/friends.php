@@ -67,5 +67,27 @@ if ($action == "confirmFriend") {
 	}
 	return $msg;
 }	
+
+if ($action == "ignoreFriend") {
+	
+	$id = $_GET['friendid'];
+	$userid = $_GET['userid'];
+	
+	$conf = $friends->ignoreFriend($userid, $id);
+	if ($conf < 0) {
+		$msg = 'Failed to ignore this friendship.';
+		return;
+	}
+	
+	if ($conf == 1) {
+		event::fire('USER_IGNORE_FRIEND');
+		$msg = "You have now ignored this friendship."; 
+	}
+	else
+	{
+		$msg = $conf;
+	}
+	return $msg;
+}
 	
 ?>

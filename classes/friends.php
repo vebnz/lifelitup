@@ -188,6 +188,23 @@ class Friends {
 		
 		return false;	
 	}
+
+	function checkAlreadyIgnored($userid, $friendid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT friend_id
+				FROM " . tbl_friends . "
+				WHERE friend_id = " . (int)$friendid . " AND user_id = " . (int)$userid;
+		
+		$pid = $db->query_first($sql);
+		
+		if ($pid > 0)
+		{
+			return true;
+		}
+		
+		return false;	
+	}
 	
 	function sendFriendVerification($userid, $friendid) {
 		$profile = new Profile;
@@ -200,7 +217,7 @@ class Friends {
                 ."If you know this person and want to confirm this friendship, then please click here:\n"
 				."http://www.lifelitup.com/alpha/profile.php?action=confirmFriend&userid=" . $friend["user_id"] . "&friendid=" . $user["user_id"] . "\n\n"
                 ."If you do not know this person or want to ignore this friend request, then click the link below:\n"
-				."<<url for ignore>>\n\n"
+				."http://www.lifelitup.com/alpha/profile.php?action=ignoreFriend&userid=" . $friend["user_id"] . "&friendid=" . $user["user_id"] . "\n\n"
                 ."Regards,\n"
                 ."The LLU Team!";
                    
@@ -234,6 +251,30 @@ class Friends {
 		
 		$pid = $db->insert(tbl_friends, $fdata);
 		return $pid;
+	}
+
+	function ignoreFriend($friendid, $userid) {
+		$db = Database::obtain();
+		
+		if ($this->checkAlreadyIgnored($userid, $friendid) == false) {
+			$msg = 'This friendship has already been ignored.';
+			return $msg;
+		}
+		
+		if ($this->checkIsFriend($friendid, $userid) == false) {
+			$msg = 'This person hasn\'t previously added you to their friends list.';
+			return $msg;
+		}
+		
+		if ($this->checkAlreadyVerified($userid, $friendid) == true) {
+			$msg = 'This friendship has already been verified.';
+			return $msg;
+		}		
+		
+		$sql = "DELETE FROM " . tbl_friends . " WHERE user_id = " . $userid . " AND friend_id = " . $friendid;
+		$row = $db->query($sql);
+	
+		return $row;		
 	}
 }
 ?>
