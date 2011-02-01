@@ -70,6 +70,16 @@ class Profile {
 		$pid = $db->insert(TBL_STATUS, $data);
 	}
 
+	function getPrivacySettings($userid) {
+		$db = Database::obtain();
+	
+		$sql = "SELECT privacy
+				FROM " . tbl_profile . "
+				WHERE user_id = " . intval($userid);
+
+		return $db->query_first($sql);
+	}
+	
 	function getLatestStatus($userid) {
 		$db = Database::obtain();
 

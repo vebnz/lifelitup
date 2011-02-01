@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} Goals {% endblock %}
+{% block head %}
+{{ parent() }}
+{% endblock %}
+{% block content %}	
+		<div class="section full">
+				
+		{% if goal and achievement %}
+		
+			{% if privacy.privacy == 1 and isFriend != null or privacy.privacy == 2 or isViewing == true %}
+				<h1>Completed goal: {{ goal.name }} by {{ achievement.first_name }} {{ achievement.last_name }}</h1>
+
+				{% if msg %}
+					<p class="alert">{{ msg|e }}</p>
+				{% endif %}		
+				
+				
+				<h3>Goal</h3>
+				<ul>
+					<img style="float: left; padding: 0 20px 20px 0" src="{{ goal.icon|e }}" /> 
+					<p></p>
+					<h4>{{ goal.name|e }}</h4> 
+					<p>{{ goal.info|e }}</p>
+				</ul>
+				<h3>Achievement</h3>
+				<ul>
+					<img style="width: 150px; height: 150px; float: left; padding: 0 20px 10px 0" src="uploads/{{ achievement.image|e }}" /> 
+					<p></p>
+					<h4>Picture Location</h4> 
+					<p>{{ achievement.location }}</p>
+					<h4>Comments</h4> 
+					<p>{{ achievement.comments }}</p>
+				</ul>
+			{% else %}
+				<h1>Error</h1>
+				<p class="alert">This user's privacy settings are set to strict therefore you are unable to view this achievement.</p>
+			{% endif %}
+		{% else %}
+				<!-- fire an event here... -->
+				<h1>Error</h1>
+				<p class="alert">This user has not completed this goal</p>
+			{% endif %}
+		</div><!-- Section -->
+
+{% endblock %} 	

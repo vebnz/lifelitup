@@ -25,6 +25,11 @@ class Friends {
 			return $msg;
 		}
 		
+		if ($this->checkPendingFriendship($id, $userid) == true) {
+			$msg = "This friendship already has a pending request. Check your emails.";
+			return $msg;
+		}
+		
 		$data['user_id'] = $userid;
 		$data['friend_id'] = $id;
 		$data['date'] = time();
@@ -68,6 +73,32 @@ class Friends {
 		$sql = "SELECT user_id 
 			FROM " . tbl_profile . "
 			WHERE user_id = " . (int)$id . " AND first_name != ''";
+			
+		$row = $db->query_first($sql);
+		
+		if (!empty($row)) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	function checkPendingFriendship($id, $userid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT user_id 
+			FROM " . tbl_friends . "
+			WHERE user_id = " . (int)$userid . " AND friend_id != " . (int)$id;
+			
+		$row = $db->query_first($sql);
+		
+		if (!empty($row)) {
+			return true;
+		}
+		
+		$sql = "SELECT user_id 
+			FROM " . tbl_friends . "
+			WHERE user_id = " . (int)$id . " AND friend_id != " . (int)$userid;
 			
 		$row = $db->query_first($sql);
 		

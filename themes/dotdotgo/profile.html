@@ -109,7 +109,7 @@ $(document).ready(function()
 			<h3>Achievements</h3>
 			<ul class="achievements">
 				{% for achievement in achievements %}
-					<li><a href="goals_show.php?id={{achievement.id}}" title="{{achievement.name}}"><img style="vertical-align: middle" src="{{ achievement.icon|e }}" /></a></li>
+					<li><a href="achievement_show.php?id={{achievement.id}}&userid={{profile.user_id}}" title="{{achievement.name}}"><img style="vertical-align: middle" src="{{ achievement.icon|e }}" /></a></li>
 				{% else %}
 					{% if isViewing %}
 					<p>{{ profile.first_name|e }} has not received any achievements.</p>
