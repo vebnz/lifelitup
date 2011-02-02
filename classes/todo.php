@@ -107,17 +107,17 @@ class Todo {
 		$db->query($sql);
 	}
 
-    function showTodoCategories($userid) {
-        $db = Database::obtain();
+    	function showTodoCategories($userid) {
+        	$db = Database::obtain();
 
-        $sql = "SELECT " . tbl_category . ".id AS id, " . tbl_category . ".name AS name, COUNT(*) AS count
-                FROM " . tbl_category . "
+        	$sql = "SELECT " . tbl_category . ".id AS id, " . tbl_category . ".name AS name, COUNT(*) AS count
+                	FROM " . tbl_category . "
 				JOIN " . tbl_goals . " ON " . tbl_category . ".id = " . tbl_goals . ".category_id
 				JOIN " . tbl_todo . " ON " . tbl_goals . " .id = " . tbl_todo . ".goal_id
 				WHERE " . tbl_todo . ".user_id = " . intval($userid) . "
 				GROUP BY " . tbl_category . ".name";
-        return $db->fetch_array($sql);
-    }
+	        return $db->fetch_array($sql);
+    	}
 
 	function getCategoryName($categoryid) {
 		$db = Database::obtain();
@@ -128,7 +128,16 @@ class Todo {
 
 		return $db->query_first($sql);	
 	}
-	
+
+	function countGoalAdded($goal_id) {
+		$db = Database::obtain();
+
+		$sql = "SELECT COUNT(*) AS goal_count
+			FROM " . tbl_todo . "
+			WHERE goal_id = " . intval($goal_id);
+		
+		return $db->query_first($sql);
+	}	
 }
 
 ?>

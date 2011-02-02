@@ -956,3 +956,9 @@ Stack trace:
 #4 {main}
   thrown in /home/life/public_html/alpha/twig/lib/Twig/Loader/Filesystem.php on line 131
 [03-Feb-2011 08:15:33] PHP Fatal error:  Call to undefined method Places::getTrail() in /home/life/public_html/alpha/goals_show.php on line 26
+[03-Feb-2011 10:25:25] PHP Warning:  Missing argument 1 for Database::query_first(), called in /home/life/public_html/alpha/classes/todo.php on line 139 and defined in /home/life/public_html/alpha/database/db.php on line 150
+[03-Feb-2011 10:25:26] PHP Warning:  Missing argument 1 for Database::query_first(), called in /home/life/public_html/alpha/classes/todo.php on line 139 and defined in /home/life/public_html/alpha/database/db.php on line 150
+[03-Feb-2011 10:29:54] PHP Warning:  require_once(classes/todo.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /home/life/public_html/alpha/functions/todo.php on line 2
+[03-Feb-2011 10:29:54] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required 'classes/todo.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/life/public_html/alpha/functions/todo.php on line 2
+[03-Feb-2011 10:31:08] PHP Fatal error:  Call to undefined method Database::query_once() in /home/life/public_html/alpha/classes/todo.php on line 139
+[03-Feb-2011 10:31:09] PHP Fatal error:  Call to undefined method Database::query_once() in /home/life/public_html/alpha/classes/todo.php on line 139

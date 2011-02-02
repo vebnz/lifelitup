@@ -30,6 +30,9 @@
 				</small>
 				</p>
 				{% endif %}
+				{% if count_added %}
+				<p>People attempting this: {{ count_added.goal_count }}</p>
+				{% endif %}
 				<h4><a href="goals.php?action=addGoal&id={{ goal.id|e}}"> Add Goal</a></h4>
 				<p style="clear:both">{{ goal.info|raw }}</p>
 
