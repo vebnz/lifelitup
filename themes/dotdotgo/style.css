@@ -674,7 +674,12 @@ Tags: business, enterprise, product, application
 	.textbox textarea:focus { background-color: #ffffb8 !important; }
 	/* Goals */
 	.goals li { list-style-type: none }	
-	.goalImg { float: left; width: 300px; height: 200px; margin: 0 20px 10px 0; }
+	.goalImg { float: left; margin: 0 20px 10px 0; }
+	.goalImg {
+		width: 200px;
+		height : auto;
+	}
+
 	.section .right .achievements li { 
 		list-style: none;
 		list-style-type: none; 
