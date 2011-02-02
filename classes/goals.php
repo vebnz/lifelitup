@@ -13,7 +13,10 @@ class Goals {
 			FROM " . tbl_goals . "
 			LEFT OUTER JOIN " . tbl_todo . " ON " . tbl_goals .".id = " . tbl_todo . ".goal_id
 			AND " . tbl_todo . ".user_id = " . intval($userid) ."
-			WHERE " . tbl_todo . ".goal_id IS NULL";
+			LEFT OUTER JOIN " . tbl_achievements . " ON " . tbl_goals . ".id = " . tbl_achievements . ".goal_id
+			AND " . tbl_achievements . ".user_id =  " . intval($userid) ."
+			WHERE " . tbl_todo . ".goal_id IS NULL
+			AND " . tbl_achievements . ".goal_id IS NULL";
 		
 		return $db->fetch_array($sql);
 
