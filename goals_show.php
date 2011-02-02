@@ -13,6 +13,7 @@ require_once('functions/authenticate.php');
 require_once('functions/todo.php');
 require_once('functions/goals.php');
 require_once('functions/comments.php');
+require_once('functions/places.php');
 
 if (!$auth->isLoggedIn()) {
 	$_SESSION['destination'] = $_SERVER['REQUEST_URI'];
@@ -22,8 +23,11 @@ if (!$auth->isLoggedIn()) {
 $show = $goals->show($_GET['id']);
 $show_comments = $comments->show(tbl_goals, $_GET['id']);
 
+$place_location = $place->showTrail($show['location']);
+
 $template = $twig->loadTemplate('goals_show.html');
-echo $template->render(array('page_id' => $_GET['id'], 'goal' => $show, 'comments' => $show_comments, 'msg' => $msg));
+echo $template->render(array('page_id' => $_GET['id'], 'goal' => $show, 'comments' => $show_comments, 'msg' => $msg,
+			     'place_location' => $place_location));
 
 $db->close();
 
