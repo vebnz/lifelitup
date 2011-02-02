@@ -16,7 +16,14 @@ if (!$auth->isLoggedIn()) {
 	header("Location: login.php");
 }
 
-$showGoals = $goals->showAll();
+if (isset($_GET['place'])) {
+	// not secure
+	$showGoals = $goals->showByPlace($_SESSION['userid'], $_GET['place']);
+}
+else {
+	$showGoals = $goals->showAll($_SESSION['userid']);
+}
+
 $showCategories = $goals->showCategories();
 
 $template = $twig->loadTemplate('goals.html');
