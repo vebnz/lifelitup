@@ -18,6 +18,7 @@
 				<img class="goalImg" src="{{ goal.descriptive_image }}" />
 				<h4>Goal</h4> 
 				<p>{{ goal.name|e }}</p>
+				{% if goal.location %}
 				<h4>Location</h4>
 				<p>{{ goal.location|e }} <br />
 				<small>
@@ -28,6 +29,7 @@
 				{% endif %}
 				</small>
 				</p>
+				{% endif %}
 				<h4><a href="goals.php?action=addGoal&id={{ goal.id|e}}"> Add Goal</a></h4>
 				<p style="clear:both">{{ goal.info|raw }}</p>
 
