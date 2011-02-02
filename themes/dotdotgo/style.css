@@ -633,7 +633,7 @@ Tags: business, enterprise, product, application
 	.error{ background:#f0c6c3; border:1px solid #cc6622; }
 		
 	/* Comment Box */
-    .comment-post { font-size: 1.2em; color: #fff; line-height: 18px; margin-left: 300px; padding: 0; text-align: center; width: 100%; }
+    .comment-post { font-size: 1.2em; color: #fff; line-height: 18px; margin-left: 25px; padding: 0; text-align: center; width: 100%; }
     .comment-post a { color: #fff; font-size: 0.9em; }
     .comment-post form a { color: #000; display: block; float: middle; font-size: 0.9em; padding: 3px 0 0; text-align: left; }
     .comment-post form a:hover, .signup-login a:hover { background: none; color: #e7e7e7; text-decoration: none; }

@@ -35,6 +35,18 @@
 
 			</ul>
 
+			<div class="comment-post"> <!-- CSS needed for this... -->
+        		<form name="post_comment" action="" method="POST">
+                	<input type="hidden" name="page_id" value="{{ page_id|e }}" />
+        			<input type="hidden" name="module_id" value="2" />
+                	<textarea class="post" name="content" placeholder="Your comment here"></textarea> <br/>
+                	<input type="submit" name="post_comment"  value="comment" />
+        		</form>
+			</div>
+
+			<p></p>
+			<p></p>				
+
 			{% for comment in comments %}
 				<blockquote>		        
 					{% if comment.first_name %}
@@ -44,23 +56,12 @@
 					{% endif %}
 					<p>{{ comment.content|stripslashes|nl2br }}</p>
 				</blockquote>
-        	{% endfor %}
-
-        	<br /> <br />
-
-			<div class="comment-post"> <!-- CSS needed for this... -->
-        		<form name="post_comment" action="" method="POST">
-                	<input type="hidden" name="page_id" value="{{ page_id|e }}" />
-        			<input type="hidden" name="module_id" value="2" />
-                	<textarea class="post" name="content" placeholder="Your comment here"></textarea> <br/>
-                	<input type="submit" name="post_comment"  value="comment" />
-        		</form>
-			</div>
-			{% else %}
+        		{% endfor %}
+	
+		{% else %}
 				<!-- fire an event here... -->
 				<h4>No such goal to display</h4>
 			{% endif %}
-
 		</div><!-- Section -->
 
 {% endblock %} 	
