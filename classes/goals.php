@@ -2,11 +2,19 @@
 
 class Goals {
 
-	function showAll() {
+	function showAll($userid) {
 		$db = Database::obtain();
 
-		$sql = "SELECT id, name, icon, category_id, descriptive_image
-				FROM " . tbl_goals;
+		if (empty($userid)) {
+			return;
+		}
+
+		$sql = "SELECT " . tbl_goals . ".id, name, icon, category_id, descriptive_image
+			FROM " . tbl_goals . "
+			LEFT OUTER JOIN " . tbl_todo . " ON " . tbl_goals .".id = " . tbl_todo . ".goal_id
+			AND " . tbl_todo . ".user_id = " . intval($userid) ."
+			WHERE " . tbl_todo . ".goal_is IS NULL";
+		
 		return $db->fetch_array($sql);
 
 	}
