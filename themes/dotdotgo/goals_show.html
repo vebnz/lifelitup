@@ -18,6 +18,11 @@
 				<p></p>
 				<h4>{{ goal.name|e }}</h4> 
 				<p>{{ goal.info|e }}</p>
+				{% if goal.descriptive_image %}
+				<p></p>
+				<h4>Image:</h4>
+				<img src="{{ goal.descriptive_image }}" />
+				{% endif %}
 			</ul>
 
 			{% for comment in comments %}
