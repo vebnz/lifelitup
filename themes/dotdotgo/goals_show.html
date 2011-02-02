@@ -19,7 +19,15 @@
 				<h4>Goal</h4> 
 				<p>{{ goal.name|e }}</p>
 				<h4>Location</h4>
-				<p>{{ goal.location|e }}</p>
+				<p>{{ goal.location|e }} <br />
+				<small>
+				{% if place_location %} 
+					<a href="#">{{ place_location.country_name }}</a> 
+					<a href="#">{{ place_location.region_name }}</a> 
+					<a href="#">{{ place_location.place_name }}</a>
+				{% endif %}
+				</small>
+				</p>
 				<p style="clear:both">{{ goal.info|raw }}</p>
 
 			</ul>
