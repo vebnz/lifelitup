@@ -6,7 +6,7 @@
 {% block content %}	
 		<div class="section full">
 			
-			<h1>Browsing goal: {{ goal.name }}</h1>
+			<h1><img style="vertical-align: middle" src="{{ goal.icon|e }}" />  Browsing goal: {{ goal.name }}</h1>
 
 			{% if msg %}
 				<p class="alert">{{ msg|e }}</p>
@@ -14,15 +14,16 @@
 			
 			{% if goal %}
 			<ul>
-				<img src="{{ goal.icon|e }}" /> 
-				<p></p>
-				<h4>{{ goal.name|e }}</h4> 
-				<p>{{ goal.info|e }}</p>
-				{% if goal.descriptive_image %}
-				<p></p>
-				<h4>Image:</h4>
-				<img src="{{ goal.descriptive_image }}" />
-				{% endif %}
+				
+				<img class="goalImg" src="{{ goal.descriptive_image }}" />
+				<h4>Goal</h4> 
+				<p>{{ goal.name|e }}</p>
+				<h4>Location</h4>
+				<p>{{ goal.location|e }}</p>
+				<h4>GPS</h4>
+				<p>{{ goal.location|e }}</p>
+				<p>{{ goal.info|raw }}</p>
+
 			</ul>
 
 			{% for comment in comments %}

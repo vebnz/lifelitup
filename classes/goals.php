@@ -23,7 +23,7 @@ class Goals {
 	function show($id) {
 		$db = Database::obtain();
 
-		$sql = "SELECT id, name, icon, info, descriptive_image
+		$sql = "SELECT id, name, icon, info, descriptive_image, location
 			FROM " . tbl_goals . "
 			WHERE id = " . (int)$id;
 		return $db->query_first($sql);
