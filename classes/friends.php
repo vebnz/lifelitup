@@ -5,6 +5,11 @@ class Friends {
 	function addFriend($id, $userid) {
 		$db = Database::obtain();
 		
+		if ($this->checkPendingFriendship($id, $userid) == true) {
+			$msg = "This friendship already has a pending request. Check your emails.";
+			return $msg;
+		}
+		
 		if ($this->checkHaveAlready($id, $userid) == true) {
 			$msg = 'You are already friends with this person!';
 			return $msg;
@@ -23,12 +28,7 @@ class Friends {
 		if ($this->checkBlankProfile($userid) == false) {
 			$msg = "You need to fill out your profile before being able to add friends.";
 			return $msg;
-		}
-		
-		if ($this->checkPendingFriendship($id, $userid) == true) {
-			$msg = "This friendship already has a pending request. Check your emails.";
-			return $msg;
-		}
+		}	
 		
 		$data['user_id'] = $userid;
 		$data['friend_id'] = $id;
@@ -88,7 +88,7 @@ class Friends {
 		
 		$sql = "SELECT user_id 
 			FROM " . tbl_friends . "
-			WHERE user_id = " . (int)$userid . " AND friend_id != " . (int)$id;
+			WHERE user_id = " . (int)$userid . " AND friend_id = " . (int)$id . " AND verified='0'";
 			
 		$row = $db->query_first($sql);
 		
@@ -98,7 +98,7 @@ class Friends {
 		
 		$sql = "SELECT user_id 
 			FROM " . tbl_friends . "
-			WHERE user_id = " . (int)$id . " AND friend_id != " . (int)$userid;
+			WHERE user_id = " . (int)$id . " AND friend_id = " . (int)$userid . " AND verified='0'";
 			
 		$row = $db->query_first($sql);
 		
