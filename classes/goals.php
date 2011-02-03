@@ -152,6 +152,15 @@ class Goals {
 				FROM " . tbl_category;
 		return $db->fetch_array($sql);
 	}
+
+	function getCategoryName($categoryid) {
+		$db = Database::obtain();
+
+		$sql = "SELECT id, name
+				FROM " . tbl_category . "
+				WHERE id = " . intval($categoryid);
+		return $db->query_first($sql);
+	}
 }
 
 ?>

@@ -33,6 +33,7 @@
 				{% if count_added %}
 				<p>People attempting this: {{ count_added.goal_count }}<br /> Achievements awarded: {{ achievement.ac }}</p>
 				{% endif %}
+				<p>Category: <a href="#">{{ category.name }}</a></p>
 				<h4><a href="goals.php?action=addGoal&id={{ goal.id|e}}"> Add Goal</a></h4>
 				<p style="clear:both">{{ goal.info|raw }}</p>
 

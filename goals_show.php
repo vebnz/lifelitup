@@ -27,10 +27,12 @@ $show_comments = $comments->show(tbl_goals, $_GET['id']);
 $place_location = $place->showTrail($show['location']);
 $count_added = $todo->countGoalAdded($_GET['id']);
 $achievementCount = $achievement->achievementCount($_GET['id']);
+$categoryName = $goals->getCategoryName($_GET['id']);
 
 $template = $twig->loadTemplate('goals_show.html');
 echo $template->render(array('page_id' => $_GET['id'], 'goal' => $show, 'comments' => $show_comments, 'msg' => $msg,
-			     'place_location' => $place_location, 'count_added' => $count_added, 'achievement' => $achievementCount));
+			     'place_location' => $place_location, 'count_added' => $count_added, 'achievement' => $achievementCount,
+				 'category' => $categoryName));
 
 $db->close();
 
