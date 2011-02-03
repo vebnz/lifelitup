@@ -153,12 +153,13 @@ class Goals {
 		return $db->fetch_array($sql);
 	}
 
-	function getCategoryName($categoryid) {
+	function getCategoryName($goalid) {
 		$db = Database::obtain();
 
-		$sql = "SELECT id, name
+		$sql = "SELECT " . tbl_category . ".id, " . tbl_category . ".name
 				FROM " . tbl_category . "
-				WHERE id = " . intval($categoryid);
+				JOIN " . tbl_goals . " ON " . tbl_category . ".id = " . tbl_goals . ".category_id
+				WHERE " . tbl_goals . ".id = " . intval($goalid);
 		return $db->query_first($sql);
 	}
 }
