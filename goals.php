@@ -16,27 +16,29 @@ if (!$auth->isLoggedIn()) {
 	header("Location: login.php");
 }
 
+$userid = $_SESSION['userid'];
+
 if (isset($_GET['place'])) {
 	// not secure
-	$showGoals = $goals->showByPlace($_SESSION['userid'], $_GET['place']);
+	$showGoals = $goals->showByPlace($userid, $_GET['place']);
 }
 else if (isset($_GET['country'])) {
 	// ns
-	$showGoals = $goals->showByCountry($_SESSION['userid'], $_GET['country']);
+	$showGoals = $goals->showByCountry($userid, $_GET['country']);
 }
 else if (isset($_GET['region'])) {
 	// ns
-	$showGoals = $goals->showByRegion($_SESSION['userid'], $_GET['region']);
+	$showGoals = $goals->showByRegion($userid, $_GET['region']);
 }
 else if (isset($_GET['s'])) {
 	// ns
-	$showGoals = $goals->searchGoals($_SESSION['userid'], $_GET['s']);
+	$showGoals = $goals->searchGoals($userid, $_GET['s']);
 }
 else {
-	$showGoals = $goals->showAll($_SESSION['userid']);
+	$showGoals = $goals->showAll($userid);
 }
 
-$showCategories = $goals->showCategories();
+$showCategories = $goals->showCategories($userid);
 
 $template = $twig->loadTemplate('goals.html');
 echo $template->render(array('goals' => $showGoals, 'categories' => $showCategories, 'msg' => $msg));
