@@ -145,11 +145,27 @@ class Goals {
 		return $db->query_first($sql);
 	}
 
-	function showCategories() {
+	function showCategories($userid) {
 		$db = Database::obtain();
 
-		$sql = "SELECT id, name
-				FROM " . tbl_category;
+		if (empty($userid)) {
+			return 1;
+		}
+//JOIN " . tbl_goals . " ON " . tbl_category . ".id = " . tbl_goals . ".category_id
+//GROUP BY " . tbl_category. ".name
+//ORDER BY " . tbl_category .".id
+
+		$sql = "SELECT " . tbl_category . ".id, " . tbl_category . ".name, COUNT(*)
+			FROM " . tbl_category . "
+			JOIN " . tbl_goals . " ON " . tbl_category . ".id = " . tbl_goals . ".category_id
+                       	LEFT OUTER JOIN " . tbl_todo . " ON " . tbl_goals .".id = " . tbl_todo . ".goal_id
+                        AND " . tbl_todo . ".user_id = " . intval($userid) ."
+                        LEFT OUTER JOIN " . tbl_achievements . " ON " . tbl_goals . ".id = " . tbl_achievements . ".goal_id
+                        AND " . tbl_achievements . ".user_id =  " . intval($userid) ."
+                        WHERE " . tbl_todo . ".goal_id IS NULL
+                        AND " . tbl_achievements . ".goal_id IS NULL
+			GROUP BY " . tbl_category. ".name
+			ORDER BY " . tbl_category .".id";
 		return $db->fetch_array($sql);
 	}
 
