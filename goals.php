@@ -17,31 +17,36 @@ if (!$auth->isLoggedIn()) {
 }
 
 $userid = $_SESSION['userid'];
+$isSearching = true;
 
 if (isset($_GET['place'])) {
 	// not secure
 	$showGoals = $goals->showByPlace($userid, $_GET['place']);
+	$showCategories = array(0 => array('id' => 1, 'name' => $_GET['place']));
 }
 else if (isset($_GET['country'])) {
 	// ns
 	$showGoals = $goals->showByCountry($userid, $_GET['country']);
+	$showCategories = array(0 => array('id' => 1, 'name' => $_GET['country']));
 }
 else if (isset($_GET['region'])) {
 	// ns
 	$showGoals = $goals->showByRegion($userid, $_GET['region']);
+	$showCategories = array(0 => array('id' => 1, 'name' => $_GET['region']));
 }
 else if (isset($_GET['s'])) {
 	// ns
 	$showGoals = $goals->searchGoals($userid, $_GET['s']);
+	$showCategories = array(0 => array('id' => 1, 'name' => $_GET['s']));
 }
 else {
+	$showCategories = $goals->showCategories($userid);
 	$showGoals = $goals->showAll($userid);
+	$isSearching = false;
 }
 
-$showCategories = $goals->showCategories($userid);
-
 $template = $twig->loadTemplate('goals.html');
-echo $template->render(array('goals' => $showGoals, 'categories' => $showCategories, 'msg' => $msg));
+echo $template->render(array('goals' => $showGoals, 'categories' => $showCategories, 'msg' => $msg, 'isSearching' => $isSearching));
 
 $db->close();
 

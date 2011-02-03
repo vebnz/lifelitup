@@ -151,6 +151,9 @@ class Goals {
 		if (empty($userid)) {
 			return 1;
 		}
+//JOIN " . tbl_goals . " ON " . tbl_category . ".id = " . tbl_goals . ".category_id
+//GROUP BY " . tbl_category. ".name
+//ORDER BY " . tbl_category .".id
 
 		$sql = "SELECT " . tbl_category . ".id, " . tbl_category . ".name, COUNT(*)
 			FROM " . tbl_category . "
