@@ -155,4 +155,39 @@ if (isset($_POST['register'])) {
 		return;
 	}
 }
+
+if (isset($_POST['forgotSubmit'])) {
+
+	$op = $_POST['op'];
+    if ($op !== 'forgot') {
+	    die('Unknown request');
+    } 
+	
+	$email = $_POST['email'];
+	
+	if (empty($email)) {
+		$msg = 'You need to enter in an email to continue.';
+		return;
+	}
+
+	if (!preg_match('/^([\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+\.)*[\w\!\#$\%\&\'\*\+\-\/\=\?\^\`{\|\}\~]+@((((([a-z0-9]{1}[a-z0-9\-]{0,62}[a-z0-9]{1})|[a-z])\.)+[a-z]{2,6})|(\d{1,3}\.){3}\d{1,3}(\:\d{1,5})?)$/i', $email)) {
+	    $msg = 'This is an invalid email address';
+        return;
+    }	
+	
+	$forgot = $auth->sendForgotEmail($email);
+	
+	if ($forgot == true)
+	{
+		$msg = "An email has been sent to " . $email . ". Please read this email and follow the instructions within to reset your password.";
+	}
+	else
+	{
+		$msg = "The password could not be reset";
+	}
+	
+	return $msg;
+	
+}
+
 ?>
