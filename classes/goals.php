@@ -22,6 +22,33 @@ class Goals {
 
 	}
 
+
+    function searchGoals($userid, $search_string) {
+        $db = Database::obtain();
+
+        if (empty($userid)) {
+            return 1;
+        }   
+
+		if (empty($search_string)) {
+			return 2;
+		}
+
+        $sql = "SELECT " . tbl_goals . ".id, name, icon, category_id, descriptive_image
+            FROM " . tbl_goals . " 
+            LEFT OUTER JOIN " . tbl_todo . " ON " . tbl_goals .".id = " . tbl_todo . ".goal_id
+            AND " . tbl_todo . ".user_id = " . intval($userid) ."
+            LEFT OUTER JOIN " . tbl_achievements . " ON " . tbl_goals . ".id = " . tbl_achievements . ".goal_id
+            AND " . tbl_achievements . ".user_id =  " . intval($userid) ."
+            WHERE " . tbl_todo . ".goal_id IS NULL
+            AND " . tbl_achievements . ".goal_id IS NULL
+			AND " . tbl_goals . ".name LIKE '%" . $search_string . "%'
+			OR " . tbl_goals . ".info LIKE '%" . $search_string . "%'";
+       
+        return $db->fetch_array($sql);
+
+    } 
+
 	function showByPlace($userid, $location) {
     	$db = Database::obtain();
 

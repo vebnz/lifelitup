@@ -1,7 +1,16 @@
 {% block top %} 
 	<div class="header-top">
         <div class="header-center clearfix">
-        <div class="login">
+	  	<div class="search">
+        	<form method="get" id="searchform" action="goals.php" >
+				<div>
+					<input type="text" value="search" onblur="if (this.value == '') {this.value = 'search';}"  onfocus="if (this.value == 'search') {this.value = '';}" name="s" id="s" />
+					<input type="submit" id="searchsubmit" value="Search {{ search }}" />
+				</div>
+			</form>
+	   	</div>
+ 
+       <div class="login">
                 <ul>
     				{% if userid %}
 						<li class="user-login"><a href="login.php?action=logout">Logout</a></li>
