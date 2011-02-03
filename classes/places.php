@@ -2,6 +2,7 @@
 
 class Places {
 
+	// the name for this function is lol... somone fix (it gets "Country > Region > Place")
     function showTrail($place_name) {
         $db = Database::obtain();
         

@@ -20,6 +20,10 @@ if (isset($_GET['place'])) {
 	// not secure
 	$showGoals = $goals->showByPlace($_SESSION['userid'], $_GET['place']);
 }
+else if (isset($_GET['country'])) {
+	// ns
+	$showGoals = $goals->showByCountry($_SESSION['userid'], $_GET['country']);
+}
 else {
 	$showGoals = $goals->showAll($_SESSION['userid']);
 }
