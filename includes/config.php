@@ -1,11 +1,11 @@
 <?php
 //database server
-define('DB_SERVER', "lifelitup.com");
+define('DB_SERVER', "localhost");
 
 //database login name
-define('DB_USER', "life");
+define('DB_USER', "root");
 //database login password
-define('DB_PASS', "2vc44rb5");
+define('DB_PASS', "root");
 
 //database name
 define('DB_DATABASE', "life_app");

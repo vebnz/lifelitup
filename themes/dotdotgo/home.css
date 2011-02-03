@@ -1,0 +1,47 @@
+#messages{
+	height: 615px;
+	overflow-y: hidden;
+}
+
+
+.three-span-three { width: 660px; float: right;}
+.three-one {margin-bottom: 10px;}
+
+.user{
+	color: #00AEEF;
+}
+
+div.user{
+	font-weight: bold;
+}
+
+.statup{
+	padding-left: 10px;
+}
+
+#spy li{
+	border-bottom: 1px #ccc dotted;
+	padding: 5px;
+	height: 50px;
+	position: relative;
+}
+
+/* possibly avatar */
+.avatar{
+	background-color: #F7931E;
+	height: 48px; width: 48px;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	padding-right:; 5px;
+}
+
+.textwidget{
+	line-height: 1em;
+}
+
+.achtitle{
+	font-weight:bold;
+	color:#F7931E;
+	text-align: center;
+}

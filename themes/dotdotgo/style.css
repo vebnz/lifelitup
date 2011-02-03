@@ -128,10 +128,9 @@ Tags: business, enterprise, product, application
 	.call-out p { color: #575757; font-size: 0.8em; padding: 15px 0 10px; text-align: right; }
 
 	/* Home Three Boxes */
-	
 	.three-one, .three-three { background: #fff; border: 1px solid #e7e7e7; padding: 0; width: 250px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
 	.three-two { background: #fff; border: 1px solid #e7e7e7; margin: 0 0 0 15px; padding: 0; width: 390px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
-	
+
 	.three-one h3, .three-two h3, .three-three h3, .four-one h3, .four-two h3, .four-three h3, .four-four h3 { margin: 0; padding: 12px 15px 22px; }
 
 	.three-text { background: url(images/arrow-gradient.png) no-repeat top left; min-height: 165px; padding: 20px 15px 0; }

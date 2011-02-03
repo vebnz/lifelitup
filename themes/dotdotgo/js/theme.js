@@ -64,13 +64,13 @@ jQuery('#click-login').click(function() {
 });
 
 // prettyPhoto
-jQuery(function() { jQuery("a[rel^='prettyPhoto']").prettyPhoto({theme:'facebook'}); });
+//jQuery(function() { jQuery("a[rel^='prettyPhoto']").prettyPhoto({theme:'facebook'}); });
 
 // Home + Nivo
-jQuery(window).load(function() { jQuery('#slider').nivoSlider({effect: 'sliceDown', animSpeed: 1000, directionNav: false, directionNavHide: true, controlNav: true, pauseTime: 5000, captionOpacity: 0.9}); });
+//jQuery(window).load(function() { jQuery('#slider').nivoSlider({effect: 'sliceDown', animSpeed: 1000, directionNav: false, directionNavHide: true, controlNav: true, pauseTime: 5000, captionOpacity: 0.9}); });
 
 // Home Alternate with Nivo
-jQuery(window).load(function() { jQuery('#slider-alt').nivoSlider({effect: 'sliceDown', animSpeed: 1000, directionNav: false, directionNavHide: true, controlNav: false, pauseTime: 5000, captionOpacity: 0.9}); });
+//jQuery(window).load(function() { jQuery('#slider-alt').nivoSlider({effect: 'sliceDown', animSpeed: 1000, directionNav: false, directionNavHide: true, controlNav: false, pauseTime: 5000, captionOpacity: 0.9}); });
 
 // Tooltip
 jQuery(".footer-social img[title]").tooltip({ effect: 'fade', fadeOutSpeed: 20, predelay: 0, position: "bottom left", offset: [-38,8] });
