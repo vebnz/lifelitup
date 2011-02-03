@@ -40,6 +40,16 @@ class Achievements {
 			WHERE " . tbl_achievements . ".user_id = " . (int)$userid . " AND " . tbl_achievements . ".goal_id = " . (int)$id;
 		return $db->query_first($sql);
 	}
+
+	function achievementCount($goalid) {
+		$db = Database::obtain();
+	
+		$sql = "SELECT count(*) AS ac 
+				FROM " . tbl_achievements . "
+				WHERE goal_id = " . intval($goalid);
+
+		return $db->query_first($sql);
+	}
 	
 }
 
