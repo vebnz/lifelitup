@@ -24,6 +24,10 @@ else if (isset($_GET['country'])) {
 	// ns
 	$showGoals = $goals->showByCountry($_SESSION['userid'], $_GET['country']);
 }
+else if (isset($_GET['region'])) {
+	// ns
+	$showGoals = $goals->showByRegion($_SESSION['userid'], $_GET['region']);
+}
 else {
 	$showGoals = $goals->showAll($_SESSION['userid']);
 }

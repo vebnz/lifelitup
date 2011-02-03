@@ -49,8 +49,12 @@ class Goals {
 	function showByCountry($userid, $country) {
 		$db = Database::obtain();
 
-		if (empty($country)) {
+		if (empty($userid)) {
 			return 1;
+		}
+
+		if (empty($country)) {
+			return 2;
 		}
 
 		$sql = "SELECT " . tbl_goals . ".id, " . tbl_goals .".name, icon, category_id, descriptive_image
@@ -68,6 +72,33 @@ class Goals {
 
 		return $db->fetch_array($sql);
 	}
+
+    function showByRegion($userid, $region) {
+        $db = Database::obtain();
+
+		if (empty($userid)) {
+			return 1;
+		}
+
+        if (empty($region)) {
+            return 2;
+        }   
+
+        $sql = "SELECT " . tbl_goals . ".id, " . tbl_goals .".name, icon, category_id, descriptive_image
+                FROM " . tbl_goals . " 
+                LEFT OUTER JOIN " . tbl_todo . " ON " . tbl_goals .".id = " . tbl_todo . ".goal_id
+                AND " . tbl_todo . ".user_id = " . intval($userid) ."
+                LEFT OUTER JOIN " . tbl_achievements . " ON " . tbl_goals . ".id = " . tbl_achievements . ".goal_id
+                AND " . tbl_achievements . ".user_id =  " . intval($userid) ."
+                JOIN " . tbl_places . " ON " . tbl_goals . ".location = " . tbl_places . ".name
+                JOIN " . tbl_region . " ON " . tbl_places . ".region_id = " . tbl_region . ".id
+                JOIN " . tbl_country . " ON " . tbl_region . ".country_id = " . tbl_country . ".id
+                WHERE " . tbl_todo . ".goal_id IS NULL
+                AND " . tbl_achievements . ".goal_id IS NULL
+                AND " . tbl_region . ".name LIKE '%" . $region . "%'";
+
+        return $db->fetch_array($sql);
+    }   
 
 	function showByCategory($category = 1) {
 		$db = Database::obtain();
