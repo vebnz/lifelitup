@@ -14,6 +14,7 @@ require_once('functions/todo.php');
 require_once('functions/goals.php');
 require_once('functions/comments.php');
 require_once('functions/places.php');
+require_once('functions/achievements.php');
 
 if (!$auth->isLoggedIn()) {
 	$_SESSION['destination'] = $_SERVER['REQUEST_URI'];
@@ -25,10 +26,11 @@ $show_comments = $comments->show(tbl_goals, $_GET['id']);
 
 $place_location = $place->showTrail($show['location']);
 $count_added = $todo->countGoalAdded($_GET['id']);
+$achievementCount = $achievement->achievementCount($_GET['id']);
 
 $template = $twig->loadTemplate('goals_show.html');
 echo $template->render(array('page_id' => $_GET['id'], 'goal' => $show, 'comments' => $show_comments, 'msg' => $msg,
-			     'place_location' => $place_location, 'count_added' => $count_added));
+			     'place_location' => $place_location, 'count_added' => $count_added, 'achievement' => $achievementCount));
 
 $db->close();
 
