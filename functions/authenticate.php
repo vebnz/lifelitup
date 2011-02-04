@@ -177,15 +177,14 @@ if (isset($_POST['forgotSubmit'])) {
 	
 	$forgot = $auth->sendForgotEmail($email);
 	
-	if ($forgot == true)
-	{
+	if (empty($forgot)) {
+		event::fire('USER_FORGOT_PASSWORD');
 		$msg = "An email has been sent to " . $email . ". Please read this email and follow the instructions within to reset your password.";
 	}
-	else
-	{
-		$msg = "The password could not be reset";
+	else {
+		$msg = $forgot;
 	}
-	
+		
 	return $msg;
 	
 }

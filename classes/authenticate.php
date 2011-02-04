@@ -137,23 +137,25 @@ class Authenticate {
 		$db = Database::obtain();
 		
 		$sql = "SELECT id FROM ". tbl_users . "
-				WHERE email = " . $email;
+				WHERE email = '" . $email . "'";
 		
-		$user_id = $db->query_first($sql);
-		
-		if ($user_id < 1)
+		$row = $db->query_first($sql);
+
+		if (empty($row))
 		{
 			$msg = "This email does not exist in our system";
 			return $msg;
 		}	
 		
 		$data['code'] = bin2hex(shell_exec('head -c 16 < /dev/urandom'));
-		$db->update(tbl_users, $data, "id=" . $user_id . "");
+		echo $data['code'];
+		die();
+		$db->update(tbl_users, $data, "id=" . $row['id'] . "");
 		
 		$subject = "Reset your password at LifeLitUp.com";
         $emailMsg = "As requested, you can now reset your password on LifeLitUp.\n"
                         ."Click below to verify your account and reset your password: \n\n"
-                        ." http://www.lifelitup.com/alpha/login.php?action=reset&code=" . $data['code'] . "&userid=" . intval($user_id) . "\n\n"
+                        ." http://www.lifelitup.com/alpha/forgot_password.php?action=reset&code=" . $data['code'] . "&userid=" . intval($user_id) . "\n\n"
                         ."Once your account is verified, you'll be able to insert a new password for your account.\n\n"
                         ."Regards,\n"
                         ."The LLU Team!\n\n"
@@ -164,9 +166,12 @@ class Authenticate {
                        'Reply-To: no-reply@lifelitup.com' . "\r\n" .
                        'X-Mailer: PHP/' . phpversion();
                 
-        mail($email, $subject, $emailMsg, $headers);		
-
-		return true;		
+        //mail($email, $subject, $emailMsg, $headers);		
+		echo $email . "<br />";
+		echo $subject . "<br />";
+		echo $emailMsg . "<br />";
+		die();
+		return;		
 		
 	}
 
