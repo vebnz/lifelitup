@@ -25,6 +25,7 @@ $msg = isset($msg) ? $msg : '';
 
 if (isset($_GET['code'])) {
 	$code = $_GET['code'];
+}
 else if (isset($code)) {
 	$code = $code;
 }
@@ -34,6 +35,7 @@ else {
 
 if (isset($_GET['userid'])) {
 	$userid = $_GET['userid'];
+}
 else if (isset($userid)) {
 	$userid = $userid;
 }
