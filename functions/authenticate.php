@@ -197,30 +197,40 @@ if (isset($_POST['resetSubmit'])) {
 	
 	if (empty($code)) {
 		event::fire('HAX_CONFIRMATION_CODE');
+		$code = $_POST['code']; 
+		$userid = intval($_POST['userid']);
 		$msg = 'The confirmation code is empty, did you tamper with the URL?';
 		return;
 	}
 
 	if (empty($userid)) {
 		event::fire('HAX_CONFIRMATION_USERID');
+		$code = $_POST['code']; 
+		$userid = intval($_POST['userid']);
 		$msg= 'The User Identifcation code is empty, did you tamper with the URL?';
 		return;
 	}
 
 	if (!preg_match('/^[a-fA-F0-9]+$/', $code)) {
 		event::fire('HAX_CONFIRMATION_CODE');
+		$code = $_POST['code']; 
+		$userid = intval($_POST['userid']);
 		$msg = 'The confirmation code is borked, did you tamper with the URL?';
 		return;
 	}
 
 	if (strlen($code) < 32) {
 		event::fire('HAX_CONFIRMATION_CODE');
+		$code = $_POST['code']; 
+		$userid = intval($_POST['userid']);
 		$msg = 'The confirmation code is borked, did you tamper with the URL?';
 		return;
 	}
 	
 	if ($password != $cpassword) {
 		$msg = 'The passwords you entered do not match.';
+		$code = $_POST['code']; 
+		$userid = intval($_POST['userid']);
 		return;
 	}
 
