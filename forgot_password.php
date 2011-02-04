@@ -22,10 +22,25 @@ else {
 	$template = $twig->loadTemplate('forgot_password.html');
 }
 $msg = isset($msg) ? $msg : '';
-$code = isset($_GET['code']) ? $_GET['code'] : '';
-$userid = isset($_GET['userid']) ? $_GET['userid'] : '';
-$code = isset($code) ? $code : '';
-$userid = isset($userid) ? $userid : '';
+
+if (isset($_GET['code'])) {
+	$code = $_GET['code'];
+else if (isset($code)) {
+	$code = $code;
+}
+else {
+	$code = '';
+}
+
+if (isset($_GET['userid'])) {
+	$userid = $_GET['userid'];
+else if (isset($userid)) {
+	$userid = $userid;
+}
+else {
+	$userid = '';
+}
+
 echo $template->render(array('msg' => $msg, 'code' => $code, 'userid' => $userid, 'isConfirmed' => $isConfirmed));
 
 //require_once('footer.php');
