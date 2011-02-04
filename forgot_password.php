@@ -24,6 +24,8 @@ else {
 $msg = isset($msg) ? $msg : '';
 $code = isset($_GET['code']) ? $_GET['code'] : '';
 $userid = isset($_GET['userid']) ? $_GET['userid'] : '';
+$code = isset($code) ? $code : '';
+$userid = isset($userid) ? $userid : '';
 echo $template->render(array('msg' => $msg, 'code' => $code, 'userid' => $userid, 'isConfirmed' => $isConfirmed));
 
 //require_once('footer.php');
