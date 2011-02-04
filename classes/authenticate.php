@@ -153,7 +153,7 @@ class Authenticate {
 		$subject = "Reset your password at LifeLitUp.com";
         $emailMsg = "As requested, you can now reset your password on LifeLitUp.\n"
                         ."Click below to verify your account and reset your password: \n\n"
-                        ." http://www.lifelitup.com/alpha/forgot_password.php?action=reset&code=" . $data['code'] . "&userid=" . intval($user_id) . "\n\n"
+                        ." http://www.lifelitup.com/alpha/forgot_password.php?action=reset&code=" . $data['code'] . "&userid=" . intval($row['id']) . "\n\n"
                         ."Once your account is verified, you'll be able to insert a new password for your account.\n\n"
                         ."Regards,\n"
                         ."The LLU Team!\n\n"
