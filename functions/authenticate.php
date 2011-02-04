@@ -179,7 +179,7 @@ if (isset($_POST['forgotSubmit'])) {
 	
 	if (empty($forgot)) {
 		event::fire('USER_FORGOT_PASSWORD');
-		$msg = "An email has been sent to " . $email . ". Please read this email and follow the instructions within to reset your password.";
+		$msg = "An email has been sent to you. Please read this email and follow the instructions within to reset your password.";
 	}
 	else {
 		$msg = $forgot;
@@ -187,6 +187,51 @@ if (isset($_POST['forgotSubmit'])) {
 		
 	return $msg;
 	
+}
+
+if (isset($_POST['resetSubmit'])) {
+	$code = $_GET['code']; 
+	$userid = intval($_GET['userid']);
+	$password = $_POST['password'];
+	$cpassword = $_POST['cpassword'];
+	
+	if (empty($code)) {
+		event::fire('HAX_CONFIRMATION_CODE');
+		$msg = 'The confirmation code is empty, did you tamper with the URL?';
+		return;
+	}
+
+	if (empty($userid)) {
+		event::fire('HAX_CONFIRMATION_USERID');
+		$msg= 'The User Identifcation code is empty, did you tamper with the URL?';
+		return;
+	}
+
+	if (!preg_match('/^[a-fA-F0-9]+$/', $code)) {
+		event::fire('HAX_CONFIRMATION_CODE');
+		$msg = 'The confirmation code is borked, did you tamper with the URL?';
+		return;
+	}
+
+	if (strlen($code) < 32) {
+		event::fire('HAX_CONFIRMATION_CODE');
+		$msg = 'The confirmation code is borked, did you tamper with the URL?';
+		return;
+	}
+	
+	if ($password != $cpassword) {
+		$msg = 'The passwords you entered do not match.';
+		return;
+	}
+
+	if ($auth->checkCode($userid, $code)) {
+		$isConfirmed = 1;
+		$auth->resetPassword($userid, $password);
+	}
+	else {
+		$msg = 'Confirmation code is wrong. <a href=\"#\">Click here to recieve another one.</a>';
+		return;
+	}
 }
 
 ?>

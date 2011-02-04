@@ -15,8 +15,12 @@ if ($auth->isLoggedIn()) {
 	header("Location: profile.php");
 	die;
 }
-
-$template = $twig->loadTemplate('forgot_password.html');
+if ($_GET['action'] == 'reset') {
+	$template = $twig->loadTemplate('new_password.html');
+}
+else {
+	$template = $twig->loadTemplate('forgot_password.html');
+}
 $msg = isset($msg) ? $msg : '';
 echo $template->render(array('msg' => $msg));
 

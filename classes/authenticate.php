@@ -169,6 +169,15 @@ class Authenticate {
 		return;		
 		
 	}
+	
+	function resetPassword($userid, $password) {
+		$db = Database::obtain();
+
+		$data['password'] = $hasher->HashPassword($password);
+		$data['last_update'] = time();
+
+		$db->update(tbl_users, $data, "id='" . intval($userid) . "'");
+	}
 
 }
 
