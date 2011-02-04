@@ -171,6 +171,7 @@ class Authenticate {
 	}
 	
 	function resetPassword($userid, $password) {
+		global $hasher;
 		$db = Database::obtain();
 
 		$data['password'] = $hasher->HashPassword($password);
