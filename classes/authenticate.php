@@ -148,8 +148,6 @@ class Authenticate {
 		}	
 		
 		$data['code'] = bin2hex(shell_exec('head -c 16 < /dev/urandom'));
-		echo $data['code'];
-		die();
 		$db->update(tbl_users, $data, "id=" . $row['id'] . "");
 		
 		$subject = "Reset your password at LifeLitUp.com";
