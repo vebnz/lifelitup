@@ -22,7 +22,9 @@ else {
 	$template = $twig->loadTemplate('forgot_password.html');
 }
 $msg = isset($msg) ? $msg : '';
-echo $template->render(array('msg' => $msg));
+$code = isset($_GET['code']) ? $_GET['code'] : '';
+$userid = isset($_GET['userid']) ? $_GET['userid'] : '';
+echo $template->render(array('msg' => $msg, 'code' => $code, 'userid' => $userid));
 
 //require_once('footer.php');
 $db->close();

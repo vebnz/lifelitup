@@ -190,8 +190,8 @@ if (isset($_POST['forgotSubmit'])) {
 }
 
 if (isset($_POST['resetSubmit'])) {
-	$code = $_GET['code']; 
-	$userid = intval($_GET['userid']);
+	$code = $_POST['code']; 
+	$userid = intval($_POST['userid']);
 	$password = $_POST['password'];
 	$cpassword = $_POST['cpassword'];
 	
