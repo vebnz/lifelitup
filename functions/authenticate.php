@@ -227,6 +227,8 @@ if (isset($_POST['resetSubmit'])) {
 	if ($auth->checkCode($userid, $code)) {
 		$isConfirmed = 1;
 		$auth->resetPassword($userid, $password);
+		$msg = 'Your password has now been reset. You can now login!.';
+		header("Location: login.php");
 	}
 	else {
 		$msg = 'Confirmation code is wrong. <a href=\"#\">Click here to recieve another one.</a>';
