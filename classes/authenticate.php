@@ -164,11 +164,8 @@ class Authenticate {
                        'Reply-To: no-reply@lifelitup.com' . "\r\n" .
                        'X-Mailer: PHP/' . phpversion();
                 
-        //mail($email, $subject, $emailMsg, $headers);		
-		echo $email . "<br />";
-		echo $subject . "<br />";
-		echo $emailMsg . "<br />";
-		die();
+        mail($email, $subject, $emailMsg, $headers);		
+
 		return;		
 		
 	}
