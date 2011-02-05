@@ -15,6 +15,7 @@ define('tbl_users', "tbl_users");
 define('tbl_goals', "tbl_goals");
 define('tbl_todo', "tbl_todo");
 define('tbl_blog', "tbl_blog");
+define('tbl_category', "tbl_category");
 define('tbl_people', "tbl_people");
 define('tbl_logs', "tbl_logs");
 define('tbl_profile', "tbl_profile");

@@ -52,16 +52,23 @@ function twig_stripslashes_filter($value)
 }
 
 function twig_getActivityTime_filter($timestamp) {
-	$diff=time()-$timestamp;
-	$arr=array("minute"=>60, "hour"=>60, "day"=>24, "week"=>7, "month"=>4, "year"=>12);
-	foreach($arr as $nm=>$val) {
-		$diff=round($diff/$val);
-		if($diff<=next($arr)) {
-			if($diff>1) $nm.="s";
-			return "$diff $nm ago";
-		}
+	$periods = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+	$lengths = array("60","60","24","7","4.35","12","10");
+
+	$now = time();
+    $difference     = $now - $timestamp;
+    $tense         = "ago";
+
+	for ($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+       $difference /= $lengths[$j];
 	}
-	return date("M j, Y g:iA",$timestamp);
+
+	$difference = round($difference);
+
+	if ($difference != 1) {
+       $periods[$j].= "s";
+	}
+	return "$difference $periods[$j] $tense";
 }
 
 
