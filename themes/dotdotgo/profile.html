@@ -125,7 +125,6 @@ $(document).ready(function()
 			<ul>
 				{% if isViewing == false %}
 				<li><h3><a href="profile.php?action=modify">> Modify Profile</a></h3></li>
-				<li><h3><a href="#">> Notifications (0)</a></li>
 				{% else %}              
                 <li>
 
@@ -154,6 +153,12 @@ $(document).ready(function()
 								{% endif %}
 							{% endfor %}
 						</ul>	
+					{% if isViewing == false %}
+						<h3>Awaiting Verification..</h3>
+						{% for request in requests %}
+							<li><a href="profile.php?userid={{request.user_id}}">{{request.first_name}} {{request.last_name}}</a> <a href="profile.php?action=confirmFriend&userid={{profile.user_id}}&friendid={{request.user_id}}">Y</a> | <a href="profile.php?action=ignoreFriend&userid={{profile.user_id}}&friendid={{request.user_id}}">N</a></li>
+						{% endfor %}
+					{% endif %}
                	</li>
         	</ul>
 		</div><!-- Sidebar Ends -->

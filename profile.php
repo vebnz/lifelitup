@@ -32,10 +32,11 @@ if ($userid != $_SESSION['userid']) {
 }
 
 $achievements = $achievement->getAchievements($userid);
-$friends = $friends->getFriends($userid);
+$allFriends = $friends->getFriends($userid);
 $profileArr = $profile->get($userid);
 $activities = $profile->getActivities($userid);
 $latestStatus = $profile->getLatestStatus($userid);
+$requests = $friends->getFriendRequests($userid);
 
 if ($_GET['action'] == 'modify') {
 	if ($isViewing) {
@@ -50,9 +51,9 @@ elseif (empty($profileArr['first_name'])) {
 	$template = $twig->loadTemplate('profile.html');
 }
 
-echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $friends, 'isFriend' => $isFriend, 
+echo $template->render(array('msg' => $msg, 'profile' => $profileArr, 'achievements' => $achievements, 'friends' => $allFriends, 'isFriend' => $isFriend, 
 							 'activities' => $activities, 'isViewing' => $isViewing, 'isEditing' => $isEditing, 'latestStatus' => $latestStatus,
-							 'avatar' => get_gravatar($profileArr['email'])));
+							 'avatar' => get_gravatar($profileArr['email']), 'requests' => $requests));
 
 $db->close();
 

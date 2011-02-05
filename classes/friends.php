@@ -276,5 +276,18 @@ class Friends {
 	
 		return $row;		
 	}
+	
+	function getFriendRequests($userid) {
+		$db = Database::obtain();
+		
+		$sql = "SELECT " . tbl_friends . ".user_id, " . tbl_profile . ".first_name, " . tbl_profile . ".last_name
+			FROM " . tbl_friends . "
+			JOIN " . tbl_profile . " ON " . tbl_friends . ".user_id = " . tbl_profile . ".user_id
+			WHERE " . tbl_friends . ".friend_id = " . $userid . " AND verified='0'";
+		
+		$requests = $db->fetch_array($sql);
+
+		return $requests;
+	}
 }
 ?>
