@@ -1,71 +1,211 @@
 {% extends "base.html" %}
-{% block title %} Achievement Completed! {% endblock %}
+{% block title %} Complete Achievement! {% endblock %}
 {% block head %}
 {{ parent() }}
-<script type="text/javascript" src="themes/dotdotgo/js/jquery-1.3.2.js" ></script>
-<script type="text/javascript" src="themes/dotdotgo/js/ajaxupload.3.5.js" ></script>
-<script type="text/javascript" >
-	$(function(){
-		var i = 0;
-		$('#files').hide();
-		var btnUpload=$('#upload');
-		var status=$('#status');
-		new AjaxUpload(btnUpload, {
-			action: 'functions/complete_upload.php',
-			name: 'uploadfile',
-			onSubmit: function(file, ext){
-				if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
-                    // extension is not allowed 
-					status.text('Only JPG, PNG or GIF files are allowed');
-					return false;
-				}
-				else if (i == 1)
-				{
-					status.text('Only 1 image upload allowed');
-					return false;
-				}
-				status.html('<img src="images/loading.gif" alt="" />');
-			},
-			onComplete: function(file, response){
-				//On completion clear the status
-				status.text('');
-				//Add uploaded file to list
-				if(response!="error"){
-					i = 1;
-					$('#imageName').val(file);
-					$('<li></li>').appendTo('#files').text(file).addClass('success');
-					$('#files').show();
-					
-				} else{
-				
-					$('<li></li>').appendTo('#files').text(file).addClass('error');
-				}
-			}
-		});
+<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/base/jquery-ui.css" type="text/css" />
+<link rel="stylesheet" href="themes/dotdotgo/jquery.ui.plupload.css" type="text/css" />
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js" type="text/javascript"></script>
+
+<!-- Thirdparty intialization scripts, needed for the Google Gears and BrowserPlus runtimes -->
+<script type="text/javascript" src="themes/dototgo/js/gears_init.js"></script>
+<script type="text/javascript" src="http://bp.yahooapis.com/2.4.21/browserplus-min.js"></script>
+
+<script type="text/javascript" src="themes/dotdotgo/js/plupload.full.min.js"></script>
+
+<script type="text/javascript">
+// Convert divs to queue widgets when the DOM is ready
+/*$(document).ready(function() {
+
+	$("#uploader").plupload({
+		// General settings
+		runtimes : 'flash,html5,browserplus,silverlight,gears,html4',
+		url : 'upload.php',
+		max_file_size : '1000mb',
+		max_file_count: 20, // user can add no more then 20 files at a time
+		chunk_size : '1mb',
+		unique_names : true,
+		multiple_queues : true,
+		multipart: true,
+        multipart_params : { },
+
+		// Resize images on clientside if we can
+		resize : {width : 320, height : 240, quality : 90},
+		
+		// Rename files by clicking on their titles
+		rename: true,
+		
+		// Sort files
+		sortable: true,
+
+		// Specify what files to browse for
+		filters : [
+			{title : "Image files", extensions : "jpg,gif,png"},
+			{title : "Zip files", extensions : "zip,avi"}
+		],
+
+		// Flash settings
+		flash_swf_url : 'themes/dotdotgo/js/plupload.flash.swf',
+
+		// Silverlight settings
+		silverlight_xap_url : 'themes/dotdotgo/js/plupload.silverlight.xap',
+		
 		
 	});
+	
+	var uploader = $('#uploader').plupload('getUploader');
+		
+	uploader.bind('FilesAdded', function(up, files) {
+		$.extend(up.settings.multipart_params, { uid : $('#user_id').val(), gid: $('#goal_id').val() });
+	});
+		
+	// Client side form validation
+	$('form').submit(function(e) {
+		var uploader = $('#uploader').plupload('getUploader');
+		// Validate number of uploaded files
+		if (uploader.total.uploaded == 0) {
+			// Files in queue upload them first
+			if (uploader.files.length > 0) {
+				// When all files are uploaded submit form
+				uploader.bind('UploadProgress', function() {
+					if (uploader.total.uploaded == uploader.files.length)
+						$('form').submit();
+				});
+
+				uploader.start();
+			} else
+				alert('You must at least upload one file.');
+
+			e.preventDefault();
+		}
+	});
+
+});*/
+
+
 </script>
+
+<script type="text/javascript">
+// Custom example logic
+$(document).ready(function() {
+	var total_update_files = 0;
+	var uploader = new plupload.Uploader({
+		runtimes : 'flash,html5,browserplus,silverlight,gears,html4',
+		browse_button : 'upload-photo',
+		container : 'container',
+		max_file_size : '1000mb',
+		max_file_count: 20, // user can add no more then 20 files at a time
+		chunk_size : '1mb',
+		unique_names : true,
+		multiple_queues : true,
+		multipart: true,
+        multipart_params : { },		
+		url : 'upload.php',
+		flash_swf_url : 'themes/dotdotgo/js/plupload.flash.swf',
+		silverlight_xap_url : 'themes/dotdotgo/js/plupload.silverlight.xap',
+		filters : [
+			{title : "Image files", extensions : "jpg,gif,png"},
+			{title : "Zip files", extensions : "zip"}
+		],
+		resize : {width : 320, height : 240, quality : 90}
+	});
+
+	
+
+	$('#submit').click(function(e) {
+		uploader.start();
+		e.preventDefault();
+	});
+
+	uploader.init();
+
+	uploader.bind('FilesAdded', function(up, files) {	
+		total_upload_files = uploader.files.length;
+		$.each(files, function(i, file) {
+			$.extend(up.settings.multipart_params, { uid : $('#user_id').val(), gid: $('#goal_id').val() });
+			$('#filelist').append(
+				'<div id="' + file.id + '">' +
+				file.name + ' (' + plupload.formatSize(file.size) + ') <img class="remove" style="cursor: pointer; border: 0; vertical-align: middle" src=themes/dotdotgo/images/cancel.png /> <b></b>' +
+			'</div>');
+			
+			$('#' + file.id + ' .remove').first().click(function() {
+				uploader.removeFile(file);
+				$('#' + file.id).hide();
+			});
+		});		
+
+		up.refresh(); // Reposition Flash/Silverlight
+	});
+
+	uploader.bind('UploadProgress', function(up, file) {
+		$('#' + file.id + " b").html(file.percent + "%");
+	});
+
+	uploader.bind('Error', function(up, err) {
+		$('#filelist').append("<div>Error: " + err.code +
+			", Message: " + err.message +
+			(err.file ? ", File: " + err.file.name : "") +
+			"</div>"
+		);
+
+		up.refresh(); // Reposition Flash/Silverlight
+	});
+
+	uploader.bind('FileUploaded', function(up, file) {
+		$('#' + file.id + " b").html("100%");
+		total_upload_files--;
+		console.log("Uploaded: " + (uploader.total.uploaded) + " In queue :" + uploader.files.length);
+
+		if (total_upload_files == 0)
+		{
+			console.log($("#comp_form").serialize());
+			$.post("completion.php?action=complete", 
+				{ comments: $("#comments").val(), location: $("#location").val(), goal_id: $("#goal_id").val() },
+				function(data) {
+					//process(data);
+				}, 
+				"html"
+			);
+			//window.location= 'todo.php';
+		}
+	});	
+});
+
+</script>
+
 {% endblock %}
 {% block content %}	
-		<div class="section full">			
-			<h1>Achievement Completed!</h1>
+		<div class="section full">		
+			<h1>Complete Achievement!</h1>
 			{% if msg %}
 				<p class="alert">{{ msg }}</p>
 			{% endif %}		
 			<div>
-				<div class="signup-login">
+				<div style="text-align: center" class="signup-login">
 					<div class="signup-login-text">
-						<p><img src="themes/dotdotgo/images/avatar.png" alt="image" class="alignleft" /></p>
+						<p><img src="{{goal.icon}}" alt="icon" class="alignleft" /></p>
 					</div>
-					<form action="completion.php?id=1" method="POST" class="comp_form">
-						<p><input type="text" name="location" id="location" value="Picture Location" /></p>
-						<p><textarea id="comments" name="comments">Comments</textarea></p>
-						<p><input type="button" id="upload" name="upload" value="Upload Proof..." /><span id="status" ></span></p>
-						<input type="hidden" name="imageName" id="imageName" />
-						<input type="hidden" name="goalID" id="goalID" value="{{ goal.id|e }}" />
-						<ul id="files"></ul>
-						<p><input type="submit" name="submit" value="Submit" id="submit" /></p>
+					{% if not_me == 0 %}
+					<form action="completion.php" method="POST" id="comp_form">
+						<p><label for="location" accesskey="l">Picture Location: </label>
+						<input class="required" placeholder="Picture Location" id="location" type="text" name="location" maxlength="30" /></p>
+						<p><label for="comments">Comments: </label>
+						<textarea id="comments" name="comments"></textarea></p>
+						<input type="hidden" name="user_id" id="user_id" value="{{ user_id|e }}" />
+						<input type="hidden" name="goal_id" id="goal_id" value="{{ goal.id|e }}" />
+						<h3>Upload Proof</h3>
+						<div style="margin-left: 90px" id="container">
+							<p><a href="#" id="upload-photo"></a>&nbsp;<a href="#" id="upload-video"></a>&nbsp;<a href="#" id="upload-web"></a></p>			
+							<div id="filelist"></div>
+						</div>
+						<p></p>
+										
+						<p></p>
+						<p><input style="margin-left: 180px" type="submit" name="submit" value="Submit" id="submit" /></p>
 					</form>
+					{% endif %}
 				</div>
 			</div>	
 		</div><!-- Section -->

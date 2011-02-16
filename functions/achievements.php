@@ -7,26 +7,20 @@ require_once('classes/todo.php');
 $achievement = new Achievements;
 $todo = new Todo;
 
-if (isset($_POST['submit']))
-{
-	$fileExt = $achievement->image_file_extension($_POST["imageName"]);
-	$newFile = $_SESSION['userid'] . "_" . time() . "." . $fileExt;
-		
-	rename("uploads/" . $_POST["imageName"], "uploads/" . $newFile);
-
-	$data["goal_id"] = $_POST['goalID'];
+if (isset($_GET['action']))
+{	
+	$data["goal_id"] = $_POST['goal_id'];
 	$data["user_id"] = (int)$_SESSION['userid'];
-	$data["image"] = $newFile;
-	$data["location"] = $_POST['location'];
 	$data["comments"] = $_POST['comments'];	
+	$data["location"] = $_POST['location'];	
 	$data["date"] = time();
 	
-	$achievement->add($data);
+	$id = $achievement->add($data);
 	$todo->remove($data["goal_id"], $_SESSION["userid"]);
 	
 	$msg = "Achievement Successfully Achieved!";
+	echo "Achievement Successfully Achieved!";
 	event::fire('USER_GOAL_COMPLETION');
-	header("Location: todo.php");
 }
 
 ?>

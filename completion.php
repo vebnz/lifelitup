@@ -23,11 +23,12 @@ if ($_GET['userid'] > 0) {
 }
 else {
 	$userid = $_SESSION['userid'];
+	$not_me = 0;
 }
 
 $show = $goals->show($_GET['id']);
 $template = $twig->loadTemplate('completion.html');
-echo $template->render(array('page_id' => $_GET['id'], 'not_me' => $not_me, 'goal' => $show));
+echo $template->render(array('page_id' => $_GET['id'], 'not_me' => $not_me, 'goal' => $show, 'user_id' => $userid));
 
 $db->close();
 ?>
