@@ -1,3 +1,18 @@
 This is the LifeLitUp application source-code.
 
-fg!
+This project was once a great project to work on, until we got jobs...
+
+The aim of this project was to create a website where users would upload 'evidence' of them being some place/doing
+something that was on our website. You know that book, '1001 movies to watch before you die'? LifeLitUp was going 
+to be the same sort of thing, but with a very wide-range of things to see or do. (i.e. jetskiing, mountain biking, 
+visit Germany).
+
+The code sucks. There is no architecture. You'll be able to get it working... maybe. Yes, there's heaps of bugs,
+and bad security practices, but we've come a long way since. :-)
+
+There's a domain name that accompanies this code (http://www.LifeLitUp.com) and if you want it, let me know.
+
+Have fun.
+
+Michael Mackenzie
+Jamie Gracie
